@@ -1,21 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Customized Account -->
+
+  <!-- Favicon Start -->
+  <link href="../src/assets/images/favicon.png" sizes="60x60" rel="shortcut icon" type="image/x-icon" />
+
+  <!-- Favicon End -->
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Google fonts End -->
+  <!-- Font Awesome -->
+  <link href="../src/assets/styles/base/_fontAwesome.scss" rel="stylesheet" type="text/css" />
+  <link href="../src/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+
+  <!-- Font end -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../src/assets/styles/base/_bootstrap.scss" />
+  <link rel="stylesheet" href="../src/assets/styles/base/_style.scss" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+  <!-- Bootstrap CSS  End-->
+  <!-- Animation CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <!-- Animation CSS End-->
+  <!-- Slick Slider -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+  <!-- Slick Slider  End-->
+    <!-- Customized Account End -->
+
+
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,12 +57,17 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+
+
+
+
+  <title>React Lol Trading App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -39,5 +77,230 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+
+
+
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="../src/assets/js/popper.min.js"></script>
+ <script src="../src/assets/js/bootstrap.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+ <script src="../src/assets/js/custom.js"></script>
+  <!-- Customized Account -->
+
+ <script>
+    $(function() {
+     $("#price-range").slider({range: true, min: 00, max: 2000, values: [00, 200000], slide: function(event, ui) {$("#priceRange").val("" + ui.values[0] + " - " + ui.values[1]);}
+    });
+     $("#priceRange").val("" + $("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values", 1));
+    });
+ </script>
+
+ <script>
+ $(function() {
+$(".market-place .card").slice(0, 8).addClass('display');
+$("#loadMore").on('click', function (e) {
+   e.preventDefault();
+   $(".market-place .card:hidden").slice(0, 8).addClass('display');
+   if ($(".market-place .card:hidden").length == 0) {
+      $("#loadMore").remove();
+   } else {
+       $('html,body').animate({
+           scrollTop: $(this).offset().top
+       }, 1500);
+   }
+});
+});
+ </script>
+   <!-- Customized Account End-->
+   <!-- Dashboard-->
+
+<script> 
+    $(document).ready(function(){
+     $("#testimonial-slider").owlCarousel({
+      items:3,
+      itemsDesktop:[1000,2],
+      itemsDesktopSmall:[979,2],
+      itemsTablet:[768,1],
+      pagination:true,
+      navigation:false,
+      autoplay:true,
+      center: true,
+      dots: true,
+      afterAction: function(el){
+               //remove class active
+               this
+               .$owlItems
+               .removeClass('active')
+               //add class active
+               this
+               .$owlItems //owl internal $ object containing items
+               .eq(this.currentItem + 1)
+               .addClass('active')
+            }
+         });
+    });
+    
+    
+ </script>
+ <script>
+    $(function() {
+     $('a').click(function() {
+       if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+         var target = $(this.hash);
+         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+         if (target.length) {
+           $('html,body').animate({
+             scrollTop: target.offset().top
+           }, 1000); // The number here represents the speed of the scroll in milliseconds
+           return false;
+        }
+     }
+    });
+    });
+ </script>
+ <script>
+    $('.slider-nav').slick({
+       dots: false,
+       infinite: false,
+       slidesToShow: 1,
+       adaptiveHeight: true,
+       arrows: true
+    });
+    
+    
+ </script>
+  <script>
+ $(function() {
+$(".load-more .card").slice(0, 8).addClass('display');
+$("#loadMore").on('click', function (e) {
+   e.preventDefault();
+   $(".load-more .card:hidden").slice(0, 8).addClass('display');
+   if ($(".load-more .card:hidden").length == 0) {
+      $("#loadMore").remove();
+   } else {
+       $('html,body').animate({
+           scrollTop: $(this).offset().top
+       }, 1500);
+   }
+});
+});
+ </script>
+    <!-- Dashboard End-->
+       <!-- lol account-->
+
+    <script>
+      $(function() {
+       $("#price-range").slider({range: true, min: 00, max: 2000, values: [00, 200000], slide: function(event, ui) {$("#priceRange").val("" + ui.values[0] + " - " + ui.values[1]);}
+      });
+       $("#priceRange").val("" + $("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values", 1));
+      });
+   </script>
+
+   <script>
+   $(function() {
+ $(".market-place .card").slice(0, 8).addClass('display');
+ $("#loadMore").on('click', function (e) {
+     e.preventDefault();
+     $(".market-place .card:hidden").slice(0, 8).addClass('display');
+     if ($(".market-place .card:hidden").length == 0) {
+        $("#loadMore").remove();
+     } else {
+         $('html,body').animate({
+             scrollTop: $(this).offset().top
+         }, 1500);
+     }
+ });
+});
+   </script>
+   <!-- Dashboard End-->
+       <!-- signup -->
+
+
+   <script>
+    var x, i, j, l, ll, selElmnt, a, b, c;
+    /*look for any elements with the class "custom-select":*/
+    x = document.getElementsByClassName("custom-select");
+    l = x.length;
+    for (i = 0; i < l; i++) {
+      selElmnt = x[i].getElementsByTagName("select")[0];
+      ll = selElmnt.length;
+      /*for each element, create a new DIV that will act as the selected item:*/
+      a = document.createElement("DIV");
+      a.setAttribute("class", "select-selected");
+      a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+      x[i].appendChild(a);
+      /*for each element, create a new DIV that will contain the option list:*/
+      b = document.createElement("DIV");
+      b.setAttribute("class", "select-items select-hide");
+      for (j = 1; j < ll; j++) {
+        /*for each option in the original select element,
+        create a new DIV that will act as an option item:*/
+        c = document.createElement("DIV");
+        c.innerHTML = selElmnt.options[j].innerHTML;
+        c.addEventListener("click", function(e) {
+            /*when an item is clicked, update the original select box,
+            and the selected item:*/
+            var y, i, k, s, h, sl, yl;
+            s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+            sl = s.length;
+            h = this.parentNode.previousSibling;
+            for (i = 0; i < sl; i++) {
+              if (s.options[i].innerHTML == this.innerHTML) {
+                s.selectedIndex = i;
+                h.innerHTML = this.innerHTML;
+                y = this.parentNode.getElementsByClassName("same-as-selected");
+                yl = y.length;
+                for (k = 0; k < yl; k++) {
+                  y[k].removeAttribute("class");
+                }
+                this.setAttribute("class", "same-as-selected");
+                break;
+              }
+            }
+            h.click();
+        });
+        b.appendChild(c);
+      }
+      x[i].appendChild(b);
+      a.addEventListener("click", function(e) {
+          /*when the select box is clicked, close any other select boxes,
+          and open/close the current select box:*/
+          e.stopPropagation();
+          closeAllSelect(this);
+          this.nextSibling.classList.toggle("select-hide");
+          this.classList.toggle("select-arrow-active");
+        });
+    }
+    function closeAllSelect(elmnt) {
+      /*a function that will close all select boxes in the document,
+      except the current select box:*/
+      var x, y, i, xl, yl, arrNo = [];
+      x = document.getElementsByClassName("select-items");
+      y = document.getElementsByClassName("select-selected");
+      xl = x.length;
+      yl = y.length;
+      for (i = 0; i < yl; i++) {
+        if (elmnt == y[i]) {
+          arrNo.push(i)
+        } else {
+          y[i].classList.remove("select-arrow-active");
+        }
+      }
+      for (i = 0; i < xl; i++) {
+        if (arrNo.indexOf(i)) {
+          x[i].classList.add("select-hide");
+        }
+      }
+    }
+    /*if the user clicks anywhere outside the select box,
+    then close all select boxes:*/
+    document.addEventListener("click", closeAllSelect);
+ </script>
+        <!-- signup -->
+
+</body>
+
 </html>
