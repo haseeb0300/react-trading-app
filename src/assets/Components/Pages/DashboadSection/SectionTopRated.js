@@ -11,17 +11,22 @@ import account9 from '../../../images/account/9.png'
 import account10 from '../../../images/account/10.png'
 import account11 from '../../../images/account/11.png'
 import account12 from '../../../images/account/11.png'
+import Fade from 'react-reveal/Fade';
 
 function SectionTopRated(props) {
     //const { t, i18n } = this.props
     return (
+
         <section class="account-section" >
+
                   <div class="container">
-                     <h2 class="text-center wow shakeX
-                      ">{props.page!=''}Top Rated Accounts</h2>
+
+                     <h2 class="text-center wow shakeX">{props.page!=''}Top Rated Accounts</h2>
+
                      <div class="row justify-content-center ">
                      
                         <div class="col-md-6 col-lg-4 col-xl-3">
+
                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
                               <a >
                                  <img class="card-img-top" src={account1} alt="account" />
@@ -661,8 +666,11 @@ function SectionTopRated(props) {
                            <button type="button" class="btn btn-primary text-uppercase mt-md-4 px-5" id="loadMore">View all</button>
                         </div>
                      </div>
+
                   </div>
+
                </section>
+
            
         );
 }

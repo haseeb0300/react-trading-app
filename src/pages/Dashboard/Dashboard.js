@@ -17,6 +17,9 @@ import SectionNewsLetter from '../../assets/Components/Pages/DashboadSection/Sec
 import $ from "jquery";
 import { Link, withRouter } from 'react-router-dom';
 import SectionBanner from '../../assets/Components/Pages/DashboadSection/SectionBanner';
+import Fade from 'react-reveal/Fade';
+import Slide from 'react-reveal/Slide';
+
 class Dashboard extends Component {
    constructor(props) {
       super(props);
@@ -27,9 +30,9 @@ class Dashboard extends Component {
       };
    }
    componentDidMount() {
-      new WOW.WOW({
+       new WOW.WOW({
          live: false
-      }).init();
+       }).init();
    }
    render() {
       // const { t, i18n } = this.props
@@ -49,15 +52,22 @@ class Dashboard extends Component {
             {/* <!-- Main --> */}
             <main>
                {/* <!-- Our Services --> */}
+               <Fade right delay={500}>
+
               <SectionOurService></SectionOurService>
+              </Fade>
                {/* <!-- History Section --> */}
               <SectionHistory></SectionHistory>
                {/* <!-- Top Rated Accounts --> */}
+
               <SectionTopRated
               page= {this.state.page}
               ></SectionTopRated>
                {/* <!-- Testimonial --> */}
+               <Slide bottom delay={200}>
+
               <Testimonial></Testimonial>
+              </Slide>
                {/* <!-- Newsletter Section --> */}
                <SectionNewsLetter></SectionNewsLetter>
             </main>

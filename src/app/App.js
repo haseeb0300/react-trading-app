@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-
-
-
 import './App.css';
 import Dashboard from '../pages/Dashboard/Dashboard'
 import CustomizedAccount from '../pages/Accounts/CustomizedAccount'
@@ -18,7 +15,8 @@ import {
 } from "react-router-dom";
 class App extends Component {
     render() {
-        return ( <Router >
+        return ( 
+        <Router >
             <Switch >
             <Route exact path = "/"
             component = { Dashboard }/> 
