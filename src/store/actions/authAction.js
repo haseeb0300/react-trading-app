@@ -29,7 +29,7 @@ export const loginUser = userData => dispatch => {
        })
        .catch(err =>{
          console.log(err);
-         if(err.response.data != null && err.response.data.validation){
+         if(err?.response?.data?.validation){
            console.log(err.response.data);
            err= err.response.data
          }else{
