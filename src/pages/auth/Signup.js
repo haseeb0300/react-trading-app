@@ -354,8 +354,8 @@ class Signup extends Component {
                                                 <input type="text" class="form-control" placeholder="1234456789" />
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4">Login</button>
-                                            <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Login with Facebook</button>
+                                            <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4">Signup</button>
+                                            <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button>
 
                                             <p class="text-center mt-4 mt-md-5 mb-0">Already have an account? Click to<Link to="/login"><a href="login.html">Sign In</a> </Link></p>
                                         </form>
