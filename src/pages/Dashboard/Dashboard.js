@@ -53,13 +53,11 @@ class Dashboard extends Component {
             <main>
                {/* <!-- Our Services --> */}
                <Fade right delay={500}>
-
               <SectionOurService></SectionOurService>
               </Fade>
                {/* <!-- History Section --> */}
               <SectionHistory></SectionHistory>
                {/* <!-- Top Rated Accounts --> */}
-
               <SectionTopRated
               page= {this.state.page}
               ></SectionTopRated>
@@ -72,6 +70,7 @@ class Dashboard extends Component {
                <SectionNewsLetter></SectionNewsLetter>
             </main>
             {/* <!-- Footer --> */}
+
             <Footer></Footer>
          </div>
       )

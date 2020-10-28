@@ -20,11 +20,13 @@ import paypal_img from "../../assets/images/paypal.png"
 import { Link, withRouter } from 'react-router-dom';
 import WOW from 'wowjs';
 import $ from "jquery";
+import SectionAcountFilter from '../../assets/Components/Pages/DashboadSection/SectionAcountFilter';
 
 import Footer from '../../assets/Components/Pages/Footer/Footer';
 import Header from '../../assets/Components/Pages/Header/Header';
 import SectionTopRated from "../../assets/Components/Pages/DashboadSection/SectionTopRated"
-
+import Fade from 'react-reveal/Fade';
+import Flip from 'react-reveal/Flip';
 
 class UnRankedAccount extends Component {
     constructor(props) {
@@ -61,10 +63,16 @@ class UnRankedAccount extends Component {
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
+                            <Flip bottom delay={200}>
+
                                 <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">Unranked<br></br>ACCOUNTS</h1>
+                                </Flip>
+                                <Fade bottom delay={300}>
+
                                 <p class="wow fadeInUp" data-wow-delay="1s">
                                     <strong>LOL Trading is a professional marketplace for buyers & sellers<br class="d-none d-md-block"></br>of League of Legends accounts.</strong>
                                 </p>
+                                </Fade>
                             </div>
                         </div>
                     </div>
@@ -111,7 +119,15 @@ class UnRankedAccount extends Component {
                         </div>
                     </section>
                     {/* <!-- Search Filter --> */}
-                    <section class="search-filter wow fadeInUp" data-wow-delay="0.6s">
+                    <Fade bottom>
+                    <SectionAcountFilter
+                            price_range={this.state.price_range}
+                        >
+
+                        </SectionAcountFilter>
+
+
+                    {/* <section class="search-filter wow fadeInUp" data-wow-delay="0.6s">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
@@ -216,6 +232,9 @@ class UnRankedAccount extends Component {
                             </div>
                         </div>
                     </section>
+                 */}
+                
+                  </Fade>
                     {/* <!-- Top Rated Accounts --> */}
                     {/*                     
                     <section class="account-section market-place" id="account">

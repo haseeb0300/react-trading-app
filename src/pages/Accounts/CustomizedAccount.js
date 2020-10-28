@@ -21,7 +21,9 @@ import paypal_img from '../../assets/images/paypal.png'
 import { Link, withRouter } from 'react-router-dom';
 import WOW from 'wowjs';
 import SectionTopRated from "../../assets/Components/Pages/DashboadSection/SectionTopRated"
-
+import Fade from 'react-reveal/Fade';
+import Flip from 'react-reveal/Flip';
+import SectionAcountFilter from '../../assets/Components/Pages/DashboadSection/SectionAcountFilter';
 
 import '../../assets/styles/base/_style.scss'
 //  import '../../assets/styles/base/_fontAwesome.scss'
@@ -87,12 +89,17 @@ class CustomizedAccount extends Component {
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
-                                <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">Customized
-                        <br></br>ACCOUNTS
-                     </h1>
-                                <p class="wow fadeInUp" data-wow-delay="1s"><strong>LOL Trading is a professional marketplace for buyers & sellers
-                        <br className="d-none d-md-block"></br>of League of Legends accounts.</strong>
-                                </p>
+                                <Flip bottom delay={200}>
+
+                                    <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">
+                                        Customized <br></br>ACCOUNTS
+                                     </h1>
+                                </Flip>
+                                <Fade bottom delay={300}>
+                                    <p class="wow fadeInUp" data-wow-delay="1s"><strong>
+                                        LOL Trading is a professional marketplace for buyers & sellers <br className="d-none d-md-block"></br>of League of Legends accounts.</strong>
+                                    </p>
+                                </Fade>
                             </div>
                         </div>
                     </div>
@@ -138,7 +145,14 @@ class CustomizedAccount extends Component {
                         </div>
                     </section>
                     {/* <!-- Search Filter --> */}
-                    <section class="search-filter wow fadeInUp" data-wow-delay="0.6s">
+                    <Fade bottom>
+                    <SectionAcountFilter
+                            price_range={this.state.price_range}
+                        >
+
+                        </SectionAcountFilter>
+                        </Fade>
+                    {/* <section class="search-filter wow fadeInUp" data-wow-delay="0.6s">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
@@ -245,8 +259,11 @@ class CustomizedAccount extends Component {
                             </div>
                         </div>
                     </section>
+                    */}
+                   
+                   
                     {/* <!-- Top Rated Accounts --> */}
-{/* 
+                    {/* 
                     <section class="account-section market-place" id="account">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -739,7 +756,7 @@ class CustomizedAccount extends Component {
                         </div>
                     </section>
                  */}
-                                     <SectionTopRated></SectionTopRated>
+                    <SectionTopRated></SectionTopRated>
 
                 </main>
                 {/* <!-- Footer --> */}

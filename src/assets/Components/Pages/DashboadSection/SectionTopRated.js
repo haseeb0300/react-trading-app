@@ -28,6 +28,8 @@ function SectionTopRated(props) {
                         <div class="col-md-6 col-lg-4 col-xl-3">
 
                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                           <Fade bottom cascade delay={50}>
+
                               <a >
                                  <img class="card-img-top" src={account1} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -53,6 +55,8 @@ function SectionTopRated(props) {
                                     <h6 class="price">240.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
+
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -68,6 +72,8 @@ function SectionTopRated(props) {
                         </div>
                             <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                           <Fade bottom cascade delay={150}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account2} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -93,6 +99,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">310.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -108,6 +115,8 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.6s">
+                           <Fade bottom cascade delay={250}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account3} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -133,6 +142,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">160.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -148,6 +158,8 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.8s">
+                           <Fade bottom cascade delay={350}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account4} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -173,6 +185,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">287.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -188,6 +201,8 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
+                           <Fade bottom cascade delay={50}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account5} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -213,6 +228,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">287.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -228,6 +244,8 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                           <Fade bottom cascade delay={150}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account6} a alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -253,6 +271,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">287.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -268,6 +287,8 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.6s">
+                           <Fade bottom cascade delay={250}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account7} a alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -293,6 +314,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">287.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -308,6 +330,8 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.8s">
+                           <Fade bottom cascade delay={350}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account8} a alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -333,6 +357,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">287.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -348,6 +373,8 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                           <Fade bottom cascade delay={50}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account9} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -373,6 +400,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">240.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -388,6 +416,8 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                           <Fade bottom cascade delay={150}>
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account10} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -413,6 +443,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">310.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -427,7 +458,11 @@ function SectionTopRated(props) {
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
+
                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                           <Fade bottom cascade delay={150}>
+
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account11} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -453,6 +488,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">160.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -468,6 +504,9 @@ function SectionTopRated(props) {
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                           <Fade bottom cascade delay={250}>
+
+
                               <a href="javascript:void(0)">
                                  <img class="card-img-top" src={account12} alt="account" />
                                  <ul class="rating-detail d-flex">
@@ -493,6 +532,7 @@ function SectionTopRated(props) {
                                     <h6 class="price">287.00 EUR</h6>
                                  </div>
                               </a>
+                              </Fade>
                               <div class="overlayer">
                                  <div class="inner-cnt">
                                     <div class="wrap-link">
@@ -513,6 +553,7 @@ function SectionTopRated(props) {
                            <div class="slider slider-nav">
                               <div>
                                  <div class="card wow fadeInUp" data-wow-delay="0.2s">
+                                    
                                     <a href="javascript:void(0)">
                                        <img class="card-img-top" src={account1} alt="account" />
                                        <ul class="rating-detail d-flex">
