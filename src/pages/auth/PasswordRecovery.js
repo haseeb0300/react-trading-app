@@ -54,8 +54,7 @@ class PasswordRecovery extends Component {
 
       return (
          <div class="wrapper">
-            {/* <!-- Header --> */}
-            <Header></Header>
+ 
             {/* <!-- Banner section --> */}
             <section class="banner-section"
             // style="background-image: url('assets/images/password.png');"

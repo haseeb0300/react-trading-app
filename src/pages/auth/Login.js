@@ -99,7 +99,7 @@ class Login extends Component {
 
         return (
             <div class="wrapper">
-                <Header></Header>
+         
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-login-image" >
 

@@ -94,9 +94,7 @@ class LolAccount extends Component {
         }
         return (
             <div class="wrapper">
-                {/* <!-- Header --> */}
-
-                <Header></Header>
+            
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-image" >
                     <div class="container">

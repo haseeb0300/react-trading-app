@@ -44,8 +44,7 @@ class Dashboard extends Component {
       }
       return (
          <div class="wrapper">
-            {/* <!-- Header section --> */}
-            <Header></Header>
+ 
             {/* <!-- Banner section --> */}
             <SectionBanner></SectionBanner>
             {/* <!-- Main --> */}

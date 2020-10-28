@@ -93,9 +93,7 @@ class Signup extends Component {
 
         return (
             <div class="wrapper">
-                {/* <!-- Header --> */}
-
-                <Header></Header>
+                
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-signup-image"
                 //  style="background-image: url('assets/images/signup.png');"
