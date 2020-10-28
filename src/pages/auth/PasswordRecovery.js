@@ -83,7 +83,10 @@ class PasswordRecovery extends Component {
                                     <label>Enter your Email Address</label>
                                     <input type="email" class="form-control" placeholder="Joel@example.com" />
                                  </div>
+                                 <Link to="/confrimpassword">
+
                                  <button type="submit" class="btn btn-primary btn-block mt-1 mb-4 mb-md-5">Reset Password</button>
+                                 </Link>
                                  <p class="text-center mb-2 mb-md-4 pb-2">Already have an account? Click to <Link to="/login"><a href=""> Sign In</a></Link> </p>
                                  <p class="text-center mb-0">Don't have an account yet? <Link to="/login"> <a href="">Click here</a> </Link> to create one <br class="d-none d-md-block"></br>
                                     enjoy our Loyalty Program!

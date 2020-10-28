@@ -92,7 +92,6 @@ class LolAccount extends Component {
                 <div className="loader-large"></div>
             )
         }
-
         return (
             <div class="wrapper">
                 {/* <!-- Header --> */}

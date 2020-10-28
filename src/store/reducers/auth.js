@@ -3,16 +3,10 @@ import isEmpty from '../../validation/is-empty';
 
 import { SET_CURRENT_USER } from '../actions/type';
 
-const defaultUserInfo = {
-  name: 'Demo User',
-  image: 'http://demos.creative-tim.com/light-bootstrap-dashboard-pro/assets/img/default-avatar.png'
-};
+ 
 const initialState = {
   isAuthenticated: false,
-  user: {
-    name: 'Demo User',
-    image: 'http://demos.creative-tim.com/light-bootstrap-dashboard-pro/assets/img/default-avatar.png'
-  }
+  user: {}
 }
 
 export default function(state = initialState, action) {

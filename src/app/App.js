@@ -7,6 +7,7 @@ import UnRankedAccount from '../pages/Accounts/UnRankedAccount'
 import Login from '../pages/auth/Login'
 import Signup from '../pages/auth/Signup'
 import PasswordRecovery from '../pages/auth/PasswordRecovery'
+import ConfrimPassword from '../pages/auth/ConfrimPassword'
 import {
     BrowserRouter as Router,
     Switch,
@@ -26,9 +27,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
     axios.defaults.baseURL = 'http://localhost:4000/v1';
 }
-
 axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 var localStorage = ""
 // Check for token
 if (localStorage && localStorage.jwtToken) {
@@ -51,7 +50,7 @@ if (localStorage && localStorage.jwtToken) {
 class App extends Component {
     render() {
         return (
-          <Provider store={store}>
+            <Provider store={store}>
                 <Router >
                     <Switch >
                         <Route exact path="/"
@@ -68,9 +67,11 @@ class App extends Component {
                             component={Signup} />
                         <Route exact path="/passwordrecovery"
                             component={PasswordRecovery} />
+                        <Route exact path="/confrimpassword"
+                            component={ConfrimPassword} />
                     </Switch>
                 </Router>
-                </Provider>
+            </Provider>
         );
     }
 }

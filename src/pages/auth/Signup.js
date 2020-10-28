@@ -17,6 +17,9 @@ import WOW from 'wowjs';
 import Footer from '../../assets/Components/Pages/Footer/Footer'
 import Header from '../../assets/Components/Pages/Header/Header'
 import { FacebookProvider, LoginButton } from 'react-facebook';
+import { connect } from 'react-redux';
+import {registerUser} from '../../store/actions/authAction'
+
 
 
 
@@ -25,6 +28,12 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            email:"",
+            password:"",
+            user_name:"",
+            country:"",
+            phone_no:"",
+            confirm_password:"",
             serverError: {},
             isLoading: false,
         };
@@ -37,6 +46,25 @@ class Signup extends Component {
 
     handleError = (error) => {
         this.setState({ error });
+    }
+
+    onChange = (e) =>{
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    onSubmit = (e)=>{
+        e.preventDefault()
+        this.props.registerUser({
+
+            "email":this.state.email,
+            "password":this.state.password,
+            "user_name":this.state.user_name,
+            "country":"Pakistan",
+            "phone_no":this.state.phone_no,
+            "password2":this.state.confirm_password,
+        }).then((res)=>{
+            console.log(res)
+        })
     }
 
     componentDidMount() {
@@ -95,24 +123,24 @@ class Signup extends Component {
                                         <form>
                                             <div class="form-group mb-md-4">
                                                 <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="" />
+                                                <input type="text" class="form-control" placeholder="" name="user_name" onChange = {this.onChange} required="" />
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>Your email</label>
-                                                <input type="email" class="form-control" placeholder="Joel@example.com" />
+                                                <input type="email" class="form-control" placeholder="Joel@example.com" name="email" onChange = {this.onChange} required=""/>
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>PASSWORD</label>
-                                                <input type="password" class="form-control" placeholder="" />
+                                                <input type="password" class="form-control" placeholder="" name="password" onChange = {this.onChange} required=""/>
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>Re-enter your PASSWORD</label>
-                                                <input type="password" class="form-control" placeholder="" />
+                                                <input type="password" class="form-control" placeholder="" name="confirm_password" onChange = {this.onChange} required=""/>
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>COUNTRY</label>
                                                 <div class="custom-select">
-                                                    <select>
+                                                    <select name="country" onChange = {this.onChange}>
                                                         <option value="placeholder">Choose your VPN location</option>
                                                         <option value="AF">Afghanistan</option>
                                                         <option value="AL">Albania</option>
@@ -358,10 +386,10 @@ class Signup extends Component {
                                             </div>
                                             <div class="form-group">
                                                 <label>PHONE number</label>
-                                                <input type="text" class="form-control" placeholder="1234456789" />
+                                                <input type="text" class="form-control" placeholder="1234456789" name="phone_no" onChange = {this.onChange} required="" />
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4">Signup</button>
+                                            <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4" onClick={this.onSubmit}>Signup</button>
                                             {/* <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button> */}
                                             <FacebookProvider appId="377592783588831">
                                                 <LoginButton
@@ -419,6 +447,12 @@ Signup.propTypes = {
 
 };
 
+const mapStatetoProps =( {auth}) => ({
+    user  : auth.user
+})
+const mapDispatchToProps = ({
+    registerUser
+})
 
-export default (Signup);
+export default connect(mapStatetoProps,mapDispatchToProps) (Signup);
 

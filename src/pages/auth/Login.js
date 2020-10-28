@@ -32,7 +32,9 @@ import WOW from 'wowjs';
 import Footer from '../../assets/Components/Pages/Footer/Footer'
 import Header from '../../assets/Components/Pages/Header/Header';
 import { FacebookProvider, LoginButton } from 'react-facebook';
-
+import {loginUser} from '../../store/actions/authAction'
+import { connect } from 'react-redux';
+import auth from '../../store/reducers/auth';
 
 
 
@@ -62,12 +64,25 @@ class Login extends Component {
 
     }
 
+    onChange = (e) =>{
+        this.setState({[e.target.name]: e.target.value})
+    }
     handleResponse = (data) => {
         console.log(data);
     }
 
     handleError = (error) => {
         this.setState({ error });
+    }
+    onSubmit = (e)=>{
+        e.preventDefault()
+        this.props.loginUser({
+
+            "email":this.state.email,
+            "password":this.state.password
+        }).then((res)=>{
+            console.log(res)
+        })
     }
     render() {
 
@@ -111,14 +126,14 @@ class Login extends Component {
                                         <form>
                                             <div class="form-group mb-4">
                                                 <label>Enter your Email Address</label>
-                                                <input type="email" class="form-control" placeholder="Joel@example.com" />
+                                                <input type="email" class="form-control" placeholder="Joel@example.com"  name="email" onChange = {this.onChange} required=""/>
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" class="form-control" placeholder="Joel@example.com" />
+                                                <input type="password" class="form-control" placeholder="Joel@example.com" name="password" onChange = {this.onChange} required=""/>
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                            <button type="submit" onClick={this.onSubmit} class="btn btn-primary btn-block">Login</button>
 
                                             <div class="row align-items-center mt-3">
                                                 <div class="col-md-7">
@@ -197,6 +212,12 @@ Login.propTypes = {
 
 };
 
+const mapStatetoProps =( {auth}) => ({
+    user  : auth.user
+})
+const mapDispatchToProps = ({
+    loginUser
+})
 
-export default (Login);
+export default connect(mapStatetoProps,mapDispatchToProps) (Login);
 
