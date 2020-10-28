@@ -5,24 +5,14 @@ import master_img from "../../../images/master.png"
 import visa_img from "../../../images/visa.png"
 import paypal_img from "../../../images/paypal.png"
 import Fade from 'react-reveal/Fade';
-
-
 function Footer(props) {
-    //const { t, i18n } = this.props
-
-
-
-
-
     return (
         <div class="footer">
         <div class="footer-top">
             <div class="container">
-
                 <div class="row">
                     <div class="col-sm-6 col-md-3 wow fadeInUp" data-wow-delay="0.4s">
                     <Fade bottom delay={100}>
-
                         <h5 class="mt-0">Information</h5>
                         <ul>
                             <li><span class="icon-location"></span> Enter your street, Block City. XYZ,China</li>
@@ -33,7 +23,6 @@ function Footer(props) {
                     </div>
                     <div class="col-sm-6 col-md-3 wow fadeInUp" data-wow-delay="0.6s">
                     <Fade bottom delay={200}>
-
                         <h5>Services</h5>
                         <ul>
                             <li><a href="javascript:void(0)"><span class="icon-double-angle-right"></span> Live Chat</a></li>
@@ -45,7 +34,6 @@ function Footer(props) {
                     </div>
                     <div class="col-sm-6 col-md-3 wow fadeInUp" data-wow-delay="0.8s">
                     <Fade bottom delay={300}>
-
                         <h5>Quick Link</h5>
                         <ul>
                             <li><a href="javascript:void(0)"><span class="icon-double-angle-right"></span> Terms & Conditions</a></li>
@@ -57,11 +45,8 @@ function Footer(props) {
                     </div>
                     <div class="col-sm-6 col-md-3 wow fadeInUp" data-wow-delay="1s">
                     <Fade bottom delay={400}>
-
                         <h5>Payment Methods</h5>
-                        <p class="mb-4">Your payment details will be
-                        secure and confidential.
-            </p>
+                        <p class="mb-4">Your payment details will be secure and confidential. </p>
                         <img class="mr-4" src={master_img} alt="master" />
                         <img src={visa_img} alt="visa" />
                         <img class="mt-3" src={paypal_img} alt="paypal" />
@@ -95,17 +80,10 @@ function Footer(props) {
         );
 }
 Footer.propTypes = {
-
 };
-
-
 const mapStateToProps = state => ({
-
 });
-
 const mapDispatchToProps = ({
-
-
 })
 export default (Footer);
 

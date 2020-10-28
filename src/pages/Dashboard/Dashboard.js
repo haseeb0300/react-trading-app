@@ -19,7 +19,6 @@ import { Link, withRouter } from 'react-router-dom';
 import SectionBanner from '../../assets/Components/Pages/DashboadSection/SectionBanner';
 import Fade from 'react-reveal/Fade';
 import Slide from 'react-reveal/Slide';
-
 class Dashboard extends Component {
    constructor(props) {
       super(props);
@@ -70,14 +69,12 @@ class Dashboard extends Component {
                <SectionNewsLetter></SectionNewsLetter>
             </main>
             {/* <!-- Footer --> */}
-
             <Footer></Footer>
          </div>
       )
    }
 
 }
-
 Dashboard.propTypes = {
 };
 export default (Dashboard);
