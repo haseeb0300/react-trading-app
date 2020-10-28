@@ -34,6 +34,8 @@ class UnRankedAccount extends Component {
         this.state = {
             serverError: {},
             isLoading: false,
+            page:"unrankedAccount",
+
         };
     }
     componentDidMount() {
@@ -122,6 +124,8 @@ class UnRankedAccount extends Component {
                     <Fade bottom>
                     <SectionAcountFilter
                             price_range={this.state.price_range}
+                            page = {this.state.page}
+
                         >
 
                         </SectionAcountFilter>
@@ -735,6 +739,7 @@ class UnRankedAccount extends Component {
                 {/* <!-- Footer --> */}
                 <Footer></Footer>
             </div>
+        
         )
     }
 

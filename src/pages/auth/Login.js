@@ -31,6 +31,7 @@ import { Link, withRouter } from 'react-router-dom';
 import WOW from 'wowjs';
 import Footer from '../../assets/Components/Pages/Footer/Footer'
 import Header from '../../assets/Components/Pages/Header/Header';
+import { FacebookProvider, LoginButton } from 'react-facebook';
 
 
 
@@ -40,6 +41,8 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            email:"",
+            password:"",
             serverError: {},
             isLoading: false,
         };
@@ -59,7 +62,13 @@ class Login extends Component {
 
     }
 
+    handleResponse = (data) => {
+        console.log(data);
+    }
 
+    handleError = (error) => {
+        this.setState({ error });
+    }
     render() {
 
         // const { t, i18n } = this.props
@@ -75,7 +84,7 @@ class Login extends Component {
 
         return (
             <div class="wrapper">
-              <Header></Header>
+                <Header></Header>
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-login-image" >
 
@@ -108,14 +117,26 @@ class Login extends Component {
                                                 <label>Password</label>
                                                 <input type="password" class="form-control" placeholder="Joel@example.com" />
                                             </div>
+
                                             <button type="submit" class="btn btn-primary btn-block">Login</button>
+
                                             <div class="row align-items-center mt-3">
                                                 <div class="col-md-7">
-                                                    <button type="button" class="btn btn-primary btn-block btn-fb"><i class="fa fa-facebook-square"></i> <span>Login with Facebook</span></button>
+                                                    {/* <button type="button" class="btn btn-primary btn-block btn-fb"><i class="fa fa-facebook-square"></i> <span>Login with Facebook</span></button> */}
+                                                    <FacebookProvider appId="377592783588831">
+                                                        <LoginButton
+                                                            className="btn btn-primary btn-fb m-auto"
+                                                            scope="email"
+                                                            onCompleted={this.handleResponse}
+                                                            onError={this.handleError}
+                                                        >
+                                                            <span>Signup with Facebook</span>
+                                                        </LoginButton>
+                                                    </FacebookProvider>
                                                 </div>
                                                 <div class="col-md-5 text-center text-md-right mt-3 mt-md-0">
-                                                  <Link to="/passwordrecovery">  
-                                                    <a class="forgot-pw" href="">Forgot Your Password? <i class="fa fa-arrow-right ml-2"></i></a>
+                                                    <Link to="/passwordrecovery">
+                                                        <a class="forgot-pw" href="">Forgot Your Password? <i class="fa fa-arrow-right ml-2"></i></a>
                                                     </Link>
                                                 </div>
                                             </div>
@@ -161,7 +182,7 @@ class Login extends Component {
                     </section>
                 </main>
                 {/* <!-- Footer --> */}
-              <Footer></Footer>
+                <Footer></Footer>
             </div>
 
 

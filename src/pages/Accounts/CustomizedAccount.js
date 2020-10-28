@@ -46,6 +46,8 @@ class CustomizedAccount extends Component {
         this.state = {
             serverError: {},
             isLoading: false,
+            page:"customizeAccount",
+
         };
     }
 
@@ -148,6 +150,7 @@ class CustomizedAccount extends Component {
                     <Fade bottom>
                     <SectionAcountFilter
                             price_range={this.state.price_range}
+                            page = {this.state.page}
                         >
 
                         </SectionAcountFilter>

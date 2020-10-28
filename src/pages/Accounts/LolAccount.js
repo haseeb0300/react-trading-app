@@ -42,6 +42,8 @@ class LolAccount extends Component {
             isLoading: false,
             price_range: 'price-range',
             unmounting: false,
+            page: 'lolAccount',
+         
 
         };
     }
@@ -128,10 +130,10 @@ class LolAccount extends Component {
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                <Flip left>
+                                    <Flip left>
 
-                                    <a href="javascript:void(0)">
-                                        <div class="card wow fadeInLeft" data-wow-delay="0.4s">
+                                        <a href="javascript:void(0)">
+                                            <div class="card wow fadeInLeft" data-wow-delay="0.4s">
 
                                                 <div class="card-body">
                                                     <div class="media">
@@ -142,38 +144,40 @@ class LolAccount extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                        </div>
-                                    </a>
+                                            </div>
+                                        </a>
                                     </Flip>
                                 </div>
-                                    <div class="col-md-6">
-                                        <a href="javascript:void(0)">
-                                            <div class="card sell-block wow fadeInRight" data-wow-delay="0.4s">
-                                                <div class="card-body">
-                                                    <div class="media">
-                                                        <img src={sell} alt="sell" />
-                                                        <div class="media-body ml-3 ml-md-4">
-                                                            <h3 class="mb-0"> HOW TO Sell <br></br>  LEAGUE OF LEGENDS ACCOUNT
+                                <div class="col-md-6">
+                                    <a href="javascript:void(0)">
+                                        <div class="card sell-block wow fadeInRight" data-wow-delay="0.4s">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <img src={sell} alt="sell" />
+                                                    <div class="media-body ml-3 ml-md-4">
+                                                        <h3 class="mb-0"> HOW TO Sell <br></br>  LEAGUE OF LEGENDS ACCOUNT
                                           </h3>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
+                        </div>
                     </section>
-                        {/* <!-- Search Filter --> */}
-                        <Fade bottom>
+                    {/* <!-- Search Filter --> */}
+                    <Fade bottom>
 
                         <SectionAcountFilter
                             price_range={this.state.price_range}
+                            page={this.state.page}
+
                         >
 
                         </SectionAcountFilter>
-                        </Fade>
-                        {/*                     
+                    </Fade>
+                    {/*                     
                     <section class="search-filter wow fadeInUp" data-wow-delay="0.6s">
                         <div class="container">
                             <div class="row">
@@ -282,8 +286,8 @@ class LolAccount extends Component {
                         </div>
                     </section>
                      */}
-                        {/* <!-- Top Rated Accounts --> */}
-                        {/* <section class="account-section market-place" id="account">
+                    {/* <!-- Top Rated Accounts --> */}
+                    {/* <section class="account-section market-place" id="account">
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-md-6 col-lg-4 col-xl-3">
@@ -775,10 +779,12 @@ class LolAccount extends Component {
                         </div>
                     </section>
                 */}
-                        <SectionTopRated></SectionTopRated>
+                    <SectionTopRated
+
+                    ></SectionTopRated>
                 </main>
-                    {/* <!-- Footer --> */}
-                    <Footer></Footer>
+                {/* <!-- Footer --> */}
+                <Footer></Footer>
             </div>
 
 
@@ -791,7 +797,7 @@ class LolAccount extends Component {
 
 LolAccount.propTypes = {
 
-                };
+};
 
 
 export default (LolAccount);

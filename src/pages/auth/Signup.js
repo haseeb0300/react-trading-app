@@ -16,6 +16,7 @@ import { Link, withRouter } from 'react-router-dom';
 import WOW from 'wowjs';
 import Footer from '../../assets/Components/Pages/Footer/Footer'
 import Header from '../../assets/Components/Pages/Header/Header'
+import { FacebookProvider, LoginButton } from 'react-facebook';
 
 
 
@@ -30,7 +31,13 @@ class Signup extends Component {
     }
 
 
+    handleResponse = (data) => {
+        console.log(data);
+    }
 
+    handleError = (error) => {
+        this.setState({ error });
+    }
 
     componentDidMount() {
 
@@ -58,9 +65,9 @@ class Signup extends Component {
 
         return (
             <div class="wrapper">
-                                {/* <!-- Header --> */}
+                {/* <!-- Header --> */}
 
-               <Header></Header>
+                <Header></Header>
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-signup-image"
                 //  style="background-image: url('assets/images/signup.png');"
@@ -355,8 +362,17 @@ class Signup extends Component {
                                             </div>
 
                                             <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4">Signup</button>
-                                            <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button>
-
+                                            {/* <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button> */}
+                                            <FacebookProvider appId="377592783588831">
+                                                <LoginButton
+                                                    className="btn btn-primary btn-fb m-auto"
+                                                    scope="email"
+                                                    onCompleted={this.handleResponse}
+                                                    onError={this.handleError}
+                                                >
+                                                    <span>Signup with Facebook</span>
+                                                </LoginButton>
+                                            </FacebookProvider>
                                             <p class="text-center mt-4 mt-md-5 mb-0">Already have an account? Click to<Link to="/login"><a href="login.html">Sign In</a> </Link></p>
                                         </form>
                                     </div>
@@ -388,7 +404,7 @@ class Signup extends Component {
                     </section>
                 </main>
                 {/* <!-- Footer --> */}
-               <Footer></Footer>
+                <Footer></Footer>
             </div>
 
 
