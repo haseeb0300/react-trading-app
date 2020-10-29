@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 
-import logo from '../../assets/images/logo.png'
-import cart from '../../assets/images/cart.svg'
-import sell from '../../assets/images/sell.svg'
+ 
 import master_img from '../../assets/images/master.png'
 import visa_img from '../../assets/images/visa.png'
 import paypal_img from '../../assets/images/paypal.png'
 import skrill_img from '../../assets/images/skrill.png'
 import stripe_img from '../../assets/images/stripe.png'
-import backgroundimg from '../../assets/images/lol-accounts.jpg'
-import { Link, withRouter } from 'react-router-dom';
+ 
+import { Link,   } from 'react-router-dom';
 import WOW from 'wowjs';
-import Header from '../../assets/Components/Pages/Header/Header'
-import Footer from '../../assets/Components/Pages/Footer/Footer'
+ 
+ 
 import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
 class ConfrimPassword extends Component {
@@ -75,8 +73,7 @@ class ConfrimPassword extends Component {
         }
         return (
             <div class="wrapper">
-                {/* <!-- Header --> */}
-                <Header></Header>
+       
                 {/* <!-- Banner section --> */}
                 <section class="banner-section" >
                     <div class="container">
@@ -127,8 +124,8 @@ class ConfrimPassword extends Component {
                                                 </div>
                                             </div>
                                             <button type="submit" onClick={this.onSubmit} class="btn btn-primary btn-block mt-1 mb-4 mb-md-5">Reset Password</button>
-                                            <p class="text-center mb-2 mb-md-4 pb-2">Already have an account? Click to <Link to="/login"><a href=""> Sign In</a></Link> </p>
-                                            <p class="text-center mb-0">Don't have an account yet? <Link to="/login"> <a href="">Click here</a> </Link> to create one <br class="d-none d-md-block"></br>
+                                            <p class="text-center mb-2 mb-md-4 pb-2">Already have an account? Click to <Link to="/login"><a  > Sign In</a></Link> </p>
+                                            <p class="text-center mb-0">Don't have an account yet? <Link to="/login"> <a  >Click here</a> </Link> to create one <br class="d-none d-md-block"></br>
                                     enjoy our Loyalty Program!
                                  </p>
                                         </form>
@@ -160,8 +157,7 @@ class ConfrimPassword extends Component {
                         </div>
                     </section>
                 </main>
-                {/* <!-- Footer --> */}
-                <Footer></Footer>
+ 
             </div>
 
 

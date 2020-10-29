@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import Dashboard from '../Dashboard/Dashboard'
 import CustomizedAccount from '../Accounts/CustomizedAccount'
 import LolAccount from '../Accounts/LolAccount'
@@ -7,6 +7,7 @@ import UnRankedAccount from '../Accounts/UnRankedAccount'
 import Login from '../auth/Login'
 import Signup from '../auth/Signup'
 import PasswordRecovery from '../auth/PasswordRecovery'
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,23 +15,62 @@ import {
 
 } from "react-router-dom";
 import axios from 'axios';
-import Header from '../../assets/Components/Pages/Header/Header';
+ 
+import UserHeader from '../../component/header/UserHeader';
+import Header from '../../component/header/Header';
+import Footer from '../../component/footer/Footer';
+
+
+import store from '../../store/store'
+
+import setAuthToken from '../../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
+ 
+
+import { logoutUser, setCurrentUser } from '../../store/actions/authAction';
+import UserDashboard from '../UserDashboard/UserDashboard';
 if (process.env.NODE_ENV === 'production') {
     axios.defaults.baseURL = 'http://ec2-18-217-133-232.us-east-2.compute.amazonaws.com:5000/v1';
 } else {
     axios.defaults.baseURL = 'http://localhost:4000/v1';
 }
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+if (localStorage.jwtToken) {
 
+    // Set auth token header auth
+    setAuthToken(localStorage.jwtToken);
+
+
+
+    const decoded = jwt_decode(localStorage.jwtToken);
+    var user = localStorage.getItem('user');
+    // Set user and isAuthenticated
+    store.dispatch(setCurrentUser(JSON.parse(user)));
+
+    // Check for expired token
+    const currentTime = Date.now() / 1000;
+    if (decoded.exp < currentTime) {
+        // Logout user
+        store.dispatch(logoutUser());
+
+
+    }
+}
 
 class AppNavigation extends Component {
     render() {
+        const { user } = this.props
+        console.log(user)
         return (
 
 
             <Router >
-                <Header>
-                </Header>
+                
+                { user.token && <UserHeader />}
+                {      !user.token &&
+                    <Header>
+                    </Header>
+                }
                 <Switch >
                     <Route exact path="/"
                         component={Dashboard} />
@@ -46,12 +86,23 @@ class AppNavigation extends Component {
                         component={Signup} />
                     <Route exact path="/passwordrecovery"
                         component={PasswordRecovery} />
+                    <Route exact path="/userdashboard" component={UserDashboard} />
                 </Switch>
-
+            
+                <Footer></Footer>
             </Router >
 
 
         );
     }
 }
-export default AppNavigation;
+const mapStateToProp = state => ({
+    user: state.auth.user
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
+export default connect(mapStateToProp, mapDispatchToProps)(AppNavigation);

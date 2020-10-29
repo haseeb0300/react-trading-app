@@ -1,21 +1,5 @@
 import React, { Component } from 'react';
 
-import logo from '../../assets/images/logo.png'
-import cart from '../../assets/images/cart.svg'
-import sell from '../../assets/images/sell.svg'
-import account1 from '../../assets/images/account/1.png'
-import account2 from '../../assets/images/account/2.png'
-import account3 from '../../assets/images/account/3.png'
-import account4 from '../../assets/images/account/4.png'
-import account5 from '../../assets/images/account/5.png'
-import account6 from '../../assets/images/account/6.png'
-import account7 from '../../assets/images/account/7.png'
-import account8 from '../../assets/images/account/8.png'
-import account9 from '../../assets/images/account/9.png'
-import account10 from '../../assets/images/account/10.png'
-import account11 from '../../assets/images/account/11.png'
-import account12 from '../../assets/images/account/12.png'
-
 
 
 import master_img from '../../assets/images/master.png'
@@ -26,15 +10,15 @@ import skrill_img from '../../assets/images/skrill.png'
 import stripe_img from '../../assets/images/stripe.png'
 
 
-import backgroundimg from '../../assets/images/lol-accounts.jpg'
-import { Link, withRouter } from 'react-router-dom';
+
+import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
-import Footer from '../../assets/Components/Pages/Footer/Footer'
-import Header from '../../assets/Components/Pages/Header/Header';
+
+
 import { FacebookProvider, LoginButton } from 'react-facebook';
-import {loginUser} from '../../store/actions/authAction'
+import { loginUser } from '../../store/actions/authAction'
 import { connect } from 'react-redux';
-import auth from '../../store/reducers/auth';
+
 
 
 
@@ -43,8 +27,8 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email:"",
-            password:"",
+            email: "",
+            password: "",
             serverError: {},
             isLoading: false,
         };
@@ -55,7 +39,7 @@ class Login extends Component {
 
     componentDidMount() {
 
-        // this.props.i18n.changeLanguage("de");
+
         new WOW.WOW({
             live: false
         }).init();
@@ -64,8 +48,8 @@ class Login extends Component {
 
     }
 
-    onChange = (e) =>{
-        this.setState({[e.target.name]: e.target.value})
+    onChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
     }
     handleResponse = (data) => {
         console.log(data);
@@ -74,20 +58,25 @@ class Login extends Component {
     handleError = (error) => {
         this.setState({ error });
     }
-    onSubmit = (e)=>{
+    onSubmit = (e) => {
+        this.setState({ isLoading: true })
         e.preventDefault()
         this.props.loginUser({
 
-            "email":this.state.email,
-            "password":this.state.password
-        }).then((res)=>{
+            "email": this.state.email,
+            "password": this.state.password
+        }).then((res) => {
+            this.props.history.push('/userdashboard')
+            this.setState({ isLoading: false })
             console.log(res)
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
         })
     }
     render() {
 
-        // const { t, i18n } = this.props
-        const { t, i18n } = this.props
+
 
         const { isLoading } = this.state;
 
@@ -99,7 +88,7 @@ class Login extends Component {
 
         return (
             <div class="wrapper">
-         
+
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-login-image" >
 
@@ -126,11 +115,11 @@ class Login extends Component {
                                         <form>
                                             <div class="form-group mb-4">
                                                 <label>Enter your Email Address</label>
-                                                <input type="email" class="form-control" placeholder="Joel@example.com"  name="email" onChange = {this.onChange} required=""/>
+                                                <input type="email" class="form-control" placeholder="Joel@example.com" name="email" onChange={this.onChange} required="" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" class="form-control" placeholder="Joel@example.com" name="password" onChange = {this.onChange} required=""/>
+                                                <input type="password" class="form-control" placeholder="Joel@example.com" name="password" onChange={this.onChange} required="" />
                                             </div>
 
                                             <button type="submit" onClick={this.onSubmit} class="btn btn-primary btn-block">Login</button>
@@ -151,7 +140,7 @@ class Login extends Component {
                                                 </div>
                                                 <div class="col-md-5 text-center text-md-right mt-3 mt-md-0">
                                                     <Link to="/passwordrecovery">
-                                                        <a class="forgot-pw" href="">Forgot Your Password? <i class="fa fa-arrow-right ml-2"></i></a>
+                                                        <a class="forgot-pw"  >Forgot Your Password? <i class="fa fa-arrow-right ml-2"></i></a>
                                                     </Link>
                                                 </div>
                                             </div>
@@ -164,7 +153,7 @@ class Login extends Component {
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8 text-center">
-                                                    <p>Don't have an account yet?<Link to="/signup"><a href="">Click here</a> </Link>to create one enjoy our Loyalty Program!</p>
+                                                    <p>Don't have an account yet?<Link to="/signup"><a  >Click here</a> </Link>to create one enjoy our Loyalty Program!</p>
                                                 </div>
                                             </div>
                                         </form>
@@ -196,8 +185,7 @@ class Login extends Component {
                         </div>
                     </section>
                 </main>
-                {/* <!-- Footer --> */}
-                <Footer></Footer>
+
             </div>
 
 
@@ -212,12 +200,12 @@ Login.propTypes = {
 
 };
 
-const mapStatetoProps =( {auth}) => ({
-    user  : auth.user
+const mapStatetoProps = ({ auth }) => ({
+    user: auth.user
 })
 const mapDispatchToProps = ({
     loginUser
 })
 
-export default connect(mapStatetoProps,mapDispatchToProps) (Login);
+export default connect(mapStatetoProps, mapDispatchToProps)(Login);
 

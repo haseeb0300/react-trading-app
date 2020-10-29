@@ -1,30 +1,15 @@
 import React, { Component } from 'react';
-import logo from '../../assets/images/logo.png'
+ 
 import cart from '../../assets/images/cart.svg'
 import sell from '../../assets/images/sell.svg'
-import account1 from '../../assets/images/account/1.png'
-import account2 from '../../assets/images/account/2.png'
-import account3 from '../../assets/images/account/3.png'
-import account4 from '../../assets/images/account/4.png'
-import account5 from '../../assets/images/account/5.png'
-import account6 from '../../assets/images/account/6.png'
-import account7 from '../../assets/images/account/7.png'
-import account8 from '../../assets/images/account/8.png'
-import account9 from '../../assets/images/account/9.png'
-import account10 from "../../assets/images/account/10.png"
-import account11 from "../../assets/images/account/11.png"
-import account12 from "../../assets/images/account/12.png"
-import master_img from "../../assets/images/master.png"
-import visa_img from "../../assets/images/visa.png"
-import paypal_img from "../../assets/images/paypal.png"
-import { Link, withRouter } from 'react-router-dom';
+ 
+ 
 import WOW from 'wowjs';
-import $ from "jquery";
-import SectionAcountFilter from '../../assets/Components/Pages/DashboadSection/SectionAcountFilter';
+import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
 
-import Footer from '../../assets/Components/Pages/Footer/Footer';
-import Header from '../../assets/Components/Pages/Header/Header';
-import SectionTopRated from "../../assets/Components/Pages/DashboadSection/SectionTopRated"
+ 
+ 
+import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
 
@@ -41,6 +26,7 @@ class UnRankedAccount extends Component {
     componentDidMount() {
         // this.props.i18n.changeLanguage("de");
 
+    
         new WOW.WOW({
             live: false
         }).init();
@@ -85,7 +71,7 @@ class UnRankedAccount extends Component {
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <a href="javascript:void(0)">
+                                    <a  >
                                         <div class="card wow fadeInLeft" data-wow-delay="0.4s">
                                             <div class="card-body">
                                                 <div class="media">
@@ -101,7 +87,7 @@ class UnRankedAccount extends Component {
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="javascript:void(0)">
+                                    <a  >
                                         <div class="card sell-block wow fadeInRight" data-wow-delay="0.4s">
                                             <div class="card-body">
                                                 <div class="media">
@@ -129,8 +115,7 @@ class UnRankedAccount extends Component {
                     {/* <!-- Top Rated Accounts --> */}
                     <SectionTopRated></SectionTopRated>
                 </main>
-                {/* <!-- Footer --> */}
-                <Footer></Footer>
+            
             </div>
         
         )

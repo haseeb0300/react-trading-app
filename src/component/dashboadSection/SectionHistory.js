@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import logo from "../../../images/logo.png"
+import React from "react";
+ 
+ 
 import Fade from 'react-reveal/Fade';
 
-import { Link, withRouter } from 'react-router-dom';
 function SectionHistory(props) {
     //const { t, i18n } = this.props
     return (
@@ -43,9 +42,6 @@ function SectionHistory(props) {
 }
 SectionHistory.propTypes = {
 };
-const mapStateToProps = state => ({
-});
-const mapDispatchToProps = ({
-})
+
 export default (SectionHistory);
 

@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import account1 from '../../../images/account/1.png'
-import account2 from '../../../images/account/2.png'
-import account3 from '../../../images/account/3.png'
-import account4 from '../../../images/account/4.png'
-import account5 from '../../../images/account/5.png'
-import account6 from '../../../images/account/6.png'
-import account7 from '../../../images/account/7.png'
-import account8 from '../../../images/account/8.png'
-import account9 from '../../../images/account/9.png'
-import account10 from '../../../images/account/10.png'
-import account11 from '../../../images/account/11.png'
-import account12 from '../../../images/account/11.png'
+import account1 from  '../../assets/images/account/1.png'
+import account2 from  '../../assets/images/account/2.png'
+import account3 from  '../../assets/images/account/3.png'
+import account4 from  '../../assets/images/account/4.png'
+import account5 from  '../../assets/images/account/5.png'
+import account6 from  '../../assets/images/account/6.png'
+import account7 from  '../../assets/images/account/7.png'
+import account8 from  '../../assets/images/account/8.png'
+import account9 from  '../../assets/images/account/9.png'
+import account10 from '../../assets/images/account/10.png'
+import account11 from '../../assets/images/account/11.png'
+import account12 from '../../assets/images/account/11.png'
 import Fade from 'react-reveal/Fade';
 class SectionTopRated extends React.Component {
    constructor(props) {
@@ -58,7 +58,7 @@ class SectionTopRated extends React.Component {
                <div class="overlayer">
                   <div class="inner-cnt">
                      <div class="wrap-link">
-                        <a class="btn btn-secondary" href="javascript:void(0)">Details</a>
+                        <a class="btn btn-secondary"  >Details</a>
                      </div>
                      <div class="wrap-date">
                         <div class="label">Creation Date:</div>
@@ -84,7 +84,7 @@ class SectionTopRated extends React.Component {
                         <div>
                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
 
-                              <a href="javascript:void(0)">
+                              <a  >
                                  <img class="card-img-top" src={account1} alt="account" />
                                  <ul class="rating-detail d-flex">
                                     <li>
@@ -113,7 +113,7 @@ class SectionTopRated extends React.Component {
                         </div>
                         <div>
                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
-                              <a href="javascript:void(0)">
+                              <a  >
                                  <img class="card-img-top" src={account2} alt="account" />
                                  <ul class="rating-detail d-flex">
                                     <li>
@@ -142,7 +142,7 @@ class SectionTopRated extends React.Component {
                         </div>
                         <div>
                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
-                              <a href="javascript:void(0)">
+                              <a  >
                                  <img class="card-img-top" src={account3} alt="account" />
                                  <ul class="rating-detail d-flex">
                                     <li>
@@ -171,7 +171,7 @@ class SectionTopRated extends React.Component {
                         </div>
                         <div>
                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
-                              <a href="javascript:void(0)">
+                              <a  >
                                  <img class="card-img-top" src={account1} alt="account" />
                                  <ul class="rating-detail d-flex">
                                     <li>
@@ -200,7 +200,7 @@ class SectionTopRated extends React.Component {
                         </div>
                         <div>
                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
-                              <a href="javascript:void(0)">
+                              <a  >
                                  <img class="card-img-top" src={account2} alt="account" />
                                  <ul class="rating-detail d-flex">
                                     <li>

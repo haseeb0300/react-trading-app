@@ -15,13 +15,13 @@ function SectionAcountFilter(props) {
                             <li class="nav-item" >
                                 <Link to="/lolaccount" >
                                     <a class={props.page == 'lolAccount'?"nav-link active":"nav-link"}
-                                        href="" > LOL ACCOUNTS </a> </Link> </li> <li class="nav-item" >
+                                      > LOL ACCOUNTS </a> </Link> </li> <li class="nav-item" >
                                 <Link to="/unrankedaccount" >
                                     <a class={props.page == 'unrankedAccount'?"nav-link active":"nav-link"}
-                                        href="" > UNRANKED ACCOUNTS </a> </Link> </li> <li class="nav-item" >
+                                        > UNRANKED ACCOUNTS </a> </Link> </li> <li class="nav-item" >
                                 <Link to="/customizedaccount" >
                                     <a class={props.page == 'customizeAccount'?"nav-link active":"nav-link"}
-                                        href="" > CUSTOMIZED ACCOUNTS </a> </Link> </li> </ul>
+                                         > CUSTOMIZED ACCOUNTS </a> </Link> </li> </ul>
                         <div class="card" >
                             <div class="card-body" >
                                 <form >

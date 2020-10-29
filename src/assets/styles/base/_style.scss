@@ -1112,8 +1112,8 @@
   .custom-select {
     position: relative;
     padding: 0;
-        height: 50px;
-        border-radius: 0;
+    height: 50px !important;
+    border-radius: 0 !important;
     font-family: Arial;
   }
   

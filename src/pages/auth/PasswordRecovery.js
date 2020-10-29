@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-
-import logo from '../../assets/images/logo.png'
-import cart from '../../assets/images/cart.svg'
-import sell from '../../assets/images/sell.svg'
+ 
 import master_img from '../../assets/images/master.png'
 import visa_img from '../../assets/images/visa.png'
 import paypal_img from '../../assets/images/paypal.png'
 import skrill_img from '../../assets/images/skrill.png'
 import stripe_img from '../../assets/images/stripe.png'
-import backgroundimg from '../../assets/images/lol-accounts.jpg'
-import { Link, withRouter } from 'react-router-dom';
+ 
+import { Link,   } from 'react-router-dom';
+ 
+ 
+ 
+import { temPassword } from '../../store/actions/authAction'
+import { connect } from 'react-redux';
+
 import WOW from 'wowjs';
-import Header from '../../assets/Components/Pages/Header/Header'
-import Footer from '../../assets/Components/Pages/Footer/Footer'
 
 
 class PasswordRecovery extends Component {
@@ -21,6 +22,7 @@ class PasswordRecovery extends Component {
       this.state = {
          serverError: {},
          isLoading: false,
+         email:'',
       };
    }
 
@@ -37,12 +39,24 @@ class PasswordRecovery extends Component {
 
 
    }
+   onChange = (e) =>{
+      this.setState({[e.target.name]: e.target.value})
+  }
+   onSubmit = (e)=>{
+      e.preventDefault()
+      this.props.temPassword({
+
+          "email":this.state.email,
+      }).then((res)=>{
+          console.log(res)
+          this.props.history.push('/login');
+      })
+  }
 
 
    render() {
 
       // const { t, i18n } = this.props
-      const { t, i18n } = this.props
 
       const { isLoading } = this.state;
 
@@ -80,14 +94,14 @@ class PasswordRecovery extends Component {
                               <form>
                                  <div class="form-group">
                                     <label>Enter your Email Address</label>
-                                    <input type="email" class="form-control" placeholder="Joel@example.com" />
+                                    <input type="email" class="form-control" placeholder="Joel@example.com" name="email" onChange = {this.onChange} required=""/>
                                  </div>
                                  <Link to="/confrimpassword">
 
-                                 <button type="submit" class="btn btn-primary btn-block mt-1 mb-4 mb-md-5">Reset Password</button>
+                                 <button type="submit" class="btn btn-primary btn-block mt-1 mb-4 mb-md-5" onClick={this.onSubmit}>Reset Password</button>
                                  </Link>
-                                 <p class="text-center mb-2 mb-md-4 pb-2">Already have an account? Click to <Link to="/login"><a href=""> Sign In</a></Link> </p>
-                                 <p class="text-center mb-0">Don't have an account yet? <Link to="/login"> <a href="">Click here</a> </Link> to create one <br class="d-none d-md-block"></br>
+                                 <p class="text-center mb-2 mb-md-4 pb-2">Already have an account? Click to <Link to="/login"><a  > Sign In</a></Link> </p>
+                                 <p class="text-center mb-0">Don't have an account yet? <Link to="/login"> <a  >Click here</a> </Link> to create one <br class="d-none d-md-block"></br>
                                     enjoy our Loyalty Program!
                                  </p>
                               </form>
@@ -119,8 +133,7 @@ class PasswordRecovery extends Component {
                   </div>
                </section>
             </main>
-            {/* <!-- Footer --> */}
-            <Footer></Footer>
+ 
          </div>
 
 
@@ -135,6 +148,12 @@ PasswordRecovery.propTypes = {
 
 };
 
+const mapStatetoProps = ({ auth }) => ({
+   user: auth.user
+})
+const mapDispatchToProps = ({
+   temPassword
+})
 
-export default (PasswordRecovery);
+export default connect(mapStatetoProps, mapDispatchToProps) (PasswordRecovery);
 

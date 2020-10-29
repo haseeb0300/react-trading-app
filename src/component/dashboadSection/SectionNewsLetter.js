@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import PropTypes from "prop-types";
-import logo from "../../../images/logo.png"
+import logo from "../../assets/images/logo.png"
 
 import { Link, withRouter } from 'react-router-dom';
 

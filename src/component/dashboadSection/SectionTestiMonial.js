@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
-import img_test_1 from '../../../images/testi-1.png'
-import img_test_2 from '../../../images/testi-2.png'
-import img_test_3 from '../../../images/testi-3.png'
+import img_test_1 from '../../assets/images/testi-1.png'
+import img_test_2 from '../../assets/images/testi-2.png'
+import img_test_3 from '../../assets/images/testi-3.png'
 
 
 function TestiMonial(props) {
@@ -21,7 +21,7 @@ function TestiMonial(props) {
                  <div id="testimonial-slider" class="owl-carousel">
                     <div class="testimonial">
                        <div class="pic">
-                          <img src={img_test_1}/>
+                          <img src={img_test_1} alt = "image"/>
                        </div>
                        <span class="fa fa-quote-left d-block"></span>
                        <p class="description">
@@ -32,7 +32,7 @@ function TestiMonial(props) {
                     </div>
                     <div class="testimonial">
                        <div class="pic">
-                          <img src={img_test_2}/>
+                          <img src={img_test_2} alt = "image"/>
                        </div>
                        <span class="fa fa-quote-left d-block"></span>
                        <p class="description">
@@ -43,7 +43,7 @@ function TestiMonial(props) {
                     </div>
                     <div class="testimonial">
                        <div class="pic">
-                          <img src={img_test_3}/>
+                          <img src={img_test_3} alt = ""/>
                        </div>
                        <span class="fa fa-quote-left d-block"></span>
                        <p class="description">
@@ -54,7 +54,7 @@ function TestiMonial(props) {
                     </div>
                     <div class="testimonial">
                        <div class="pic">
-                          <img src={img_test_1}/>
+                          <img src={img_test_1} alt = ""/>
                        </div>
                        <span class="fa fa-quote-left d-block"></span>
                        <p class="description">
@@ -65,7 +65,7 @@ function TestiMonial(props) {
                     </div>
                     <div class="testimonial">
                        <div class="pic">
-                          <img src={img_test_2}/>
+                          <img src={img_test_2} alt = ""/>
                        </div>
                        <span class="fa fa-quote-left d-block"></span>
                        <p class="description">
@@ -76,7 +76,7 @@ function TestiMonial(props) {
                     </div>
                     <div class="testimonial">
                        <div class="pic">
-                          <img src={img_test_3}/>
+                          <img src={img_test_3} alt = ""/>
                        </div>
                        <span class="fa fa-quote-left d-block"></span>
                        <p class="description">
@@ -87,7 +87,7 @@ function TestiMonial(props) {
                     </div>
                     <div class="testimonial">
                        <div class="pic">
-                          <img src={img_test_1}/>
+                          <img src={img_test_1} alt = ""/>
                        </div>
                        <span class="fa fa-quote-left d-block"></span>
                        <p class="description">
@@ -108,13 +108,13 @@ TestiMonial.propTypes = {
 };
 
 
-const mapStateToProps = state => ({
+// const mapStateToProps = state => ({
 
-});
+// });
 
-const mapDispatchToProps = ({
+// const mapDispatchToProps = ({
 
 
-})
+// })
 export default (TestiMonial);
 
