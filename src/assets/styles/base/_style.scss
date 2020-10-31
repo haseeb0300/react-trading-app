@@ -995,8 +995,346 @@
   .footer-bottom .social-icon li a:hover {
     background: #FDD464
   }
+    /* Seller Account */
+
+    
   
-  
+  .sell-account-form {
+        max-width: 1170px;
+      margin: 0 auto;
+      box-shadow: 0 0 15px #0000001c;
+      padding: 50px 60px 70px;
+      margin-bottom: 50px;
+      background: #fff;
+  }
+  .sell-account-form label {
+
+  display: block;
+box-sizing: border-box;
+font-size: 16px;
+font-weight: 500;
+line-height: 120%;
+text-align: left;
+color: #50505a;
+padding: 0;
+margin: 10px 2px 10px;
+}
+.sell-account-form h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 47px;
+  margin-bottom: 40px;
+  color: #18506C;
+  font-weight: 600;
+}
+.sell-account-form h6 {
+
+display: inline-block;
+box-sizing: border-box;
+font-size: 13px;
+font-weight: 600;
+line-height: 100%;
+text-align: left;
+text-transform: uppercase;
+color: #5e21e5;
+padding: 5px 35px 6px 6px;
+margin: 0;
+border-bottom: 1px solid #5e21e5;
+}
+.sell-account-form ul.list {
+    display: block;
+    box-sizing: border-box;
+    padding: 0 0 0 10px;
+    margin: 0;
+    list-style-type: none;
+
+}
+.sell-account-form ul.list li.item {
+  display: block;
+  box-sizing: border-box;
+  padding: 0 0 0 20px;
+  margin: 0 0 12px;
+  position: relative;
+}
+.sell-account-form ul.list li.item::before {
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  margin: 0;
+  background-color: #5b51eb;
+  position: absolute;
+  left: 0;
+  top: 7px;
+}
+.sell-account-form .block-name {
+  display: block;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.sell-account-form .extra-options {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding: 20px 0 0;
+  margin: 0 0 30px;
+}
+.sell-account-form .list-checkbox {
+  display: block;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.sell-account-form .fx-checkbox {
+  display: block;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  color: #9494a4;
+  padding: 0;
+  margin: 0 0 12px;
+  user-select: none;
+}
+.sell-account-form .fx-checkbox label {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0 0 0 26px;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+}
+.sell-account-form .fx-checkbox {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  color: #9494a4;
+}
+.sell-account-form .fx-checkbox label::before {
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bdc3c7;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: none;
+  background-position: center center;
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+}
+.sell-account-form .fx-checkbox input {
+  display: none;
+}
+.sell-account-form .switch-account-btn{
+  width: 50%;
+    background: white;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 120%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #606060;
+    padding: 0 25px;
+    margin: 0;
+    transition: all .2s ease;
+    border-bottom: 2px solid #bbb;
+    height: 45.5px;
+}
+.sell-account-form .switch-account-btn:focus{
+ 
+
+outline: none;
+
+}
+.sell-account-form .select-selling-method {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 0 12px;
+  margin: 0;
+}
+.sell-account-form .title{
+  display: block;
+box-sizing: border-box;
+font-size: 16px;
+font-weight: 700;
+line-height: 120%;
+text-align: left;
+text-transform: uppercase;
+color: #5e20e5;
+padding: 0;
+margin: 0;
+cursor: default;
+}
+.sell-account-form  .switch-account-btn-active{
+  color: #5e20e5;
+  border-top: 2px solid #aa8cea;
+    border-right: 2px solid #aa8cea;
+    border-left: 2px solid #aa8cea;
+    border-bottom: 2px solid #aa8cea;;
+background-color: #f9f6ff;
+border-top-right-radius: 6px;
+border-top-left-radius: 6px;
+}
+.sell-account-form  .switch-account-btn:active{
+  color: #5e20e5;
+  border-top: 2px solid #aa8cea;
+    border-right: 2px solid #aa8cea;
+    border-left: 2px solid #aa8cea;
+    border-bottom: 2px solid #aa8cea;;
+background-color: #f9f6ff;
+border-top-right-radius: 6px;
+border-top-left-radius: 6px;
+}
+.sell-account-form  textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-height: 120px;
+  font-family: Barlow,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  text-align: left;
+  color: #9494a4;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+
+  outline: 0;
+  resize: vertical;
+}
+.btn-action {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  padding: 15px 20px;
+  margin: 0;
+  background-color: #5e20e5;
+  border-radius: 3px;
+  border: none;
+  transition: all .2s ease-out;
+  cursor: pointer;
+}
+.sell-bt{
+  display: block;
+box-sizing: border-box;
+max-width: 260px;
+text-align: center;
+padding: 30px 0 0;
+margin: 0 auto;
+}
+.sell-account-form .form-control {
+  border-radius: 0;
+  height: 50px;
+  padding:10px 15px;
+  font-size: 14px;
+}
+
+.sell-account-form .form-control:focus {
+  border:1px solid #F6CF63;
+}
+
+
+.sell-account-form .btn-primary {
+  border-radius: 0;
+  text-transform: uppercase;
+  height: 50px;
+}
+
+.sell-account-form label {
+ text-transform: uppercase;
+ font-size: 14px;
+}
+
+.sell-account-form ul {
+    display: grid;
+    grid-gap: 20px;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.sell-account-form ul img {
+  max-width: 110px;
+}
+
+.sell-account-form .btn-fb {
+  padding: 5px 30px;
+  background: #3B5CB4;
+  border-radius: 5px;
+  text-transform: capitalize;
+      display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sell-account-form .btn-fb:hover {
+    background: #2a4eae;
+    border: 1px solid #2a4eae;
+  }
+
+.sell-account-form .btn-fb:hover,
+.sell-account-form .btn-fb:focus {
+  color: #fff;
+}
+
+.sell-account-form .btn-fb i {
+  font-size: 30px;
+  margin-right: 15px;
+}
+
+
+.sell-account-form a {
+  color: #5869FF;
+  text-decoration: underline;
+}
+
+.sell-account-form a:hover {
+  color: #F6CF63;
+}
+
+.sell-account-form p, .sell-account-form a {
+  font-size: 14px;
+}
+
+.sell-account-form .forgot-pw {
+  color: #6E6E6E;
+}
+
+.sell-account-form .forgot-pw i {
+  color: #2D80AA;
+}
+
   /* User Account */
   
   .user-section {

@@ -7,6 +7,8 @@ import UnRankedAccount from '../Accounts/UnRankedAccount'
 import Login from '../auth/Login'
 import Signup from '../auth/Signup'
 import PasswordRecovery from '../auth/PasswordRecovery'
+import SellAccount from '../Accounts/SellAccount'
+
 
 import {
     BrowserRouter as Router,
@@ -87,6 +89,8 @@ class AppNavigation extends Component {
                     <Route exact path="/passwordrecovery"
                         component={PasswordRecovery} />
                     <Route exact path="/userdashboard" component={UserDashboard} />
+                    <Route exact path="/sellaccount" component={SellAccount} />
+
                 </Switch>
             
                 <Footer></Footer>

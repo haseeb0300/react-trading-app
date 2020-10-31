@@ -26,7 +26,9 @@ class UserDashboard extends PureComponent {
                     <div class="container">
                         <div class="row align-items-center">
                         <Flip top delay={900}> 
-                            <h1> User dashboard will be shown here </h1>
+                            <h1 className="text-center"> User dashboard will Comming Soon </h1>
+                   
+
                             </Flip>
                         </div>
                     </div>
