@@ -344,16 +344,16 @@ class SellAccount extends Component {
                                                                     <div className="col-sm-3 col-lg-3  col-md-3 col-xl-2   col-4 p-0 ">
                                                                     </div>
                                                                     <div class="fx-checkbox">
-                                                                        <label onClick={(e) => this.onCheckBoxChange("tos")}><input type="checkbox" name="tos" />Terms of Service</label>
+                                                                        <label ><input onClick={(e) => this.onCheckBoxChange("tos")} type="checkbox" checked={this.state.type.tos} name="tos" />Terms of Service</label>
                                                                     </div>
                                                                     <div class="fx-checkbox">
-                                                                        <label onClick={(e) => this.onCheckBoxChange("agreements")}><input type="checkbox" name="agreements" />Seller Agreement</label>
+                                                                        <label ><input onClick={(e) => this.onCheckBoxChange("agreements")} type="checkbox" checked={this.state.type.agreements} name="agreements" />Seller Agreement</label>
                                                                     </div>
                                                                     <div class="fx-checkbox">
-                                                                        <label onClick={(e) => this.onCheckBoxChange("consent")}><input type="checkbox" name="consent" />I did not use this account for atleast 7 days.</label>
+                                                                        <label ><input onClick={(e) => this.onCheckBoxChange("consent")} type="checkbox" checked={this.state.type.consent} name="consent" />I did not use this account for atleast 7 days.</label>
                                                                     </div>
                                                                     <div class="fx-checkbox">
-                                                                        <label onClick={(e) => this.onCheckBoxChange("verification")}><input type="checkbox" name="verification" />I have removed two step verification from my email.</label>
+                                                                        <label><input  onClick={(e) => this.onCheckBoxChange("verification")} type="checkbox" checked={this.state.type.verification} name="verification" />I have removed two step verification from my email.</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="information">
