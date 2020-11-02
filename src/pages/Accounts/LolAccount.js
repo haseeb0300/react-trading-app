@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
- 
+import { connect } from 'react-redux';
+
 import cart from '../../assets/images/cart.svg'
 import sell from '../../assets/images/sell.svg'
- 
- 
+
+
 
 import WOW from 'wowjs';
- 
- 
+import { getAccount } from '../../store/actions/accountAction'
+
+
 import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
 import Fade from 'react-reveal/Fade';
@@ -25,7 +27,8 @@ class LolAccount extends Component {
             price_range: 'price-range',
             unmounting: false,
             page: 'lolAccount',
-         
+            accountList: [],
+
 
         };
     }
@@ -58,14 +61,27 @@ class LolAccount extends Component {
         new WOW.WOW({
             live: false
         }).init();
+        this.props.getAccount().then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    accountList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
 
+        })
     }
 
 
     render() {
 
         // const { t, i18n } = this.props
- 
+
         const { isLoading } = this.state;
 
         if (isLoading) {
@@ -75,7 +91,7 @@ class LolAccount extends Component {
         }
         return (
             <div class="wrapper">
-            
+
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-image" >
                     <div class="container">
@@ -152,14 +168,14 @@ class LolAccount extends Component {
 
                         </SectionAcountFilter>
                     </Fade>
-                 
-                    {/* <!-- Top Rated Accounts --> */}
-                    
-                    <SectionTopRated
 
+                    {/* <!-- Top Rated Accounts --> */}
+
+                    <SectionTopRated
+                        accountList={this.state.accountList}
                     ></SectionTopRated>
                 </main>
-        
+
             </div>
 
 
@@ -174,6 +190,11 @@ LolAccount.propTypes = {
 
 };
 
-
-export default (LolAccount);
+const mapStatetoProps = ({ auth }) => ({
+    user: auth.user
+})
+const mapDispatchToProps = ({
+    getAccount
+})
+export default connect(mapStatetoProps, mapDispatchToProps)(LolAccount);
 

@@ -1090,6 +1090,144 @@ border-bottom: 1px solid #5e21e5;
   padding: 0;
   margin: 0;
 }
+.checkboxClass{
+  display: block;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  color: #9494a4;
+  padding: 0;
+  margin: 0 0 12px;
+  
+}
+.checkboxClass label{
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  height: 15px;
+  width: 15px;
+}
+
+.checkboxClass label::before{
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bdc3c7;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  background-image: none;
+  background-position: center center;
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+}
+.checkboxClass input[type="checkbox"] {
+  visibility: hidden;
+}
+// .checkboxClass input[type='checkbox']:checked + label{
+//   position: relative;
+//   font-family: 'FontAwesome';
+//   top: 0;
+//   left: 0px;
+//   height: 15px;
+//   width: 15px;
+//   content: "\f005";
+// }
+.checkIcon{
+  position: absolute;
+  left: 30px;
+  cursor: pointer;
+}
+.checkIcon1{
+  position: absolute;
+  left: 15px;
+  cursor: pointer;
+}
+.heading6{
+  display: block;
+box-sizing: border-box;
+font-size: 18px;
+font-weight: 600;
+line-height: 120%;
+text-align: left;
+padding: 0;
+margin: 0 0 8px;
+}
+.table-class{
+  border-collapse: collapse;
+}
+.table-header:nth-child(1){
+  text-transform: none;
+  border-right: 1px solid #ddd;
+  padding-right: 10px;
+  padding-left: 0;
+}
+.table-row:nth-child(1){
+  font-family: monospace;
+font-size: 18px;
+text-align: center;
+color: grey;
+vertical-align: center;
+padding-right: 10px;
+padding-left: 0;
+border-right: 1px solid #ddd;
+}
+.table-row{
+    padding: 5px;
+    padding-top: 5px;
+    padding-left: 5px;
+    margin: 0;
+}
+.table-row input{
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 200px;
+  height: 45px;
+  font-family: Barlow,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  text-align: left;
+  color: #9494a4;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+  background-color: #f1f1f3;
+  outline: 0;
+  -webkit-appearance: none;
+}
+.table-header{
+  padding: 10px;
+font-size: 13px;
+font-weight: 500;
+line-height: 100%;
+text-align: left;
+text-transform: uppercase;
+padding: 5px 5px 10px 10px;
+    padding-right: 5px;
+    padding-left: 10px;
+margin: 0;
+border-bottom: 1px solid #ddd;
+}
+.bulk-mode{
+  display: block;
+box-sizing: border-box;
+padding: 15px 0 0;
+margin: 0;
+border-top: 1px solid #dadada;
+border-bottom: 1px solid #dadada;
+}
 .sell-account-form .fx-checkbox {
   display: block;
   box-sizing: border-box;
@@ -1194,6 +1332,7 @@ background-color: #f9f6ff;
 border-top-right-radius: 6px;
 border-top-left-radius: 6px;
 }
+
 .sell-account-form  .switch-account-btn:active{
   color: #5e20e5;
   border-top: 2px solid #aa8cea;

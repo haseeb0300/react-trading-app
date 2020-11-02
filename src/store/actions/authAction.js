@@ -9,8 +9,8 @@ export const loginUser = userData => dispatch => {
     .post('/api/user/login', userData)
     .then(res => {
       // Save to localStorage
-      console.log(res)
-      if (res.data.content != null && res.data.content.length > 0) {
+    
+      if (res?.data?.content?.length >0  ) {
         const { token, user } = res.data.content[0];
 
         // Set token to ls

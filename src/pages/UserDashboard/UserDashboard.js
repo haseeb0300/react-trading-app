@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import Flip from 'react-reveal/Flip';
 import Slide from 'react-reveal/Slide';
+import SellAccount from '../Accounts/SellAccount';
 
 
 
@@ -22,7 +23,7 @@ class UserDashboard extends PureComponent {
 
         return (
             <div class="wrapper">
-                <section class="banner-section section-background-image" >
+                {/* <section class="banner-section section-background-image" >
                     <div class="container">
                         <div class="row align-items-center">
                         <Flip top delay={900}> 
@@ -32,7 +33,10 @@ class UserDashboard extends PureComponent {
                             </Flip>
                         </div>
                     </div>
-                </section>
+                </section> */}
+                <SellAccount>
+                    
+                </SellAccount>
 
             </div>
         )

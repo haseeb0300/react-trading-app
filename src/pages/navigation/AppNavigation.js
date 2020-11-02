@@ -68,8 +68,8 @@ class AppNavigation extends Component {
 
             <Router >
                 
-                { user.token && <UserHeader />}
-                {      !user.token &&
+                { user.user_name && <UserHeader />}
+                {      !user.user_name &&
                     <Header>
                     </Header>
                 }

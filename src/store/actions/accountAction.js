@@ -42,10 +42,21 @@ export const getRank = () => dispatch => {
         })
 }
 
+export const getAccount = () => dispatch => {
+  return axios
+      .get('api/account')
+      .then((res) => {
+          console.log(res)
+          return Promise.resolve(res.data)
+      }).catch((err) => {
+          console.log(err)
+          return Promise.reject(err)
+      })
+}
 
-export const postAccount = accountData => dispatch => {
+export const postRegularSellAccount = accountData => dispatch => {
     return axios
-      .post('api/account', accountData)
+      .post('api/regularSell', accountData)
       .then(res => {
         return Promise.resolve(res.data)
       })
@@ -65,4 +76,25 @@ export const postAccount = accountData => dispatch => {
       });
   };
 
+  export const postComfortSellAccount = accountData => dispatch => {
+    return axios
+      .post('api/comfortSell', accountData)
+      .then(res => {
+        return Promise.resolve(res.data)
+      })
+      .catch(err => {
+  
+        if (err.response.data != null && err.response.data.validation) {
+          console.log(err.response.data);
+          err = err.response.data
+        } else {
+          err = { "msg": "Something went wrong" }
+        }
+        dispatch({
+          type: GET_ERRORS,
+          payload: err
+        })
+        return Promise.reject(err)
+      });
+  };
  

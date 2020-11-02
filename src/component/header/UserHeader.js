@@ -34,11 +34,9 @@ class Header extends Component {
                             </a>
                         </Link>
                         <Link to="/signup">
-
                             <a class="nav-link d-lg-none"  ><span class="icon-user mr-1"></span></a>
                         </Link>
                         <Link to="/login">
-
                             <a class="nav-link d-lg-none px-0"  ><span class="icon-login mr-1"></span></a>
                         </Link>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,8 +81,8 @@ class Header extends Component {
                             </ul>
                             <ul class="navbar-nav d-none d-md-flex">
                                 <Link to="/userdashboard">
-                                    <li class="nav-item">
-                                        <a class="nav-link text-uppercase"  ><span class="icon-user mr-1"></span>Dashboard</a>
+                                    <li class="nav-item ">
+                                        <a class="nav-link text-uppercase "  ><span class="icon-user mr-1"></span>Dashboard</a>
                                     </li>
                                 </Link>
 
