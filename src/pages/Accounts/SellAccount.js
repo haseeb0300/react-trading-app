@@ -6,6 +6,7 @@ import visa_img from '../../assets/images/visa.png'
 import paypal_img from '../../assets/images/paypal.png'
 import skrill_img from '../../assets/images/skrill.png'
 import stripe_img from '../../assets/images/stripe.png'
+import { v4 } from 'uuid';
 
 import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
@@ -14,10 +15,13 @@ import Noty from 'noty';
 
 import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
-import { getQueue, getServer, getRank, postRegularSellAccount,postComfortSellAccount } from '../../store/actions/accountAction'
+import { getQueue, getServer, getRank, postRegularSellAccount,postComfortSellAccount,postBulkRegularSellAccount,postBulkComfortSellAccount } from '../../store/actions/accountAction'
 import { Checkbox, CheckboxGroup } from '@trendmicro/react-checkbox';
 import { Widget } from "@uploadcare/react-widget";
 import Uploadbtn from "../../component/dashboadSection/uploadbtn"
+import PaymentComponent from "../../component/dashboadSection/PaymentComponent"
+import UserHeader from "../../component/dashboadSection/UserHeader"
+
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-checkbox/dist/react-checkbox.css';
@@ -61,6 +65,17 @@ class SellAccount extends Component {
             "sell_type":"regularSell",
             table_list: [2, 3, 4, 5, 6, 7, 8, 9, 10],
             account_email:"",
+            user_accounts: [
+            { "unique_key": '2', "user_name": "", "password": ""},
+            { "unique_key": '3', "user_name": "", "password": ""},
+            { "unique_key": '4', "user_name": "", "password": ""},
+            { "unique_key": '5', "user_name": "", "password": ""},
+            { "unique_key": '6', "user_name": "", "password": ""},
+            { "unique_key": '7', "user_name": "", "password": ""},
+            { "unique_key": '8', "user_name": "", "password": ""},
+            { "unique_key": '9', "user_name": "", "password": ""},
+            { "unique_key": '10', "user_name": "", "password": ""},
+        ],
         };
         this.inputRef = [];
     }
@@ -112,14 +127,25 @@ class SellAccount extends Component {
         })
     }
 
+    handleBulkAccountChange = (idx, evt) => {
+        console.log(idx)
+        console.log(evt.target.value)
+    
+        const newUserAccounts = this.state.user_accounts.map((item, sidx) => {
+          if (idx !== sidx) return item;
+          return { ...item, [evt.target.name]: evt.target.value };
+        });
+        console.log(this.state.user_accounts)
+        this.setState({ user_accounts: newUserAccounts });
+      };
     renderTableRows = () => {
 
 
-        return this.state.table_list.map((item, i) =>
+        return this.state.user_accounts.map((item, i) =>
             <tr>
-                <td className="table-row">{item}</td>
-                <td className="table-row"><input type="text" name="bulk_username[]" autocomplete="off" value="" /></td>
-                <td className="table-row"><input type="text" name="bulk_password[]" autocomplete="off" value="" /></td>
+                <td className="table-row">{item.unique_key}</td>
+                <td className="table-row"><input type="text" value={item.user_name} name="user_name" onChange={(evt) => this.handleBulkAccountChange(i, evt)} /></td>
+                <td className="table-row"><input type="password" value={item.password} name="password" onChange={(evt) => this.handleBulkAccountChange(i, evt)}   /></td>
             </tr>
 
         )
@@ -204,13 +230,61 @@ class SellAccount extends Component {
             "current_rank_id": this.state.current_rank_id,
             "queue_id": this.state.queue_id,
             "server_id": this.state.server_id,
-
+        }
+        var data_bulk = {
+            "amount_of_rp": this.state.amount_of_rp,
+            "account_title": this.state.account_title,
+            "level": this.state.level,
+            "price": this.state.price,
+            "user_name": this.state.user_name,
+            "user_email": this.state.user_email,
+            "last_season_rank_ID": this.state.last_season_rank_ID,
+            "amount_of_blue_essence": this.state.amount_of_blue_essence,
+            "level_up": this.state.level_up,
+            "champions_owned": this.state.champions_owned,
+            "description": this.state.description,
+            "skin_owned": this.state.skin_owned,
+            "verified_email": this.state.verified_email,
+            "currency": this.state.currency,
+            "user_name": this.state.user_name,
+            "password": this.state.password,
+            "current_rank_id": this.state.current_rank_id,
+            "queue_id": this.state.queue_id,
+            "server_id": this.state.server_id,
+            "account": this.state.user_accounts,
         }
         console.log("data", data)
-        if(this.state.sell_type == 'regularSell'){
+        if(this.state.sell_type == 'regularSell' && !this.state.type.bulk){
 
         
         this.props.postRegularSellAccount(data).then((res) => {
+            console.log(res)
+           
+       
+        })
+        
+    }else if(this.state.sell_type == 'comfortSell' && !this.state.type.bulk){
+        this.props.postComfortSellAccount(data).then((res) => {
+            if (res.status) {
+            new Noty({
+                text: "Succsessfully Inserted Account",
+                layout: "topRight",
+                theme: "bootstrap-v4",
+                type: "success",
+                timeout: 1000
+            }).show();
+            return
+        }
+        new Noty({
+            text: "Succsessfully went wrong",
+            layout: "topRight",
+            theme: "bootstrap-v4",
+            type: "error",
+            timeout: 1000
+        }).show();
+        })
+    }else if(this.state.sell_type == 'regularSell' && this.state.type.bulk){
+        this.props.postBulkRegularSellAccount(data_bulk).then((res) => {
             console.log(res)
             if (res.status) {
 
@@ -231,10 +305,11 @@ class SellAccount extends Component {
             timeout: 1000
         }).show();
         })
-        
-    }else if(this.state.sell_type == 'comfortSell'){
-        this.props.postComfortSellAccount(data).then((res) => {
+    }else if(this.state.sell_type == 'comfortSell' && this.state.type.bulk){
+        this.props.postBulkComfortSellAccount(data_bulk).then((res) => {
+            console.log(res)
             if (res.status) {
+
             new Noty({
                 text: "Succsessfully Inserted Account",
                 layout: "topRight",
@@ -272,15 +347,19 @@ class SellAccount extends Component {
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
-                                <Flip bottom delay={200}>
+                                {/* <Flip bottom delay={200}>
                                     <h1 class="wow flipInX mt-3" data-wow-delay="0.6s">Sell Your Account</h1>
-                                </Flip>
+                                </Flip> */}
+                                  {/* <UserHeader>
+                        
+                        </UserHeader> */}
 
                             </div>
                         </div>
                     </div>
                 </section>
                 <main>
+                  
                     <section class="user-section wow fadeInUp" data-wow-delay="1s">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -550,16 +629,8 @@ class SellAccount extends Component {
                                                                 }
                                                             </div>
                                                         </div>
-
-
-
                                                     </div>
-
                                                 </div>
-
-
-
-
                                             </div>
                                             <div className="sell-bt">
                                                 <button onClick={this.onSubmit} class="btn-action">Sell My Account</button>
@@ -570,7 +641,7 @@ class SellAccount extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
+                            {/* <div class="row justify-content-center">
                                 <div class="col-md-7 px-md-4">
                                     <h4 class="text-center wow fadeInDown" data-wow-delay="0.6s">PAYMENT PROVIDERS:</h4>
                                     <ul>
@@ -591,7 +662,10 @@ class SellAccount extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> */}
+                            <PaymentComponent>
+
+                            </PaymentComponent>
                         </div>
                     </section>
                 </main >
@@ -618,7 +692,9 @@ const mapDispatchToProps = ({
     getServer,
     getRank,
     postRegularSellAccount,
+    postBulkRegularSellAccount,
     postComfortSellAccount,
+    postBulkComfortSellAccount,
 })
 export default connect(mapStatetoProps, mapDispatchToProps)(SellAccount);
 
