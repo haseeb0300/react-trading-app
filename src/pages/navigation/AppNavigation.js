@@ -32,7 +32,7 @@ import jwt_decode from 'jwt-decode';
 import { logoutUser, setCurrentUser } from '../../store/actions/authAction';
 import UserDashboard from '../UserDashboard/UserDashboard';
 if (process.env.NODE_ENV === 'production') {
-    axios.defaults.baseURL = 'http://ec2-18-217-133-232.us-east-2.compute.amazonaws.com:5000/v1';
+    axios.defaults.baseURL = 'http://160.153.253.183:4000/v1';
 } else {
     axios.defaults.baseURL = 'http://localhost:4000/v1';
 }
