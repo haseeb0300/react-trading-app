@@ -74,7 +74,7 @@ class SectionTopRated extends React.Component {
     return (
          <section class="account-section" >
             <div class="container">
-               <h2 class="text-center wow shakeX">{this.props.page != ''}Top Rated Accounts</h2>
+               <h2 class="text-center wow shakeX">{this.props.page != 'dashboard'?'':'Top Rated Accounts'}</h2>
                <div class="row justify-content-center ">
                   {this.renderAccount()}
                </div>
