@@ -395,7 +395,7 @@ header span {
 }
 
 .account-section .card:hover .overlayer {
-  opacity: 1;
+  opacity: 0.9;
 }
 
 .account-section .overlayer {
@@ -528,6 +528,11 @@ header span {
 .account-section .card-body {
   padding: 20px 15px;
 }
+.account-section .card-text {
+  height: 60px;
+  overflow: hidden;
+}
+
 
 .account-section .card p {
   font-size: 14px;
@@ -1974,6 +1979,7 @@ header span {
 
 .cart-section .card-body {
   padding: 25px 40px;
+  
 }
 
 .cart-section .card-body h3 {

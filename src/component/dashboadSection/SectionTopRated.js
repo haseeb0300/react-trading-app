@@ -25,33 +25,33 @@ class SectionTopRated extends React.Component {
       this.setState({ image_list: list});
    }
    renderAccount = () => {
-      return this.state.image_list.map((item, i) =>
+      return this.props.accountList.map((item, i) =>
          <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="card wow fadeInUp" data-wow-delay="0.4s">
                <Fade bottom cascade delay={50}>
                   <a >
-                     <img class="card-img-top" src={item} alt="account" />
+                     <img class="card-img-top" src={account1} alt="account" />
                      <ul class="rating-detail d-flex">
                         <li>
                            <span class="icon-trophy"></span>
-                           <p>87 champs</p>
+                           <p>{item.champions_owned} champs</p>
                         </li>
                         <li>
                            <span class="icon-dollar"></span>
-                           <p>18 skins</p>
+                           <p>{item.skin_owned} skins</p>
                         </li>
                         <li>
                            <span class="icon-star"></span>
-                           <p>Level 72</p>
+                           <p>Level {item.level}</p>
                         </li>
                      </ul>
-                     <div class="card-body">
-                        <p class="card-text">Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt </p>
+                     <div class="card-body ">
+                        <p class="card-text">{item.description}</p>
                         <ul class="rank-block d-flex">
-                           <li>Rank of Account <span class="text-secondary d-block">BRONZE II</span></li>
-                           <li>Server: <span class="text-secondary d-block">EUW</span></li>
+                           <li>Rank of Account <span class="text-secondary d-block">{item.Rank.rank}</span></li>
+                           <li>Server: <span class="text-secondary d-block">{item.Server.server_name}</span></li>
                         </ul>
-                        <h6 class="price">240.00 EUR</h6>
+                        <h6 class="price">{item.price} {item.currency}</h6>
                      </div>
                   </a>
                </Fade>

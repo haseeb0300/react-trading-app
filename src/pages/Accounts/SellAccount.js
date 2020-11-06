@@ -64,6 +64,12 @@ class SellAccount extends Component {
             queueList: [],
             serverList: [],
             rankList: [],
+            password_comfort:"",
+            server_id_comfort:"",
+            user_email_comfort:"",
+            price_comfort:"",
+            currency_comfort:"",
+            last_season_rank_ID_comfort:"",
             "tab_index": true,
             "sell_type":"regularSell",
             table_list: [2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -236,6 +242,18 @@ class SellAccount extends Component {
             "queue_id": this.state.queue_id,
             "server_id": this.state.server_id,
         }
+        var data_comfort = {
+            "account_title": this.state.account_title,
+            "price": this.state.price_comfort,
+            "user_email": this.state.user_email_comfort,
+            "last_season_rank_ID": this.state.last_season_rank_ID_comfort,
+            "level_up": this.state.level_up,
+            "description": this.state.description,
+            "verified_email": this.state.verified_email,
+            "currency": this.state.currency_comfort,
+            "password": this.state.password_comfort,
+            "server_id": this.state.server_id_comfort,
+        }
         var data_bulk = {
             "amount_of_rp": this.state.amount_of_rp,
             "account_title": this.state.account_title,
@@ -288,8 +306,10 @@ class SellAccount extends Component {
    
         
     }else if(this.state.sell_type == 'comfortSell' && !this.state.type.bulk){
-        this.props.postComfortSellAccount(data).then((res) => {
+        this.props.postComfortSellAccount(data_comfort).then((res) => {
             if (res.status) {
+                this.props.history.push('/lolaccount')
+
             new Noty({
                 text: "Succsessfully Inserted Account",
                 layout: "topRight",
@@ -483,7 +503,7 @@ class SellAccount extends Component {
                                                             {errors.amount_of_rp && <div className=" invaliderror">{errors.amount_of_rp}</div>}
                                                             <label>Server</label>
                                                             <select class="custom-select" name="server_id" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
-                                                            <option value={-1} disable selected={!this.state.country} >--Select Server--</option>
+                                                            <option value={-1} disable selected={!this.state.server_id} >--Select Server--</option>
 
                                                                 {this.renderServerOption(this.state.serverList)}
 
@@ -520,6 +540,7 @@ class SellAccount extends Component {
 
                                                             <label>Type of queue</label>
                                                             <select class="custom-select" name="queue_id" onClick={(e) => this._handleKeyDown(this.state.queueList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.queueList, e)} >
+                                                            <option value={-1} disable selected={!this.state.queue_id} >--Select Queue--</option>
 
                                                                 {this.renderOption(this.state.queueList)}
                                                             </select>
@@ -527,6 +548,7 @@ class SellAccount extends Component {
 
                                                             <label>Currency</label>
                                                             <select class="custom-select" name="currency" onChange={this.onChange} required="">
+                                                            <option value={-1} disable selected={!this.state.currency} >--Select Currency--</option>
                                                                 <option value={"USD"}>USD</option>
                                                                 <option value={"EURO"}>EURO</option>
                                                             </select>
@@ -544,6 +566,8 @@ class SellAccount extends Component {
                                                         <div class="col-md-4 ">
                                                             <label>Rank of Account</label>
                                                             <select class="custom-select" name="current_rank_id" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
+                                                            <option value={-1} disable selected={!this.state.current_rank_id} >--Select Rank--</option>
+
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
                                                             {errors.current_rank_id && <div className=" invaliderror">{errors.current_rank_id}</div>}
@@ -554,6 +578,8 @@ class SellAccount extends Component {
 
                                                             <label>Last Season Rank</label>
                                                             <select class="custom-select" name="last_season_rank_ID" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
+                                                            <option value={-1} disable selected={!this.state.last_season_rank_ID} >--Select Rank--</option>
+
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
                                                             {errors.last_season_rank_ID && <div className=" invaliderror">{errors.last_season_rank_ID}</div>}
@@ -571,44 +597,50 @@ class SellAccount extends Component {
                                                             {errors.account_title && <div className=" invaliderror">{errors.account_title}</div>}
 
                                                             <label>Account E-mail </label>
-                                                            <input class="form-control" name="user_email" onChange={this.onChange} required="" />
-                                                            {errors.user_email && <div className=" invaliderror">{errors.user_email}</div>}
+                                                            <input class="form-control" name="user_email_comfort" onChange={this.onChange} required="" />
+                                                            {errors.user_email_comfort && <div className=" invaliderror">{errors.user_email}</div>}
 
                                                             <label>Currency</label>
-                                                            <select class="custom-select" name="currency" onChange={this.onChange} required="">
+                                                            <select class="custom-select" name="currency_comfort" onChange={this.onChange} required="">
+                                                            <option value={-1} disable selected={!this.state.currency_comfort} >--Select Currency--</option>
+
                                                                 <option value={"USD"}>USD</option>
                                                                 <option value={"EURO"}>EURO</option>
                                                             </select>
-                                                            {errors.currency && <div className=" invaliderror">{errors.currency}</div>}
+                                                            {errors.currency_comfort && <div className=" invaliderror">{errors.currency}</div>}
 
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Password</label>
-                                                            <input type="password" class="form-control" name="password" onChange={this.onChange} required="" />
-                                                            {errors.password && <div className=" invaliderror">{errors.password}</div>}
+                                                            <input type="password" class="form-control" name="password_comfort" onChange={this.onChange} required="" />
+                                                            {errors.password_comfort && <div className=" invaliderror">{errors.password}</div>}
 
                                                             <label>E-mail Password</label>
                                                             <input type="password" class="form-control" name="email_password" onChange={this.onChange} required="" />
                                                             {errors.email_password && <div className=" invaliderror">{errors.email_password}</div>}
 
                                                             <label>Last Season Rank</label>
-                                                            <select class="custom-select" defaultValue={'1'} name="last_season_rank_ID" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
+                                                            <select class="custom-select"  name="last_season_rank_ID_comfort" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
+                                                            <option value={-1} disable selected={!this.state.last_season_rank_ID_comfort} >--Select Rank--</option>
+
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
-                                                            {errors.last_season_rank_ID && <div className=" invaliderror">{errors.last_season_rank_ID}</div>}
+                                                            {errors.last_season_rank_ID_comfort && <div className=" invaliderror">{errors.last_season_rank_ID}</div>}
 
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Server</label>
-                                                            <select class="custom-select" name="server_id" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
+                                                            <select class="custom-select" name="server_id_comfort" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
+                                                            <option value={-1} disable selected={!this.state.server_id_comfort} >--Select Server--</option>
+
                                                                 {this.renderServerOption(this.state.serverList)}
 
                                                             </select>
-                                                            {errors.server_id && <div className=" invaliderror">{errors.server_id}</div>}
+                                                            {errors.server_id_comfort && <div className=" invaliderror">{errors.server_id}</div>}
 
                                                             <label>Price</label>
-                                                            <input class="form-control" name="price" onChange={this.onChange} required="" />
-                                                            {errors.price && <div className=" invaliderror">{errors.price}</div>}
+                                                            <input class="form-control" name="price_comfort" onChange={this.onChange} required="" />
+                                                            {errors.price_comfort && <div className=" invaliderror">{errors.price}</div>}
 
                                                         </div>
 
@@ -652,6 +684,8 @@ class SellAccount extends Component {
                                                     <div class="col-md-4">
                                                         <label>Level-up</label>
                                                         <select class="custom-select" name="level_up" onChange={this.onChange} required="" >
+                                                        <option value={-1} disable selected={!this.state.level_up} >--Select Level Up--</option>
+
                                                             <option value={"None"}>None</option>
                                                             <option value={"Handmade"}>Handmade</option>
                                                             <option value={"Botted"}>Botted</option>
@@ -663,6 +697,8 @@ class SellAccount extends Component {
                                                     <div class="col-md-4 ">
                                                         <label>Verified email:</label>
                                                         <select class="custom-select" name="verified_email" onChange={this.onChange} required="">
+                                                        <option value={-1} disable selected={!this.state.verified_email} >--Select --</option>
+
                                                             <option value={"No"}>No</option>
                                                             <option value={"Yes"}>Yes</option>
                                                         </select>

@@ -55,7 +55,7 @@ class Header extends Component {
                                         Lol Accounts
                       </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <Link to="/lolaccount ">
+                                        <Link to="/lolaccount">
                                             <a class="dropdown-item"  >LoL Accounts</a>
                                         </Link>
                                         <Link to="/unrankedaccount">
