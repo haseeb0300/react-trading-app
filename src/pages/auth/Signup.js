@@ -31,7 +31,6 @@ class Signup extends Component {
             serverError: {},
             isLoading: false,
             errors: {},
-            serverError: {},
         };
     }
     handleResponse = (data) => {
@@ -60,7 +59,6 @@ class Signup extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
     onSubmit = (e) => {
-        this.setState({ isLoading: true })
         e.preventDefault()
         this.props.registerUser({
             "email": this.state.email,
@@ -73,7 +71,7 @@ class Signup extends Component {
             this.setState({ isLoading: false })
             console.log(res)
             if (res.status) {
-                this.props.history.push('/login')
+                this.props.history.push('/userdashboard')
                 new Noty({
                     text: "Succsessfully Register",
                     // layout: "topRight",
@@ -86,10 +84,9 @@ class Signup extends Component {
             } else {
                 new Noty({
                     text: "Something went wrong",
-                    layout: "topRight",
-                    theme: "bootstrap-v4",
+                 
                     type: "error",
-                    timeout: 1000
+                    timeout: 2000
                 }).show();
             }
         }).catch((err) => {
@@ -111,7 +108,24 @@ class Signup extends Component {
                 this.setState({ serverError: [{ "msg": "server not responding" }] })
             }
         })
+   
+   
+   
     }
+    renderServerError() {
+        if (this.state.serverError != null && this.state.serverError.length > 0) {
+            return (
+                <div className="form-row">
+                    <div className="col-md-12  alert alert-danger" role="alert" >
+                        <strong className="pr-2">Oh snap!  {"  "}</strong>
+                        {this.state.serverError[0].msg}
+
+                    </div>
+                </div>
+            )
+        }
+    }
+
     componentDidMount() {
         // this.props.i18n.changeLanguage("de");
         new WOW.WOW({
@@ -138,6 +152,8 @@ class Signup extends Component {
         // const { t, i18n } = this.props
         const { t, i18n } = this.props
         const { isLoading } = this.state;
+        const { errors } = this.state
+
         if (isLoading) {
             return (
                 <div className="loader-large"></div>
@@ -171,28 +187,41 @@ class Signup extends Component {
                                             <div class="form-group mb-md-4">
                                                 <label>Username</label>
                                                 <input type="text" class="form-control" placeholder="" name="user_name" onChange={this.onChange} required="" />
+                                                {errors.user_name && <div className=" invaliderror">{errors.user_name}</div>}
+
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>Your email</label>
                                                 <input type="email" class="form-control" placeholder="Joel@example.com" name="email" onChange={this.onChange} required="" />
+                                                {errors.email && <div className=" invaliderror">{errors.email}</div>}
+
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>PASSWORD</label>
                                                 <input type="password" class="form-control" placeholder="" name="password" onChange={this.onChange} required="" />
+                                                {errors.password && <div className=" invaliderror">{errors.password}</div>}
+
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>Re-enter your PASSWORD</label>
                                                 <input type="password" class="form-control" placeholder="" name="confirm_password" onChange={this.onChange} required="" />
+                                                {errors.password2 && <div className=" invaliderror">{errors.password2}</div>}
+
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>COUNTRY</label>
                                                 <select class="custom-select" name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}>
+                                                <option value={-1} disable selected={!this.state.country} >--Select Country--</option>
                                                     {this.renderOption()}
                                                 </select>
+                                                {errors.country && <div className=" invaliderror">{errors.country}</div>}
+
                                             </div>
                                             <div class="form-group">
                                                 <label>PHONE number</label>
                                                 <input type="text" class="form-control" placeholder="1234456789" name="phone_no" onChange={this.onChange} required="" />
+                                                {errors.phone_no && <div className=" invaliderror">{errors.phone_no}</div>}
+
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4" onClick={this.onSubmit}>Signup</button>
                                             {/* <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button> */}
@@ -211,6 +240,8 @@ class Signup extends Component {
                                         </form>
                                     </div>
                                 </div>
+                                               {this.renderServerError()}
+
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-md-7 px-md-4">

@@ -12,7 +12,8 @@ import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
 import { connect } from 'react-redux';
 import Noty from 'noty';
-
+import "../../../node_modules/noty/lib/noty.css";
+import "../../../node_modules/noty/lib/themes/mint.css";
 import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
 import { getQueue, getServer, getRank, postRegularSellAccount,postComfortSellAccount,postBulkRegularSellAccount,postBulkComfortSellAccount } from '../../store/actions/accountAction'
@@ -38,6 +39,8 @@ class SellAccount extends Component {
                 bulk: false,
 
             },
+            errors: {},
+
             serverError: {},
             isLoading: false,
             amount_of_rp: "",
@@ -207,7 +210,9 @@ class SellAccount extends Component {
         }
         return  
     }
-
+    handleError = (error) => {
+        this.setState({ error });
+    }
     onSubmit = (e) => {
         e.preventDefault()
         var data = {
@@ -261,7 +266,26 @@ class SellAccount extends Component {
             console.log(res)
            
        
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
         })
+   
         
     }else if(this.state.sell_type == 'comfortSell' && !this.state.type.bulk){
         this.props.postComfortSellAccount(data).then((res) => {
@@ -282,7 +306,26 @@ class SellAccount extends Component {
             type: "error",
             timeout: 1000
         }).show();
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
         })
+   
     }else if(this.state.sell_type == 'regularSell' && this.state.type.bulk){
         this.props.postBulkRegularSellAccount(data_bulk).then((res) => {
             console.log(res)
@@ -304,7 +347,26 @@ class SellAccount extends Component {
             type: "error",
             timeout: 1000
         }).show();
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
         })
+   
     }else if(this.state.sell_type == 'comfortSell' && this.state.type.bulk){
         this.props.postBulkComfortSellAccount(data_bulk).then((res) => {
             console.log(res)
@@ -326,13 +388,47 @@ class SellAccount extends Component {
             type: "error",
             timeout: 1000
         }).show();
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
         })
+   
     }
+    }
+    renderServerError() {
+        if (this.state.serverError != null && this.state.serverError.length > 0) {
+            return (
+                <div className="form-row">
+                    <div className="col-md-12  alert alert-danger" role="alert" >
+                        <strong className="pr-2">Oh snap!  {"  "}</strong>
+                        {this.state.serverError[0].msg}
+
+                    </div>
+                </div>
+            )
+        }
     }
     render() {
         // const { t, i18n } = this.props
         const { t, i18n } = this.props
         const { isLoading } = this.state;
+        const { errors } = this.state
+
         if (isLoading) {
             return (
                 <div className="loader-large"></div>
@@ -380,44 +476,69 @@ class SellAccount extends Component {
                                                 {this.state.sell_type == 'regularSell' &&
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <label>Amount of Rp</label>
+
+                                                        <label>Amount of Rp  </label>                                                                
+
                                                             <input class="form-control" name="amount_of_rp" onChange={this.onChange} required="" />
+                                                            {errors.amount_of_rp && <div className=" invaliderror">{errors.amount_of_rp}</div>}
                                                             <label>Server</label>
                                                             <select class="custom-select" name="server_id" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
+                                                            <option value={-1} disable selected={!this.state.country} >--Select Server--</option>
 
                                                                 {this.renderServerOption(this.state.serverList)}
 
                                                             </select>
+                                                            {errors.server_id && <div className=" invaliderror">{errors.server_id}</div>}
+
                                                             <label>Level of Account</label>
                                                             <input class="form-control" name="level" onChange={this.onChange} required="" />
+                                                            {errors.level && <div className=" invaliderror">{errors.level}</div>}
+
                                                             <label>Price</label>
                                                             <input class="form-control" name="price" onChange={this.onChange} required="" />
+                                                            {errors.price && <div className=" invaliderror">{errors.price}</div>}
+
                                                             <label>LoL Username</label>
                                                             <input class="form-control" name="user_name" onChange={this.onChange} required="" />
+                                                            {errors.user_name && <div className=" invaliderror">{errors.user_name}</div>}
+
                                                             <label>LoL Account Email</label>
                                                             <input class="form-control" name="user_email" onChange={this.onChange} required="" />
+                                                            {errors.user_email && <div className=" invaliderror">{errors.user_email}</div>}
+
 
 
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Amount of Blue Essence</label>
                                                             <input class="form-control" name="amount_of_blue_essence" onChange={this.onChange} required="" />
+                                                            {errors.amount_of_blue_essence && <div className=" invaliderror">{errors.amount_of_blue_essence}</div>}
+
                                                             <label>Champions Owned</label>
                                                             <input class="form-control" name="champions_owned" onChange={this.onChange} required="" />
+                                                            {errors.champions_owned && <div className=" invaliderror">{errors.champions_owned}</div>}
+
                                                             <label>Type of queue</label>
                                                             <select class="custom-select" name="queue_id" onClick={(e) => this._handleKeyDown(this.state.queueList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.queueList, e)} >
 
                                                                 {this.renderOption(this.state.queueList)}
                                                             </select>
+                                                            {errors.queue_id && <div className=" invaliderror">{errors.queue_id}</div>}
+
                                                             <label>Currency</label>
                                                             <select class="custom-select" name="currency" onChange={this.onChange} required="">
                                                                 <option value={"USD"}>USD</option>
                                                                 <option value={"EURO"}>EURO</option>
                                                             </select>
+                                                            {errors.currency && <div className=" invaliderror">{errors.currency}</div>}
+
                                                             <label>Password</label>
                                                             <input type="password" class="form-control" name="password" onChange={this.onChange} required="" />
+                                                            {errors.password && <div className=" invaliderror">{errors.password}</div>}
+
                                                             <label>E-mail Password</label>
                                                             <input type="password" class="form-control" name="email_password" onChange={this.onChange} required="" />
+                                                            {errors.email_password && <div className=" invaliderror">{errors.email_password}</div>}
 
                                                         </div>
                                                         <div class="col-md-4 ">
@@ -425,12 +546,18 @@ class SellAccount extends Component {
                                                             <select class="custom-select" name="current_rank_id" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
+                                                            {errors.current_rank_id && <div className=" invaliderror">{errors.current_rank_id}</div>}
+
                                                             <label>Skins Owned</label>
                                                             <input class="form-control" name="skin_owned" onChange={this.onChange} required="" />
+                                                            {errors.skin_owned && <div className=" invaliderror">{errors.skin_owned}</div>}
+
                                                             <label>Last Season Rank</label>
                                                             <select class="custom-select" name="last_season_rank_ID" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
+                                                            {errors.last_season_rank_ID && <div className=" invaliderror">{errors.last_season_rank_ID}</div>}
+
                                                         </div>
 
                                                     </div>
@@ -441,34 +568,48 @@ class SellAccount extends Component {
                                                         <div class="col-md-4">
                                                             <label>Account Name</label>
                                                             <input class="form-control" name="account_title" onChange={this.onChange} required="" />
+                                                            {errors.account_title && <div className=" invaliderror">{errors.account_title}</div>}
 
                                                             <label>Account E-mail </label>
                                                             <input class="form-control" name="user_email" onChange={this.onChange} required="" />
+                                                            {errors.user_email && <div className=" invaliderror">{errors.user_email}</div>}
+
                                                             <label>Currency</label>
                                                             <select class="custom-select" name="currency" onChange={this.onChange} required="">
                                                                 <option value={"USD"}>USD</option>
                                                                 <option value={"EURO"}>EURO</option>
                                                             </select>
+                                                            {errors.currency && <div className=" invaliderror">{errors.currency}</div>}
 
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Password</label>
                                                             <input type="password" class="form-control" name="password" onChange={this.onChange} required="" />
+                                                            {errors.password && <div className=" invaliderror">{errors.password}</div>}
+
                                                             <label>E-mail Password</label>
                                                             <input type="password" class="form-control" name="email_password" onChange={this.onChange} required="" />
+                                                            {errors.email_password && <div className=" invaliderror">{errors.email_password}</div>}
+
                                                             <label>Last Season Rank</label>
                                                             <select class="custom-select" defaultValue={'1'} name="last_season_rank_ID" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
+                                                            {errors.last_season_rank_ID && <div className=" invaliderror">{errors.last_season_rank_ID}</div>}
 
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Server</label>
                                                             <select class="custom-select" name="server_id" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
                                                                 {this.renderServerOption(this.state.serverList)}
+
                                                             </select>
+                                                            {errors.server_id && <div className=" invaliderror">{errors.server_id}</div>}
+
                                                             <label>Price</label>
                                                             <input class="form-control" name="price" onChange={this.onChange} required="" />
+                                                            {errors.price && <div className=" invaliderror">{errors.price}</div>}
+
                                                         </div>
 
                                                     </div>
@@ -516,6 +657,8 @@ class SellAccount extends Component {
                                                             <option value={"Botted"}>Botted</option>
 
                                                         </select>
+                                                        {errors.level_up && <div className=" invaliderror">{errors.level_up}</div>}
+
                                                     </div>
                                                     <div class="col-md-4 ">
                                                         <label>Verified email:</label>
@@ -523,6 +666,8 @@ class SellAccount extends Component {
                                                             <option value={"No"}>No</option>
                                                             <option value={"Yes"}>Yes</option>
                                                         </select>
+                                                        {errors.verified_email && <div className=" invaliderror">{errors.verified_email}</div>}
+
                                                     </div>
                                                     {/* <div class="col-md-4 ">
                                                         <label>Photos</label>
@@ -536,6 +681,8 @@ class SellAccount extends Component {
                                                     <div class="col-md-12 ">
                                                         <label>Account description</label>
                                                         <textarea class="form-control" name="description" onChange={this.onChange} required="" />
+                                                        {errors.description && <div className=" invaliderror">{errors.description}</div>}
+
                                                     </div>
                                                 </div>
 

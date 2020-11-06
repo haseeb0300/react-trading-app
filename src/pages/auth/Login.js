@@ -8,7 +8,6 @@ import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
 import Noty from 'noty';
 import "../../../node_modules/noty/lib/noty.css";
-
 import "../../../node_modules/noty/lib/themes/mint.css";
 import { FacebookProvider, LoginButton } from 'react-facebook';
 import { loginUser } from '../../store/actions/authAction'
@@ -19,6 +18,8 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
+
+            errors: {},
             serverError: {},
             isLoading: false,
         };
@@ -38,7 +39,6 @@ class Login extends Component {
         this.setState({ error });
     }
     onSubmit = (e) => {
-        this.setState({ isLoading: true })
         e.preventDefault()
         this.props.loginUser({
             "email": this.state.email,
@@ -50,21 +50,19 @@ class Login extends Component {
                 this.props.history.push('/userdashboard')
                 new Noty({
                     text: "Succsessfully Login",
-                    layout: "topRight",
-                    theme: "bootstrap-v4",
+
                     type: "success",
 
-                    timeout: 1000
+                    timeout: 2000
                 }).show()
                     .then(() => { }
                     )
             } else {
                 new Noty({
                     text: "Something went wrong",
-                    layout: "topRight",
-                    theme: "bootstrap-v4",
+
                     type: "error",
-                    timeout: 1000
+                    timeout: 2000
                 }).show();
             }
         }).catch((err) => {
@@ -87,8 +85,24 @@ class Login extends Component {
             }
         })
     }
+    renderServerError() {
+        if (this.state.serverError != null && this.state.serverError.length > 0) {
+            return (
+                <div className="form-row">
+                    <div className="col-md-12  alert alert-danger" role="alert" >
+                        <strong className="pr-2">Oh snap!  {"  "}</strong>
+                        {this.state.serverError[0].msg}
+
+                    </div>
+                </div>
+            )
+        }
+    }
+
     render() {
         const { isLoading } = this.state;
+        const { errors } = this.state
+
         if (isLoading) {
             return (
                 <div className="loader-large"></div>
@@ -122,10 +136,14 @@ class Login extends Component {
                                             <div class="form-group mb-4">
                                                 <label>Enter your Email Address</label>
                                                 <input type="email" class="form-control" placeholder="Joel@example.com" name="email" onChange={this.onChange} required="" />
+                                                {errors.email && <div className=" invaliderror">{errors.email}</div>}
+
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
                                                 <input type="password" class="form-control" placeholder="Joel@example.com" name="password" onChange={this.onChange} required="" />
+                                                {errors.password && <div className=" invaliderror">{errors.password}</div>}
+
                                             </div>
                                             <button type="submit" onClick={this.onSubmit} class="btn btn-primary btn-block">Login</button>
                                             <div class="row align-items-center mt-3">
@@ -138,7 +156,7 @@ class Login extends Component {
                                                             onCompleted={this.handleResponse}
                                                             onError={this.handleError}
                                                         >
-                                                       <i class="fa fa-facebook-square"></i> 
+                                                            <i class="fa fa-facebook-square"></i>
 
                                                             <span>Login with Facebook</span>
                                                         </LoginButton>
@@ -154,7 +172,7 @@ class Login extends Component {
                                                 <div class="col-md-4 text-center text-md-left">
                                                     <div class="form-group custom-check">
                                                         <input type="checkbox" id="Remember" />
-                                                        <label for="Remember">Remember me</label>
+                                                        <label for="Remember">Remember </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8 text-center">
@@ -163,7 +181,9 @@ class Login extends Component {
                                             </div>
                                         </form>
                                     </div>
-                                </div>
+                                </div>                    {this.renderServerError()}
+
+
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-md-7 px-md-4">

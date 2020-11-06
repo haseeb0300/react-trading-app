@@ -535,7 +535,7 @@ header span {
 }
 
 .account-section .card .price {
-  font-weight: 800;
+  font-weight: 700;
   color: #18506c;
   font-size: 18px;
   margin-bottom: 0;
@@ -1194,7 +1194,15 @@ header span {
   text-align: left;
   color: #50505a;
   padding: 0;
-  margin: 10px 2px 10px;
+  margin: 17px 2px 10px;
+}
+.sell-account-form .invaliderror {
+  margin-left: 3px;
+  font-size: 14px;
+  color: red;
+  position: absolute;
+  margin-top: -3px;
+  right: 18px;
 }
 .sell-account-form h2 {
   font-family: "Playfair Display", serif;
@@ -1665,6 +1673,16 @@ header span {
   margin-bottom: 40px;
   color: #18506c;
   font-weight: 600;
+}
+.user-account .invaliderror{
+  right: 28%;
+  font-size: 14px;
+  margin: 5px;
+  color: red;
+  position: absolute;
+  text-align: right;
+  margin-top: 0px;
+
 }
 
 .user-account .form-control {

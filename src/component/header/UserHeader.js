@@ -46,7 +46,7 @@ class Header extends Component {
                             <ul class="navbar-nav navbar-center m-auto">
                                 <Link to="/">
 
-                                    <li class="nav-item active">
+                                    <li class="nav-item active ">
                                         <span class="nav-link" >Home</span>
                                     </li>
                                 </Link>
@@ -55,7 +55,7 @@ class Header extends Component {
                                         Lol Accounts
                       </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <Link to="/lolaccount">
+                                        <Link to="/lolaccount ">
                                             <a class="dropdown-item"  >LoL Accounts</a>
                                         </Link>
                                         <Link to="/unrankedaccount">
@@ -81,7 +81,7 @@ class Header extends Component {
                             </ul>
                             <ul class="navbar-nav d-none d-md-flex">
                                 <Link to="/userdashboard">
-                                    <li class="nav-item ">
+                                    <li class="nav-item  ">
                                         <a class="nav-link text-uppercase "  ><span class="icon-user mr-1"></span>Dashboard</a>
                                     </li>
                                 </Link>
