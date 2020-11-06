@@ -6,7 +6,6 @@ import visa_img from '../../assets/images/visa.png'
 import paypal_img from '../../assets/images/paypal.png'
 import skrill_img from '../../assets/images/skrill.png'
 import stripe_img from '../../assets/images/stripe.png'
-import { v4 } from 'uuid';
 
 import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
@@ -15,18 +14,15 @@ import Noty from 'noty';
 
 import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
-import { getQueue, getServer, getRank, postRegularSellAccount,postComfortSellAccount,postBulkRegularSellAccount,postBulkComfortSellAccount } from '../../store/actions/accountAction'
+import { getQueue, getServer, getRank, postRegularSellAccount,postComfortSellAccount } from '../../store/actions/accountAction'
 import { Checkbox, CheckboxGroup } from '@trendmicro/react-checkbox';
 import { Widget } from "@uploadcare/react-widget";
 import Uploadbtn from "../../component/dashboadSection/uploadbtn"
-import PaymentComponent from "../../component/dashboadSection/PaymentComponent"
-import UserHeader from "../../component/dashboadSection/UserHeader"
-
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-checkbox/dist/react-checkbox.css';
 
-class SellAccount extends Component {
+class BuyAccount extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -65,17 +61,6 @@ class SellAccount extends Component {
             "sell_type":"regularSell",
             table_list: [2, 3, 4, 5, 6, 7, 8, 9, 10],
             account_email:"",
-            user_accounts: [
-            { "unique_key": '2', "user_name": "", "password": ""},
-            { "unique_key": '3', "user_name": "", "password": ""},
-            { "unique_key": '4', "user_name": "", "password": ""},
-            { "unique_key": '5', "user_name": "", "password": ""},
-            { "unique_key": '6', "user_name": "", "password": ""},
-            { "unique_key": '7', "user_name": "", "password": ""},
-            { "unique_key": '8', "user_name": "", "password": ""},
-            { "unique_key": '9', "user_name": "", "password": ""},
-            { "unique_key": '10', "user_name": "", "password": ""},
-        ],
         };
         this.inputRef = [];
     }
@@ -127,25 +112,14 @@ class SellAccount extends Component {
         })
     }
 
-    handleBulkAccountChange = (idx, evt) => {
-        console.log(idx)
-        console.log(evt.target.value)
-    
-        const newUserAccounts = this.state.user_accounts.map((item, sidx) => {
-          if (idx !== sidx) return item;
-          return { ...item, [evt.target.name]: evt.target.value };
-        });
-        console.log(this.state.user_accounts)
-        this.setState({ user_accounts: newUserAccounts });
-      };
     renderTableRows = () => {
 
 
-        return this.state.user_accounts.map((item, i) =>
+        return this.state.table_list.map((item, i) =>
             <tr>
-                <td className="table-row">{item.unique_key}</td>
-                <td className="table-row"><input type="text" value={item.user_name} name="user_name" onChange={(evt) => this.handleBulkAccountChange(i, evt)} /></td>
-                <td className="table-row"><input type="password" value={item.password} name="password" onChange={(evt) => this.handleBulkAccountChange(i, evt)}   /></td>
+                <td className="table-row">{item}</td>
+                <td className="table-row"><input type="text" name="bulk_username[]" autocomplete="off" value="" /></td>
+                <td className="table-row"><input type="text" name="bulk_password[]" autocomplete="off" value="" /></td>
             </tr>
 
         )
@@ -230,86 +204,37 @@ class SellAccount extends Component {
             "current_rank_id": this.state.current_rank_id,
             "queue_id": this.state.queue_id,
             "server_id": this.state.server_id,
-        }
-        var data_bulk = {
-            "amount_of_rp": this.state.amount_of_rp,
-            "account_title": this.state.account_title,
-            "level": this.state.level,
-            "price": this.state.price,
-            "user_name": this.state.user_name,
-            "user_email": this.state.user_email,
-            "last_season_rank_ID": this.state.last_season_rank_ID,
-            "amount_of_blue_essence": this.state.amount_of_blue_essence,
-            "level_up": this.state.level_up,
-            "champions_owned": this.state.champions_owned,
-            "description": this.state.description,
-            "skin_owned": this.state.skin_owned,
-            "verified_email": this.state.verified_email,
-            "currency": this.state.currency,
-            "user_name": this.state.user_name,
-            "password": this.state.password,
-            "current_rank_id": this.state.current_rank_id,
-            "queue_id": this.state.queue_id,
-            "server_id": this.state.server_id,
-            "account": this.state.user_accounts,
+
         }
         console.log("data", data)
-        if(this.state.sell_type == 'regularSell' && !this.state.type.bulk){
+        if(this.state.sell_type == 'regularSell'){
 
         
         this.props.postRegularSellAccount(data).then((res) => {
             console.log(res)
-           
-       
+            if (res.status) {
+
+            new Noty({
+                text: "Succsessfully Inserted Account",
+                layout: "topRight",
+                theme: "bootstrap-v4",
+                type: "success",
+                timeout: 1000
+            }).show();
+            return
+        }
+        new Noty({
+            text: "Succsessfully went wrong",
+            layout: "topRight",
+            theme: "bootstrap-v4",
+            type: "error",
+            timeout: 1000
+        }).show();
         })
         
-    }else if(this.state.sell_type == 'comfortSell' && !this.state.type.bulk){
+    }else if(this.state.sell_type == 'comfortSell'){
         this.props.postComfortSellAccount(data).then((res) => {
             if (res.status) {
-            new Noty({
-                text: "Succsessfully Inserted Account",
-                layout: "topRight",
-                theme: "bootstrap-v4",
-                type: "success",
-                timeout: 1000
-            }).show();
-            return
-        }
-        new Noty({
-            text: "Succsessfully went wrong",
-            layout: "topRight",
-            theme: "bootstrap-v4",
-            type: "error",
-            timeout: 1000
-        }).show();
-        })
-    }else if(this.state.sell_type == 'regularSell' && this.state.type.bulk){
-        this.props.postBulkRegularSellAccount(data_bulk).then((res) => {
-            console.log(res)
-            if (res.status) {
-
-            new Noty({
-                text: "Succsessfully Inserted Account",
-                layout: "topRight",
-                theme: "bootstrap-v4",
-                type: "success",
-                timeout: 1000
-            }).show();
-            return
-        }
-        new Noty({
-            text: "Succsessfully went wrong",
-            layout: "topRight",
-            theme: "bootstrap-v4",
-            type: "error",
-            timeout: 1000
-        }).show();
-        })
-    }else if(this.state.sell_type == 'comfortSell' && this.state.type.bulk){
-        this.props.postBulkComfortSellAccount(data_bulk).then((res) => {
-            console.log(res)
-            if (res.status) {
-
             new Noty({
                 text: "Succsessfully Inserted Account",
                 layout: "topRight",
@@ -338,29 +263,21 @@ class SellAccount extends Component {
                 <div className="loader-large"></div>
             )
         }
-      
         return (
             <div class="wrapper">
-
-                {/* <!-- Banner section --> */}
+                {/* <!-- Banner section -->
                 <section class="banner-section" >
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
-                                {/* <Flip bottom delay={200}>
+                                <Flip bottom delay={200}>
                                     <h1 class="wow flipInX mt-3" data-wow-delay="0.6s">Sell Your Account</h1>
-                                </Flip> */}
-                               
-
+                                </Flip>
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <main>
-                {/* <UserHeader>
-                        
-                        </UserHeader>  */}
-                  
                     <section class="user-section wow fadeInUp" data-wow-delay="1s">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -373,8 +290,6 @@ class SellAccount extends Component {
                                         </div>
                                         <label className="title">ACCOUNT INFO FORM</label>
                                         <hr></hr>
-
-
                                         <form>
                                             <div class="form-group">
                                                 {this.state.sell_type == 'regularSell' &&
@@ -384,9 +299,7 @@ class SellAccount extends Component {
                                                             <input class="form-control" name="amount_of_rp" onChange={this.onChange} required="" />
                                                             <label>Server</label>
                                                             <select class="custom-select" name="server_id" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
-
                                                                 {this.renderServerOption(this.state.serverList)}
-
                                                             </select>
                                                             <label>Level of Account</label>
                                                             <input class="form-control" name="level" onChange={this.onChange} required="" />
@@ -396,8 +309,6 @@ class SellAccount extends Component {
                                                             <input class="form-control" name="user_name" onChange={this.onChange} required="" />
                                                             <label>LoL Account Email</label>
                                                             <input class="form-control" name="user_email" onChange={this.onChange} required="" />
-
-
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Amount of Blue Essence</label>
@@ -406,7 +317,6 @@ class SellAccount extends Component {
                                                             <input class="form-control" name="champions_owned" onChange={this.onChange} required="" />
                                                             <label>Type of queue</label>
                                                             <select class="custom-select" name="queue_id" onClick={(e) => this._handleKeyDown(this.state.queueList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.queueList, e)} >
-
                                                                 {this.renderOption(this.state.queueList)}
                                                             </select>
                                                             <label>Currency</label>
@@ -418,7 +328,6 @@ class SellAccount extends Component {
                                                             <input type="password" class="form-control" name="password" onChange={this.onChange} required="" />
                                                             <label>E-mail Password</label>
                                                             <input type="password" class="form-control" name="email_password" onChange={this.onChange} required="" />
-
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Rank of Account</label>
@@ -432,16 +341,13 @@ class SellAccount extends Component {
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
                                                         </div>
-
                                                     </div>
-
                                                 }
                                                 {this.state.sell_type == 'comfortSell' &&
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <label>Account Name</label>
                                                             <input class="form-control" name="account_title" onChange={this.onChange} required="" />
-
                                                             <label>Account E-mail </label>
                                                             <input class="form-control" name="user_email" onChange={this.onChange} required="" />
                                                             <label>Currency</label>
@@ -449,7 +355,6 @@ class SellAccount extends Component {
                                                                 <option value={"USD"}>USD</option>
                                                                 <option value={"EURO"}>EURO</option>
                                                             </select>
-
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Password</label>
@@ -460,7 +365,6 @@ class SellAccount extends Component {
                                                             <select class="custom-select" defaultValue={'1'} name="last_season_rank_ID" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
-
                                                         </div>
                                                         <div class="col-md-4 ">
                                                             <label>Server</label>
@@ -470,13 +374,9 @@ class SellAccount extends Component {
                                                             <label>Price</label>
                                                             <input class="form-control" name="price" onChange={this.onChange} required="" />
                                                         </div>
-
                                                     </div>
-
                                                 }
-
                                                 <div class="row">
-
                                                     <div class="col-md-12">
                                                         <div class="block-name">
                                                             <h6 class=" ">Selling tips: </h6>
@@ -630,8 +530,16 @@ class SellAccount extends Component {
                                                                 }
                                                             </div>
                                                         </div>
+
+
+
                                                     </div>
+
                                                 </div>
+
+
+
+
                                             </div>
                                             <div className="sell-bt">
                                                 <button onClick={this.onSubmit} class="btn-action">Sell My Account</button>
@@ -642,7 +550,7 @@ class SellAccount extends Component {
                                     </div>
                                 </div>
                             </div>
-                            {/* <div class="row justify-content-center">
+                            <div class="row justify-content-center">
                                 <div class="col-md-7 px-md-4">
                                     <h4 class="text-center wow fadeInDown" data-wow-delay="0.6s">PAYMENT PROVIDERS:</h4>
                                     <ul>
@@ -663,10 +571,7 @@ class SellAccount extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                            </div> */}
-                            <PaymentComponent>
-
-                            </PaymentComponent>
+                            </div>
                         </div>
                     </section>
                 </main >
@@ -681,7 +586,7 @@ class SellAccount extends Component {
 
 }
 
-SellAccount.propTypes = {
+BuyAccount.propTypes = {
 
 };
 
@@ -693,9 +598,7 @@ const mapDispatchToProps = ({
     getServer,
     getRank,
     postRegularSellAccount,
-    postBulkRegularSellAccount,
     postComfortSellAccount,
-    postBulkComfortSellAccount,
 })
-export default connect(mapStatetoProps, mapDispatchToProps)(SellAccount);
+export default connect(mapStatetoProps, mapDispatchToProps)(BuyAccount);
 

@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
-
-
-
 import master_img from '../../assets/images/master.png'
 import visa_img from '../../assets/images/visa.png'
 import paypal_img from '../../assets/images/paypal.png'
-
 import skrill_img from '../../assets/images/skrill.png'
 import stripe_img from '../../assets/images/stripe.png'
-
-
-
 import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
+import Noty from 'noty';
+import "../../../node_modules/noty/lib/noty.css";    
 
-
+import "../../../node_modules/noty/lib/themes/mint.css";  
 import { FacebookProvider, LoginButton } from 'react-facebook';
 import { loginUser } from '../../store/actions/authAction'
 import { connect } from 'react-redux';
-
-
-
-
-
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -33,28 +23,17 @@ class Login extends Component {
             isLoading: false,
         };
     }
-
-
-
-
     componentDidMount() {
-
-
         new WOW.WOW({
             live: false
         }).init();
-
-
-
     }
-
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
     handleResponse = (data) => {
         console.log(data);
     }
-
     handleError = (error) => {
         this.setState({ error });
     }
@@ -62,36 +41,63 @@ class Login extends Component {
         this.setState({ isLoading: true })
         e.preventDefault()
         this.props.loginUser({
-
             "email": this.state.email,
             "password": this.state.password
         }).then((res) => {
-            this.props.history.push('/userdashboard')
             this.setState({ isLoading: false })
             console.log(res)
+            if (res.status) {
+                this.props.history.push('/userdashboard')
+                new Noty({
+                    text: "Succsessfully Login",
+                    layout: "topRight",
+                    theme: "bootstrap-v4",
+                                        type: "success",
+
+                    timeout: 1000
+                }).show()
+                .then(()=>{}
+                )
+            } else {
+                new Noty({
+                    text: "Something went wrong",
+                    layout: "topRight",
+                    theme: "bootstrap-v4",
+                    type: "error",
+                    timeout: 1000
+                }).show();
+            }
         }).catch((err) => {
             this.setState({ isLoading: false })
             console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
         })
     }
     render() {
-
-
-
         const { isLoading } = this.state;
-
         if (isLoading) {
             return (
                 <div className="loader-large"></div>
             )
         }
-
         return (
             <div class="wrapper">
-
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-login-image" >
-
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
@@ -121,9 +127,7 @@ class Login extends Component {
                                                 <label>Password</label>
                                                 <input type="password" class="form-control" placeholder="Joel@example.com" name="password" onChange={this.onChange} required="" />
                                             </div>
-
                                             <button type="submit" onClick={this.onSubmit} class="btn btn-primary btn-block">Login</button>
-
                                             <div class="row align-items-center mt-3">
                                                 <div class="col-md-7">
                                                     {/* <button type="button" class="btn btn-primary btn-block btn-fb"><i class="fa fa-facebook-square"></i> <span>Login with Facebook</span></button> */}
@@ -144,7 +148,6 @@ class Login extends Component {
                                                     </Link>
                                                 </div>
                                             </div>
-
                                             <div class="row mt-md-4 pt-3">
                                                 <div class="col-md-4 text-center text-md-left">
                                                     <div class="form-group custom-check">
@@ -185,12 +188,7 @@ class Login extends Component {
                         </div>
                     </section>
                 </main>
-
             </div>
-
-
-
-
         )
     }
 

@@ -30,11 +30,11 @@ function Header(props) {
                  <ul class="navbar-nav navbar-center m-auto">
                  <Link to="/">
 
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                        <a class="nav-link"  >Home</a>
                     </li>
                     </Link>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown " >
                        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Lol Accounts
                       </a>
@@ -56,7 +56,7 @@ function Header(props) {
                           </Link>
                        </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                        <a class="nav-link" >FAQ</a>
                     </li>
                     <li class="nav-item">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
- 
+
 import master_img from '../../assets/images/master.png'
 import visa_img from '../../assets/images/visa.png'
 import paypal_img from '../../assets/images/paypal.png'
@@ -9,17 +9,20 @@ import skrill_img from '../../assets/images/skrill.png'
 import stripe_img from '../../assets/images/stripe.png'
 
 
- 
-import { Link,   } from 'react-router-dom';
+
+import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
- 
+
 import countryList from '../../assets/country.json'
- 
+
 import { FacebookProvider, LoginButton } from 'react-facebook';
 import { connect } from 'react-redux';
 import { registerUser } from '../../store/actions/authAction'
 
+import Noty from 'noty';
+import "../../../node_modules/noty/lib/noty.css";
 
+import "../../../node_modules/noty/lib/themes/mint.css";
 
 
 
@@ -32,7 +35,7 @@ class Signup extends Component {
             user_name: "",
             country: "",
             phone_no: "",
-            token:"",
+            token: "",
             confirm_password: "",
             countryList: countryList,
             serverError: {},
@@ -70,10 +73,27 @@ class Signup extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    // onSubmit = (e) => {
+    //     e.preventDefault()
+    //     this.props.registerUser({
+
+    //         "email": this.state.email,
+    //         "password": this.state.password,
+    //         "user_name": this.state.user_name,
+    //         "country": this.state.country,
+    //         "phone_no": this.state.phone_no,
+    //         "password2": this.state.confirm_password,
+
+    //     }).then((res) => {
+    //         this.props.history.push('/userdashboard')
+
+    //         console.log(res)
+    //     })
+    // }
     onSubmit = (e) => {
+        this.setState({ isLoading: true })
         e.preventDefault()
         this.props.registerUser({
-
             "email": this.state.email,
             "password": this.state.password,
             "user_name": this.state.user_name,
@@ -82,10 +102,49 @@ class Signup extends Component {
             "password2": this.state.confirm_password,
 
         }).then((res) => {
+            this.setState({ isLoading: false })
             console.log(res)
+            if (res.status) {
+                this.props.history.push('/login')
+                new Noty({
+                    text: "Succsessfully Register",
+                    // layout: "topRight",
+                    // theme: "bootstrap-v4",
+                    type: "success",
+
+                    timeout: 2000
+                }).show()
+                    .then(() => { }
+                    )
+            } else {
+                new Noty({
+                    text: "Something went wrong",
+                    layout: "topRight",
+                    theme: "bootstrap-v4",
+                    type: "error",
+                    timeout: 1000
+                }).show();
+            }
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
         })
     }
-
     componentDidMount() {
 
         // this.props.i18n.changeLanguage("de");
@@ -109,12 +168,12 @@ class Signup extends Component {
     }
 
     renderOption = () => {
-            return countryList.map((item, i) =>
+        return countryList.map((item, i) =>
             <option value={item.name}>{item.name}</option>
 
-         )
+        )
 
-        
+
     }
     render() {
 
@@ -175,11 +234,11 @@ class Signup extends Component {
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>COUNTRY</label>
-                                                
-                                                    <select  class="custom-select" name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}>
-                                                        {this.renderOption()}
-                                                    </select>
-                                                
+
+                                                <select class="custom-select" name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}>
+                                                    {this.renderOption()}
+                                                </select>
+
                                             </div>
                                             <div class="form-group">
                                                 <label>PHONE number</label>
@@ -228,7 +287,7 @@ class Signup extends Component {
                         </div>
                     </section>
                 </main>
-         
+
             </div>
 
 
