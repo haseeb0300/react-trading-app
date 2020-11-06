@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
- 
+import { connect } from 'react-redux';
+
 import WOW from 'wowjs';
+import { getAccount } from '../../store/actions/accountAction'
+
  
 import SectionOurService from '../../component/dashboadSection/SectionOurService'
 import SectionHistory from '../../component/dashboadSection/SectionHistory'
@@ -18,12 +21,27 @@ class Dashboard extends Component {
          serverError: {},
          isLoading: false,
          page:"dashboard",
+         accountList:[],
       };
    }
    componentDidMount() {
        new WOW.WOW({
          live: false
        }).init();
+       this.props.getAccount().then((res) => {
+         console.log(res)
+         if (res.status == true) {
+             this.setState({
+                 accountList: res.content,
+             })
+         }
+         else {
+             alert(res)
+         }
+     }).catch((err) => {
+         console.log(err)
+
+     })
    }
    render() {
       // const { t, i18n } = this.props
@@ -50,6 +68,7 @@ class Dashboard extends Component {
                {/* <!-- Top Rated Accounts --> */}
               <SectionTopRated
               page= {this.state.page}
+              accountList={this.state.accountList}
               ></SectionTopRated>
                {/* <!-- Testimonial --> */}
                <Slide bottom delay={200}>
@@ -65,7 +84,13 @@ class Dashboard extends Component {
    }
 
 }
+const mapStatetoProps = ({ auth }) => ({
+   user: auth.user
+})
+const mapDispatchToProps = ({
+   getAccount
+})
 Dashboard.propTypes = {
 };
-export default (Dashboard);
+export default connect(mapStatetoProps, mapDispatchToProps) (Dashboard);
 

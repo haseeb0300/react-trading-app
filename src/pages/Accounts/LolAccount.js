@@ -172,7 +172,8 @@ class LolAccount extends Component {
                     {/* <!-- Top Rated Accounts --> */}
 
                     <SectionTopRated
-                        accountList={this.state.accountList}
+                     page= {this.state.page}
+                    accountList={this.state.accountList}
                     ></SectionTopRated>
                 </main>
 
