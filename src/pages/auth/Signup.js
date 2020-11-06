@@ -7,25 +7,15 @@ import paypal_img from '../../assets/images/paypal.png'
 
 import skrill_img from '../../assets/images/skrill.png'
 import stripe_img from '../../assets/images/stripe.png'
-
-
-
 import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
-
 import countryList from '../../assets/country.json'
-
 import { FacebookProvider, LoginButton } from 'react-facebook';
 import { connect } from 'react-redux';
 import { registerUser } from '../../store/actions/authAction'
-
 import Noty from 'noty';
 import "../../../node_modules/noty/lib/noty.css";
-
 import "../../../node_modules/noty/lib/themes/mint.css";
-
-
-
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -40,10 +30,10 @@ class Signup extends Component {
             countryList: countryList,
             serverError: {},
             isLoading: false,
+            errors: {},
+            serverError: {},
         };
     }
-
-
     handleResponse = (data) => {
         console.log(data);
         this.setState({
@@ -59,37 +49,16 @@ class Signup extends Component {
             "country": 'Pakistan',
             "phone_no": '03022631109',
             "password2": '123456',
-
         }).then((res) => {
             console.log(res)
         })
     }
-
     handleError = (error) => {
         this.setState({ error });
     }
-
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
-
-    // onSubmit = (e) => {
-    //     e.preventDefault()
-    //     this.props.registerUser({
-
-    //         "email": this.state.email,
-    //         "password": this.state.password,
-    //         "user_name": this.state.user_name,
-    //         "country": this.state.country,
-    //         "phone_no": this.state.phone_no,
-    //         "password2": this.state.confirm_password,
-
-    //     }).then((res) => {
-    //         this.props.history.push('/userdashboard')
-
-    //         console.log(res)
-    //     })
-    // }
     onSubmit = (e) => {
         this.setState({ isLoading: true })
         e.preventDefault()
@@ -100,7 +69,6 @@ class Signup extends Component {
             "country": this.state.country,
             "phone_no": this.state.phone_no,
             "password2": this.state.confirm_password,
-
         }).then((res) => {
             this.setState({ isLoading: false })
             console.log(res)
@@ -111,7 +79,6 @@ class Signup extends Component {
                     // layout: "topRight",
                     // theme: "bootstrap-v4",
                     type: "success",
-
                     timeout: 2000
                 }).show()
                     .then(() => { }
@@ -146,16 +113,12 @@ class Signup extends Component {
         })
     }
     componentDidMount() {
-
         // this.props.i18n.changeLanguage("de");
         new WOW.WOW({
             live: false
         }).init();
-
         console.log('will', this.state.countryList)
     }
-
-
     _handleKeyDownCountry = (e) => {
         console.log("here", [e.target.value])
         if (e.target.value == 0) {
@@ -166,35 +129,24 @@ class Signup extends Component {
             this.setState({ country: this.state.countryList[e.target.value] })
         }
     }
-
     renderOption = () => {
         return countryList.map((item, i) =>
             <option value={item.name}>{item.name}</option>
-
         )
-
-
     }
     render() {
-
         // const { t, i18n } = this.props
         const { t, i18n } = this.props
-
         const { isLoading } = this.state;
-
         if (isLoading) {
             return (
                 <div className="loader-large"></div>
             )
         }
-
         return (
             <div class="wrapper">
-
                 {/* <!-- Banner section --> */}
-                <section class="banner-section section-background-signup-image"
-                //  style="background-image: url('assets/images/signup.png');"
-                >
+                <section class="banner-section section-background-signup-image" >
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
@@ -234,17 +186,14 @@ class Signup extends Component {
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>COUNTRY</label>
-
                                                 <select class="custom-select" name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}>
                                                     {this.renderOption()}
                                                 </select>
-
                                             </div>
                                             <div class="form-group">
                                                 <label>PHONE number</label>
                                                 <input type="text" class="form-control" placeholder="1234456789" name="phone_no" onChange={this.onChange} required="" />
                                             </div>
-
                                             <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4" onClick={this.onSubmit}>Signup</button>
                                             {/* <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button> */}
                                             <FacebookProvider appId="377592783588831">
@@ -254,7 +203,8 @@ class Signup extends Component {
                                                     onCompleted={this.handleResponse}
                                                     onError={this.handleError}
                                                 >
-                                                    <span>Signup with Facebook</span>
+                                                    <i class="fa fa-facebook-square"></i>
+                                                    <span>Login with Facebook</span>
                                                 </LoginButton>
                                             </FacebookProvider>
                                             <p class="text-center mt-4 mt-md-5 mb-0">Already have an account? Click to<Link to="/login"><a  >Sign In</a> </Link></p>
@@ -287,12 +237,7 @@ class Signup extends Component {
                         </div>
                     </section>
                 </main>
-
             </div>
-
-
-
-
         )
     }
 

@@ -7,9 +7,9 @@ import stripe_img from '../../assets/images/stripe.png'
 import { Link, } from 'react-router-dom';
 import WOW from 'wowjs';
 import Noty from 'noty';
-import "../../../node_modules/noty/lib/noty.css";    
+import "../../../node_modules/noty/lib/noty.css";
 
-import "../../../node_modules/noty/lib/themes/mint.css";  
+import "../../../node_modules/noty/lib/themes/mint.css";
 import { FacebookProvider, LoginButton } from 'react-facebook';
 import { loginUser } from '../../store/actions/authAction'
 import { connect } from 'react-redux';
@@ -52,12 +52,12 @@ class Login extends Component {
                     text: "Succsessfully Login",
                     layout: "topRight",
                     theme: "bootstrap-v4",
-                                        type: "success",
+                    type: "success",
 
                     timeout: 1000
                 }).show()
-                .then(()=>{}
-                )
+                    .then(() => { }
+                    )
             } else {
                 new Noty({
                     text: "Something went wrong",
@@ -138,7 +138,9 @@ class Login extends Component {
                                                             onCompleted={this.handleResponse}
                                                             onError={this.handleError}
                                                         >
-                                                            <span>Signup with Facebook</span>
+                                                       <i class="fa fa-facebook-square"></i> 
+
+                                                            <span>Login with Facebook</span>
                                                         </LoginButton>
                                                     </FacebookProvider>
                                                 </div>
