@@ -74,8 +74,8 @@ class SectionTopRated extends React.Component {
                         <div class="card-body ">
                            <p class="card-text">{item.description}</p>
                            <ul class="rank-block d-flex">
-                              <li>Rank of Account <span class="text-secondary d-block">{item.Rank.rank}</span></li>
-                              <li>Server: <span class="text-secondary d-block">{item.Server.server_name}</span></li>
+                              <li>Rank of Account <span class="text-rank d-block">{item.Rank.rank}</span></li>
+                              <li>Server: <span class="text-rank d-block">{item.Server.server_name}</span></li>
                            </ul>
                            <h6 class="price">{item.price} {item.currency}</h6>
                         </div>
@@ -118,13 +118,13 @@ class SectionTopRated extends React.Component {
                               <p>Level {item.level}</p>
                            </li>
                         </ul>
-                        <div class="card-body ">
+                        <div class="card-body pt-0">
                            <p class="card-text">{item.description}</p>
                            <ul class="rank-block d-flex">
-                              <li>Rank of Account <span class="text-secondary d-block">{item.Rank.rank}</span></li>
-                              <li>Server: <span class="text-secondary d-block">{item.Server.server_name}</span></li>
+                              <li>Rank of Account <span class="text-rank d-block">{item.Rank.rank}</span></li>
+                              <li>Server: <span class="text-rank d-block">{item.Server.server_code}</span></li>
                            </ul>
-                           <h6 class="price">{item.price} {item.currency}</h6>
+                           <h6 class="price">{item.price + ".00"} {item.currency}</h6>
                         </div>
                      </a>
                   </Fade>

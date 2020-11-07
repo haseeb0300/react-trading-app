@@ -4,6 +4,7 @@ import master_img from "../../assets/images/master.png"
 import visa_img   from "../../assets/images/visa.png"
 import paypal_img from "../../assets/images/paypal.png"
 import Fade from 'react-reveal/Fade';
+
 function Footer(props) {
     return (
         <div class="footer">

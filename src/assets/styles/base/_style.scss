@@ -127,7 +127,8 @@ a:hover {
   color: #fdd464 !important;
 }
 
-.text-secondary {
+.text-rank{
+  text-transform: uppercase;
   color: #196084 !important;
 }
 
@@ -572,6 +573,8 @@ header span {
 
 /* Testmonail */
 
+
+
 .testimonial-section {
   padding: 70px 0 50px;
 }
@@ -584,7 +587,7 @@ header span {
 
 .testimonial-section:before {
   content: "";
-  height: 280px;
+  height: 348px;
   position: absolute;
   width: 100%;
   background-image: linear-gradient(#3da6da, #195370);
@@ -619,7 +622,14 @@ header span {
   line-height: 25px;
   border-radius: 25px;
 }
-
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+background: #2D80AA;
+}
+.owl-theme .owl-dots .owl-dot span {
+height: 12px !important;
+width: 12px !important;
+background: #000000;
+}
 .testimonial .title {
   display: block;
   margin: 0;
