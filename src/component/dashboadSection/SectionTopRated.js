@@ -1,83 +1,171 @@
 import React, { Component } from "react";
-import account1 from  '../../assets/images/account/1.png'
-import account2 from  '../../assets/images/account/2.png'
-import account3 from  '../../assets/images/account/3.png'
-import account4 from  '../../assets/images/account/4.png'
-import account5 from  '../../assets/images/account/5.png'
-import account6 from  '../../assets/images/account/6.png'
-import account7 from  '../../assets/images/account/7.png'
-import account8 from  '../../assets/images/account/8.png'
-import account9 from  '../../assets/images/account/9.png'
+import account1 from '../../assets/images/account/1.png'
+import account2 from '../../assets/images/account/2.png'
+import account3 from '../../assets/images/account/3.png'
+import account4 from '../../assets/images/account/4.png'
+import account5 from '../../assets/images/account/5.png'
+import account6 from '../../assets/images/account/6.png'
+import account7 from '../../assets/images/account/7.png'
+import account8 from '../../assets/images/account/8.png'
+import account9 from '../../assets/images/account/9.png'
 import account10 from '../../assets/images/account/10.png'
 import account11 from '../../assets/images/account/11.png'
 import account12 from '../../assets/images/account/11.png'
+import Slider from "react-slick";
+import { Carousel } from 'react-responsive-carousel';
+
+import {
+   isMobileOnly
+} from "react-device-detect";
 import Fade from 'react-reveal/Fade';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
 class SectionTopRated extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
          show_more: false,
-         image_list: [account1, account2, account3, account4, account5, account6, account7, account8,]
+         image_list: [account1, account2, account3, account4, account5, account6, account7, account8,],
+         params : {
+            pagination: {
+              el: '.swiper-pagination',
+              type: 'bullets',
+              clickable: true
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev'
+            },
+            spaceBetween: 50
+         }
       };
    }
    handleClick = () => {
-      var list = [...this.state.image_list , account9, account10, account11, account12 ]
-      this.setState({ image_list: list});
+      var list = [...this.state.image_list, account9, account10, account11, account12]
+      this.setState({ image_list: list });
    }
    renderAccount = () => {
-      return this.props.accountList.map((item, i) =>
-         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card wow fadeInUp" data-wow-delay="0.4s">
-               <Fade bottom cascade delay={50}>
-                  <a >
-                     <img class="card-img-top" src={account1} alt="account" />
-                     <ul class="rating-detail d-flex">
-                        <li>
-                           <span class="icon-trophy"></span>
-                           <p>{item.champions_owned} champs</p>
-                        </li>
-                        <li>
-                           <span class="icon-dollar"></span>
-                           <p>{item.skin_owned} skins</p>
-                        </li>
-                        <li>
-                           <span class="icon-star"></span>
-                           <p>Level {item.level}</p>
-                        </li>
-                     </ul>
-                     <div class="card-body ">
-                        <p class="card-text">{item.description}</p>
-                        <ul class="rank-block d-flex">
-                           <li>Rank of Account <span class="text-secondary d-block">{item.Rank.rank}</span></li>
-                           <li>Server: <span class="text-secondary d-block">{item.Server.server_name}</span></li>
+      if(isMobileOnly){
+         return this.props.accountList.map((item, i) =>
+         <SwiperSlide>
+            <div class="col-md-6 col-lg-4 col-xl-3 ">
+               <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                  <Fade bottom cascade delay={50}>
+                     <a >
+                        <img class="card-img-top" src={account1} alt="account" />
+                        <ul class="rating-detail d-flex">
+                           <li>
+                              <span class="icon-trophy"></span>
+                              <p>{item.champions_owned} champs</p>
+                           </li>
+                           <li>
+                              <span class="icon-dollar"></span>
+                              <p>{item.skin_owned} skins</p>
+                           </li>
+                           <li>
+                              <span class="icon-star"></span>
+                              <p>Level {item.level}</p>
+                           </li>
                         </ul>
-                        <h6 class="price">{item.price} {item.currency}</h6>
-                     </div>
-                  </a>
-               </Fade>
-               <div class="overlayer">
-                  <div class="inner-cnt">
-                     <div class="wrap-link">
-                        <a class="btn btn-secondary"  >Details</a>
-                     </div>
-                     <div class="wrap-date">
-                        <div class="label">Creation Date:</div>
-                        <div class="date">Jun 15, 2020</div>
+                        <div class="card-body ">
+                           <p class="card-text">{item.description}</p>
+                           <ul class="rank-block d-flex">
+                              <li>Rank of Account <span class="text-secondary d-block">{item.Rank.rank}</span></li>
+                              <li>Server: <span class="text-secondary d-block">{item.Server.server_name}</span></li>
+                           </ul>
+                           <h6 class="price">{item.price} {item.currency}</h6>
+                        </div>
+                     </a>
+                  </Fade>
+                  <div class="overlayer">
+                     <div class="inner-cnt">
+                        <div class="wrap-link">
+                           <a class="btn btn-secondary"  >Details</a>
+                        </div>
+                        <div class="wrap-date">
+                           <div class="label">Creation Date:</div>
+                           <div class="date">Jun 15, 2020</div>
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
+         </SwiperSlide>
+         )
+      }
+      return this.props.accountList.map((item, i) =>
+         
+            <div class="col-md-6 col-lg-4 col-xl-3">
+               <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                  <Fade bottom cascade delay={50}>
+                     <a >
+                        <img class="card-img-top" src={account1} alt="account" />
+                        <ul class="rating-detail d-flex">
+                           <li>
+                              <span class="icon-trophy"></span>
+                              <p>{item.champions_owned} champs</p>
+                           </li>
+                           <li>
+                              <span class="icon-dollar"></span>
+                              <p>{item.skin_owned} skins</p>
+                           </li>
+                           <li>
+                              <span class="icon-star"></span>
+                              <p>Level {item.level}</p>
+                           </li>
+                        </ul>
+                        <div class="card-body ">
+                           <p class="card-text">{item.description}</p>
+                           <ul class="rank-block d-flex">
+                              <li>Rank of Account <span class="text-secondary d-block">{item.Rank.rank}</span></li>
+                              <li>Server: <span class="text-secondary d-block">{item.Server.server_name}</span></li>
+                           </ul>
+                           <h6 class="price">{item.price} {item.currency}</h6>
+                        </div>
+                     </a>
+                  </Fade>
+                  <div class="overlayer">
+                     <div class="inner-cnt">
+                        <div class="wrap-link">
+                           <a class="btn btn-secondary"  >Details</a>
+                        </div>
+                        <div class="wrap-date">
+                           <div class="label">Creation Date:</div>
+                           <div class="date">Jun 15, 2020</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+        
       )
    }
    render() {
-    return (
+      return (
          <section class="account-section" >
             <div class="container">
-               <h2 class="text-center wow shakeX">{this.props.page != 'dashboard'?'':'Top Rated Accounts'}</h2>
+               <h2 class="text-center wow shakeX">{this.props.page != 'dashboard' ? '' : 'Top Rated Accounts'}</h2>
+
                <div class="row justify-content-center ">
-                  {this.renderAccount()}
+
+                  {/* {isMobileOnly?(<Slider>
+                        {this.renderAccount()}
+                     </Slider>):(<Slider> {this.renderAccount()}</Slider>)
+                     } */}
+                  {isMobileOnly?(   
+                  <Swiper {...this.state.params}
+                  >
+
+                     {this.renderAccount()}
+
+                  </Swiper>
+                  ):this.renderAccount()}
                </div>
+               {/* 
                <div class="row d-md-none">
                   <div class="col-md-4">
                      <div class="slider slider-nav">
@@ -230,6 +318,7 @@ class SectionTopRated extends React.Component {
                      </div>
                   </div>
                </div>
+                */}
                <div class="row">
                   <div class="col-md-12 text-center">
                      <button type="button" class="btn btn-primary text-uppercase mt-md-4 px-5" onClick={this.handleClick}>View all</button>
