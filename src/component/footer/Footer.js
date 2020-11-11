@@ -49,8 +49,8 @@ function Footer(props) {
                         <p class="mb-4">Your payment details will be secure and confidential. </p>
                         </Fade>
 
-                        <img class="mt-1 mr-4" src={master_img} alt="master" />
-                        <img class="mt-1" src={visa_img} alt="visa" />
+                        <img class="mt-2 mr-3" src={master_img} alt="master" />
+                        <img class="mt-2 visa-img" src={visa_img} alt="visa" />
 
                         <img class="mt-3" src={paypal_img} alt="paypal" />
                     </div>

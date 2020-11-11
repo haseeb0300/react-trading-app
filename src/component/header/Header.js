@@ -5,7 +5,11 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 function Header(props) {
-   
+   const [visible, setVisible] = useState(false);
+ const  toggleNavbar =()=>{
+     setVisible(!visible);
+   }
+   const show = visible ? "show":""
     return (
         <header>
         <div class="container">
@@ -23,10 +27,10 @@ function Header(props) {
 
               <a class="nav-link d-lg-none px-0"  ><span class="icon-login mr-1"></span></a>
               </Link>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <button class="navbar-toggler" type="button" onClick={ toggleNavbar} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="fa fa-bars"></span>
               </button>
-              <div class="collapse navbar-collapse" >
+              <div class={"collapse navbar-collapse "+show } >
                  <ul class="navbar-nav navbar-center m-auto">
                  <Link to="/">
 
