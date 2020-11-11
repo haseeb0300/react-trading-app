@@ -37,7 +37,7 @@ class SectionTopRated extends React.Component {
       if (isMobileOnly) {
          return this.props.accountList.map((item, i) =>
 
-            <div className ="col-md-6 col-lg-4 col-xl-3 ">
+            <div className ="col-md-6 col-lg-4 col-xl-3 p-0 ">
                <div class="card wow fadeInUp" data-wow-delay="0.4s">
                   <Fade bottom delay={50}>
                      <a >
@@ -148,7 +148,7 @@ class SectionTopRated extends React.Component {
                      </Slider>):(<Slider> {this.renderAccount()}</Slider>)
                      } */}
                   {isMobileOnly ? (
-                     <div   className="col-md-4 p-1" >
+                     <div   className="col-md-4 " >
                      <Slider   {...settings} >
                      {this.renderAccount()}
                      </Slider>

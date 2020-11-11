@@ -547,7 +547,7 @@ class SellAccount extends Component {
                                                             <select class="custom-select" name="currency" onChange={this.onChange} required="">
                                                             <option value={-1} disable selected={!this.state.currency} >--Select Currency--</option>
                                                                 <option value={"USD"}>USD</option>
-                                                                <option value={"EURO"}>EURO</option>
+                                                                <option value={"EUR"}>EUR</option>
                                                             </select>
                                                             {errors.currency && <div className=" invaliderror">{errors.currency}</div>}
 
@@ -602,7 +602,7 @@ class SellAccount extends Component {
                                                             <option value={-1} disable selected={!this.state.currency_comfort} >--Select Currency--</option>
 
                                                                 <option value={"USD"}>USD</option>
-                                                                <option value={"EURO"}>EURO</option>
+                                                                <option value={"EUR"}>EUR</option>
                                                             </select>
                                                             {errors.currency_comfort && <div className=" invaliderror">{errors.currency}</div>}
 
