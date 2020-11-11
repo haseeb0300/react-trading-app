@@ -39,7 +39,7 @@ const    onSlideChange = (event)=>{
                   dotData= {true} 
                >
                   
-                  <div class={"testimonial" + current === 0 ?"active" :""} >
+                  {/* <div class={"testimonial"  >
                      <div class="pic">
                         <img src={img_test_1} alt="image" />
                      </div>
@@ -49,15 +49,26 @@ const    onSlideChange = (event)=>{
                     </p>
                      <h3 class="title">John Dow</h3>
                      <span class="post">September12, 2020</span>
+                  </div> */}
+                  <div class="testimonial">
+                  <div class="pic">
+                     <img src={img_test_1} alt="image" />
                   </div>
-                 
+                  <span class="fa fa-quote-left d-block"></span>
+                  <p class="description">
+                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                 </p>
+                  <h3 class="title">John Dow</h3>
+                  <span class="post">September12, 2020</span>
+               </div>
+              
                   <div class="testimonial">
                      <div class="pic">
                         <img src={img_test_2} alt="image" />
                      </div>
                      <span class="fa fa-quote-left d-block"></span>
                      <p class="description">
-                      2  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
                     </p>
                      <h3 class="title">John Dow</h3>
                      <span class="post">September12, 2020</span>
@@ -69,7 +80,7 @@ const    onSlideChange = (event)=>{
                      </div>
                      <span class="fa fa-quote-left d-block"></span>
                      <p class="description">
-                      3  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
                     </p>
                      <h3 class="title">John Dow</h3>
                      <span class="post">September12, 2020</span>
@@ -81,7 +92,7 @@ const    onSlideChange = (event)=>{
                      </div>
                      <span class="fa fa-quote-left d-block"></span>
                      <p class="description">
-                      4  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
                     </p>
                      <h3 class="title">John Dow</h3>
                      <span class="post">September12, 2020</span>
@@ -93,7 +104,7 @@ const    onSlideChange = (event)=>{
                      </div>
                      <span class="fa fa-quote-left d-block"></span>
                      <p class="description">
-                      5  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
                     </p>
                      <h3 class="title">John Dow</h3>
                      <span class="post">September12, 2020</span>
@@ -105,7 +116,7 @@ const    onSlideChange = (event)=>{
                      </div>
                      <span class="fa fa-quote-left d-block"></span>
                      <p class="description">
-                     6   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
                     </p>
                      <h3 class="title">John Dow</h3>
                      <span class="post">September12, 2020</span>
@@ -117,7 +128,7 @@ const    onSlideChange = (event)=>{
                      </div>
                      <span class="fa fa-quote-left d-block"></span>
                      <p class="description">
-                      7  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
                     </p>
                      <h3 class="title">John Dow</h3>
                      <span class="post">September12, 2020</span>
@@ -213,7 +224,7 @@ const    onSlideChange = (event)=>{
                      </div>
                      <span class="fa fa-quote-left d-block"></span>
                      <p class="description">
-                 7       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
                     </p>
                      <h3 class="title">John Dow</h3>
                      <span class="post">September12, 2020</span>
