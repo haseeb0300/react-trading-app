@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
- 
+import { connect } from 'react-redux';
+
 import cart from '../../assets/images/cart.svg'
 import sell from '../../assets/images/sell.svg'
  
  
 import WOW from 'wowjs';
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
+import { getAccount } from '../../store/actions/accountAction'
 
  
  
@@ -20,6 +22,7 @@ class UnRankedAccount extends Component {
             serverError: {},
             isLoading: false,
             page:"unrankedAccount",
+            accountList: [],
 
         };
     }
@@ -30,6 +33,20 @@ class UnRankedAccount extends Component {
         new WOW.WOW({
             live: false
         }).init();
+        this.props.getAccount().then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    accountList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
+
+        })
 
     }
     render() {
@@ -113,7 +130,9 @@ class UnRankedAccount extends Component {
                         </SectionAcountFilter>
                   </Fade>
                     {/* <!-- Top Rated Accounts --> */}
-                    <SectionTopRated></SectionTopRated>
+                    <SectionTopRated
+                     page= {this.state.page}
+                     accountList={this.state.accountList}></SectionTopRated>
                 </main>
             
             </div>
@@ -124,9 +143,14 @@ class UnRankedAccount extends Component {
 }
 
 UnRankedAccount.propTypes = {
-
+    
 };
 
-
-export default (UnRankedAccount);
+const mapDispatchToProps = ({
+    getAccount
+})
+const mapStatetoProps = ({ auth }) => ({
+    user: auth.user
+})
+export default connect(mapStatetoProps, mapDispatchToProps) (UnRankedAccount);
 

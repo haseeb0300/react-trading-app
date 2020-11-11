@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
  
 import cart from '../../assets/images/cart.svg'
@@ -9,6 +10,7 @@ import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
+import { getAccount } from '../../store/actions/accountAction'
 
 
     
@@ -28,6 +30,7 @@ class CustomizedAccount extends Component {
             serverError: {},
             isLoading: false,
             page:"customizeAccount",
+            accountList: [],
 
         };
     }
@@ -42,6 +45,20 @@ class CustomizedAccount extends Component {
         new WOW.WOW({
             live: false
         }).init();
+        this.props.getAccount().then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    accountList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
+
+        })
 
     }
 
@@ -134,7 +151,10 @@ class CustomizedAccount extends Component {
                    
                     {/* <!-- Top Rated Accounts --> */}
                   
-                    <SectionTopRated></SectionTopRated>
+                    <SectionTopRated
+                     page= {this.state.page}
+                     accountList={this.state.accountList}
+                    ></SectionTopRated>
 
                 </main>
             
@@ -149,9 +169,14 @@ class CustomizedAccount extends Component {
 }
 
 CustomizedAccount.propTypes = {
-
+    
 };
+const mapDispatchToProps = ({
+    getAccount
+})
+const mapStatetoProps = ({ auth }) => ({
+    user: auth.user
+})
 
-
-export default (CustomizedAccount);
+export default connect(mapStatetoProps, mapDispatchToProps) (CustomizedAccount);
 
