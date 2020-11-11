@@ -276,7 +276,7 @@ class SellAccount extends Component {
             "server_id": this.state.server_id,
             "account": this.state.user_accounts,
         }
-        console.log("data", data)
+        console.log("dataa", data)
         if(this.state.sell_type == 'regularSell' && !this.state.type.bulk){
 
         
@@ -312,19 +312,17 @@ class SellAccount extends Component {
 
             new Noty({
                 text: "Succsessfully Inserted Account",
-                layout: "topRight",
-                theme: "bootstrap-v4",
+        
                 type: "success",
-                timeout: 1000
+                // timeout: 1000
             }).show();
             return
         }
         new Noty({
             text: "Succsessfully went wrong",
-            layout: "topRight",
-            theme: "bootstrap-v4",
+   
             type: "error",
-            timeout: 1000
+            // timeout: 1000
         }).show();
         }).catch((err) => {
             this.setState({ isLoading: false })
@@ -350,11 +348,12 @@ class SellAccount extends Component {
         this.props.postBulkRegularSellAccount(data_bulk).then((res) => {
             console.log(res)
             if (res.status) {
+                this.props.history.push('/lolaccount')
+
 
             new Noty({
                 text: "Succsessfully Inserted Account",
-                layout: "topRight",
-                theme: "bootstrap-v4",
+
                 type: "success",
                 timeout: 1000
             }).show();
@@ -362,10 +361,9 @@ class SellAccount extends Component {
         }
         new Noty({
             text: "Succsessfully went wrong",
-            layout: "topRight",
-            theme: "bootstrap-v4",
+       
             type: "error",
-            timeout: 1000
+            // timeout: 1000
         }).show();
         }).catch((err) => {
             this.setState({ isLoading: false })
@@ -397,16 +395,15 @@ class SellAccount extends Component {
                 layout: "topRight",
                 theme: "bootstrap-v4",
                 type: "success",
-                timeout: 1000
+                // timeout: 1000
             }).show();
             return
         }
         new Noty({
             text: "Succsessfully went wrong",
-            layout: "topRight",
-            theme: "bootstrap-v4",
+ 
             type: "error",
-            timeout: 1000
+            // timeout: 1000
         }).show();
         }).catch((err) => {
             this.setState({ isLoading: false })

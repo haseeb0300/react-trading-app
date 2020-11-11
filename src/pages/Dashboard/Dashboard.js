@@ -72,7 +72,6 @@ class Dashboard extends Component {
               ></SectionTopRated>
                {/* <!-- Testimonial --> */}
                <Slide bottom delay={200}>
-
               <Testimonial></Testimonial>
               </Slide>
                {/* <!-- Newsletter Section --> */}

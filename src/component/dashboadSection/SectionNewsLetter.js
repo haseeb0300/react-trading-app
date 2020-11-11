@@ -22,8 +22,10 @@ function SectionNewsLetter(props) {
             <div class="col-md-12">
                <form class="form-inline justify-content-center">
                <Fade left delay= {10}>
+                  <div>
 
                   <h5 class="text-center text-md-left mb-3 mb-xl-0 wow fadeInLeft" data-wow-delay="0.4s">Subscribe TO our newsletter</h5>
+                  </div>
                   </Fade>
                   <div class="input-group ml-md-3 wow fadeInRight" data-wow-delay="0.4s">
 

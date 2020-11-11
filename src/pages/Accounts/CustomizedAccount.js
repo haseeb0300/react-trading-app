@@ -10,11 +10,8 @@ import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
 
-import '../../assets/styles/base/_style.scss'
- 
 
-import '../../assets/styles/base/_bootstrap.scss'
- 
+    
 
 
 

@@ -48,20 +48,11 @@ function Footer(props) {
                         <h5>Payment Methods</h5>
                         <p class="mb-4">Your payment details will be secure and confidential. </p>
                         </Fade>
-                        <Fade bottom delay={400}>
 
-                        <img class="mr-4" src={master_img} alt="master" />
-                        </Fade>
-                        <Fade bottom delay={400}>
+                        <img class="mt-1 mr-4" src={master_img} alt="master" />
+                        <img class="mt-1" src={visa_img} alt="visa" />
 
-                        <img src={visa_img} alt="visa" />
-                        </Fade>
-                        <div class="mt-3"> 
-                        <Fade bottom delay={400}>
-
-                        <img class="mt-4" src={paypal_img} alt="paypal" />
-                        </Fade>
-                        </div>
+                        <img class="mt-3" src={paypal_img} alt="paypal" />
                     </div>
                 </div>
             </div>

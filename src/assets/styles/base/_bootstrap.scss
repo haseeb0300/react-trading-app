@@ -3022,7 +3022,7 @@ input[type="submit"].btn-block {
 }
 .dropdown-toggle::after {
     display: inline-block;
-    margin-left: 0.255em;
+    margin-left: 0.455em;
     vertical-align: 0.255em;
     content: "";
     border-top: 0.3em solid;
@@ -3186,6 +3186,9 @@ input[type="submit"].btn-block {
     overflow: hidden;
     border-top: 1px solid #e9ecef;
 }
+.last-dropdown-item{
+    border-bottom: 0 !important;
+}
 .dropdown-item {
     display: block;
     width: 100%;
@@ -3200,7 +3203,7 @@ input[type="submit"].btn-block {
 }
 .dropdown-item:focus,
 .dropdown-item:hover {
-    color: #16181b;
+    color: #16181b !important;
     text-decoration: none;
 }
 .dropdown-item.active,

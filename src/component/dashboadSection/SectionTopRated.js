@@ -54,7 +54,7 @@ class SectionTopRated extends React.Component {
          <SwiperSlide>
             <div class="col-md-6 col-lg-4 col-xl-3 ">
                <div class="card wow fadeInUp" data-wow-delay="0.4s">
-                  <Fade bottom cascade delay={50}>
+                  <Fade bottom  delay={50}>
                      <a >
                         <img class="card-img-top" src={account1} alt="account" />
                         <ul class="rating-detail d-flex">
@@ -81,7 +81,7 @@ class SectionTopRated extends React.Component {
                         </div>
                      </a>
                   </Fade>
-                  <div class="overlayer">
+                   <div class="overlayer">
                      <div class="inner-cnt">
                         <div class="wrap-link">
                            <a class="btn btn-secondary"  >Details</a>
@@ -92,6 +92,7 @@ class SectionTopRated extends React.Component {
                         </div>
                      </div>
                   </div>
+               
                </div>
             </div>
          </SwiperSlide>
@@ -101,9 +102,9 @@ class SectionTopRated extends React.Component {
          
             <div class="col-md-6 col-lg-4 col-xl-3">
                <div class="card wow fadeInUp" data-wow-delay="0.4s">
-                  <Fade bottom cascade delay={50}>
+                  <Fade bottom  delay={50}>
                      <a >
-                        <img class="card-img-top" src={account1} alt="account" />
+                        <img class="card-img-top" src={account7} alt="account" />
                         <ul class="rating-detail d-flex">
                            <li>
                               <span class="icon-trophy"></span>
@@ -118,7 +119,7 @@ class SectionTopRated extends React.Component {
                               <p>Level {item.level}</p>
                            </li>
                         </ul>
-                        <div class="card-body pt-0">
+                        <div class="card-body ">
                            <p class="card-text">{item.description}</p>
                            <ul class="rank-block d-flex">
                               <li>Rank of Account <span class="text-rank d-block">{item.Rank.rank}</span></li>
@@ -139,6 +140,7 @@ class SectionTopRated extends React.Component {
                         </div>
                      </div>
                   </div>
+                
                </div>
             </div>
         
@@ -146,7 +148,7 @@ class SectionTopRated extends React.Component {
    }
    render() {
       return (
-         <section class="account-section" >
+         <section class="account-section"  id="account" >
             <div class="container">
                <h2 class="text-center wow shakeX">{this.props.page != 'dashboard' ? '' : 'Top Rated Accounts'}</h2>
 
