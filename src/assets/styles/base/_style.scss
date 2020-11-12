@@ -238,7 +238,58 @@ header span {
 .navbar-light .navbar-nav .nav-link:hover {
   color: #fff;
 }
-
+/* Slider */
+.rc-slider-handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    cursor: context-menu !important;
+    cursor: -webkit-grab;
+    margin-top: -5px;
+    cursor: grab;
+    border-radius: 50%;
+    border: solid 2px #96dbfa;
+    background-color: #fff;
+    touch-action: pan-x;
+    border: #f6cf63 !important;
+    background: #f6cf63 !important;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0px !important;
+    top: 0%;
+  }
+  .rc-slider {
+    position: relative;
+    height: 14px;
+    padding: 5px 0;
+    width: 100%;
+    border-radius: 6px;
+    touch-action: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border-radius: 0px !important;
+    outline: none;
+    background: #2d80aa !important;
+}
+.rc-slider-step {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  border: 1px solid #2d80aa;
+  border-radius: 0px !important;
+  outline: none;
+  background: #2d80aa !important;
+}
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  border-color: #57c5f7;
+  box-shadow: 0 0 0px !important;
+}
+.rc-slider-handle:active {
+  border-color: #57c5f7;
+  box-shadow: 0 0 0px !important;
+  cursor: grabbing;
+}
 /* Banner section */
 .section-background-image {
   background-image: url(../../images/lol-accounts.jpg) !important ;

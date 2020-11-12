@@ -23,7 +23,12 @@ function SectionBanner(props) {
                             </div>
                         </Slide>
                         </Flip>
+                        <Flip bottom delay={900}> 
+                        <div>
+
                         <a   class="btn btn-secondary wow fadeInUp mb-md-4" data-wow-delay="1.2s">VIEW ACCOUNTS</a>
+                        </div>
+                        </Flip>
                         <Flip bottom delay={900}> 
                         <p class="wow fadeInDown mt-3 mt-md-0" data-wow-delay="1.2s"> 
                         <a href="#account"><span class="icon-angle-down"></span></a></p>

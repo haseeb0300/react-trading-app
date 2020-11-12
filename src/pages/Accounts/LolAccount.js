@@ -147,30 +147,40 @@ class LolAccount extends Component {
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
-                                {this.props.page === 'lolAccount'?(
-                                <Flip bottom delay={200}>
-
-                                    <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">LEAGUE OF LEGENDS
+                                {this.props.page === 'lolAccount' ? (
+                                    <Flip top delay={900}>
+                                        <div>
+                                            <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">LEAGUE OF LEGENDS
                            <br></br>ACCOUNTS
                         </h1>
-                                </Flip>
-                                ):this.props.page === 'unrankedAccount'?(
-                                   
-                                    <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.8s">Unranked<br></br>ACCOUNTS</h1>
-                                   
-                               
-                                ):(
-                                    
-                                    <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">
-                                    Customized <br></br>ACCOUNTS
+                                        </div>
+                                    </Flip>
+                                ) : this.props.page === 'unrankedAccount' ? (
+
+                                    <Flip top delay={900}>
+                                        <div>
+
+                                            <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.8s">Unranked<br></br>ACCOUNTS</h1>
+                                        </div>
+
+                                    </Flip>
+
+                                ) : (
+                                            <Flip top delay={300}>
+                                                <div>
+
+                                                    <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">
+                                                        Customized <br></br>ACCOUNTS
                                  </h1>
-                                )}
-                                <Fade bottom delay={300}>
+                                                </div>
+                                            </Flip>
+                                        )}
+                                <Flip top delay={900}>
 
                                     <p class="wow fadeInUp" data-wow-delay="1s"><strong>LOL Trading is a professional marketplace for buyers & sellers
                            <br className="d-none d-md-block"></br>of League of Legends accounts.</strong>
                                     </p>
-                                </Fade>
+                                </Flip>
 
                             </div>
                         </div>
@@ -184,38 +194,44 @@ class LolAccount extends Component {
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <Flip left>
+                                    <Fade left delay={200}>
+                                        <div>
 
-                                        <a  >
-                                            <div class="card wow fadeInLeft" data-wow-delay="0.4s">
+                                            <a  >
+                                                <div class="card wow fadeInLeft" data-wow-delay="0.4s">
 
-                                                <div class="card-body">
-                                                    <div class="media">
-                                                        <img src={cart} alt="cart" />
-                                                        <div class="media-body ml-3 ml-md-4">
-                                                            <h3 class="mb-0"> HOW TO PURCHASE <br></br>LEAGUE OF LEGENDS ACCOUNT
+                                                    <div class="card-body">
+                                                        <div class="media">
+                                                            <img src={cart} alt="cart" />
+                                                            <div class="media-body ml-3 ml-md-4">
+                                                                <h3 class="mb-0"> HOW TO PURCHASE <br></br>LEAGUE OF LEGENDS ACCOUNT
                                                              </h3>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </Flip>
-                                </div>
+                                            </a>
+                                        </div>
+                                    </Fade>                                </div>
                                 <div class="col-md-6">
-                                    <a  >
-                                        <div class="card sell-block wow fadeInRight" data-wow-delay="0.4s">
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <img src={sell} alt="sell" />
-                                                    <div class="media-body ml-3 ml-md-4">
-                                                        <h3 class="mb-0"> HOW TO Sell <br></br>  LEAGUE OF LEGENDS ACCOUNT
-                                          </h3>
+                                    <Fade right delay={200}>
+                                        <div>
+                                            <a  >
+                                                <div class="card sell-block wow fadeInRight" data-wow-delay="0.4s">
+                                                    <div class="card-body">
+                                                        <div class="media">
+                                                            <img src={sell} alt="sell" />
+                                                            <div class="media-body ml-3 ml-md-4">
+                                                                <h3 class="mb-0">
+                                                                    HOW TO Sell <br></br>  LEAGUE OF LEGENDS ACCOUNT
+                                                                </h3>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
-                                    </a>
+                                    </Fade>
                                 </div>
                             </div>
                         </div>
@@ -272,4 +288,3 @@ const mapDispatchToProps = ({
     getRank,
 })
 export default connect(mapStatetoProps, mapDispatchToProps)(LolAccount);
-
