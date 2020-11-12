@@ -54,6 +54,43 @@ export const getAccount = () => dispatch => {
       })
 }
 
+export const getLolAccount = () => dispatch => {
+  return axios
+      .get('api/account/lol')
+      .then((res) => {
+          console.log(res)
+          return Promise.resolve(res.data)
+      }).catch((err) => {
+          console.log(err)
+          return Promise.reject(err)
+      })
+}
+
+export const getUnrankedAccount = () => dispatch => {
+  return axios
+      .get('api/account/unranked')
+      .then((res) => {
+          console.log(res)
+          return Promise.resolve(res.data)
+      }).catch((err) => {
+          console.log(err)
+          return Promise.reject(err)
+      })
+}
+
+
+export const getCustomizeAccount = () => dispatch => {
+  return axios
+      .get('api/account/customize')
+      .then((res) => {
+          console.log(res)
+          return Promise.resolve(res.data)
+      }).catch((err) => {
+          console.log(err)
+          return Promise.reject(err)
+      })
+}
+
 export const postRegularSellAccount = accountData => dispatch => {
     return axios
       .post('api/regularSell', accountData)
