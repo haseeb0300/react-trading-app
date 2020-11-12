@@ -12,20 +12,20 @@ import account10 from '../../assets/images/account/10.png'
 import account11 from '../../assets/images/account/11.png'
 import account12 from '../../assets/images/account/11.png'
 import Slider from "react-slick";
- 
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
    isMobileOnly
 } from "react-device-detect";
 import Fade from 'react-reveal/Fade';
- 
+
 class SectionTopRated extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
          show_more: false,
-         image_list: [account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12,account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12],
+         image_list: [account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12, account1, account2, account3, account4, account5, account6, account7, account8, account9, account10, account11, account12],
 
       };
    }
@@ -35,13 +35,13 @@ class SectionTopRated extends React.Component {
    }
    renderAccount = () => {
       if (isMobileOnly) {
-         return this.props.accountList.map((item, i) =>
-
-            <div className ="col-md-6 col-lg-4 col-xl-3 p-0 ">
+         return this.props.accountList.map((item, i) => {
+            console.log('posiotion ', i)
+            return (<div key={item.account_id} className="col-md-6 col-lg-4 col-xl-3 p-0 ">
                <div class="card wow fadeInUp" data-wow-delay="0.4s">
                   <Fade bottom delay={50}>
                      <a >
-                     <img class="card-img-top" src={item.Images.length > 0? item.Images[0] && item.Images[0].image_url:'https://lh3.googleusercontent.com/proxy/5oavD6Tp4mo29BygiYf5tpOvJ6piT1Yjk33IDr1jQPdLL53D6VkmZIyPHBDuGbGk7l4vlFbSg3JdSlNEmPX2y8CN8Up7UV1qEEOBQgxm7IrAKMXm1CiEtAJaQxpFNsg71FKR8B5DcZObw58cTveSIVP0'} alt="account" />
+                        <img class="card-img-top" src={item.Images.length > 0 ? item.Images[0] && item.Images[0].image_url : 'https://lh3.googleusercontent.com/proxy/5oavD6Tp4mo29BygiYf5tpOvJ6piT1Yjk33IDr1jQPdLL53D6VkmZIyPHBDuGbGk7l4vlFbSg3JdSlNEmPX2y8CN8Up7UV1qEEOBQgxm7IrAKMXm1CiEtAJaQxpFNsg71FKR8B5DcZObw58cTveSIVP0'} alt="account" />
                         <ul class="rating-detail d-flex">
                            <li>
                               <span class="icon-trophy"></span>
@@ -80,62 +80,66 @@ class SectionTopRated extends React.Component {
 
                </div>
             </div>
-
+            )
+         }
          )
+
       }
-      return this.props.accountList.map((item, i) =>
-         
-         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card wow fadeInUp" data-wow-delay="0.4s">
-               <Fade bottom delay={50}>
-                  <a >
-                     <img class="card-img-top" src={item.Images.length > 0? item.Images[0] && item.Images[0].image_url:'https://lh3.googleusercontent.com/proxy/5oavD6Tp4mo29BygiYf5tpOvJ6piT1Yjk33IDr1jQPdLL53D6VkmZIyPHBDuGbGk7l4vlFbSg3JdSlNEmPX2y8CN8Up7UV1qEEOBQgxm7IrAKMXm1CiEtAJaQxpFNsg71FKR8B5DcZObw58cTveSIVP0'} alt="account" />
-                     <ul class="rating-detail d-flex">
-                        <li>
-                           <span class="icon-trophy"></span>
-                           <p>{item.champions_owned} champs</p>
-                        </li>
-                        <li>
-                           <span class="icon-dollar"></span>
-                           <p>{item.skin_owned} skins</p>
-                        </li>
-                        <li>
-                           <span class="icon-star"></span>
-                           <p>Level {item.level}</p>
-                        </li>
-                     </ul>
-                     <div class="card-body ">
-                        <p class="card-text">{item.description}</p>
-                        <ul class="rank-block d-flex">
-                           <li>Rank of Account <span class="text-rank d-block">{item.Rank.rank}</span></li>
-                           <li>Server: <span class="text-rank d-block">{item.Server.server_code}</span></li>
+      return this.props.accountList.map((item, i) => {
+         const delay =  (50 * ((i + 1) % 4) )|| 200;
+         return (
+            <div key={item.account_id} class="col-md-6 col-lg-4 col-xl-3">
+               <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                  <Fade bottom delay={delay}>
+                     <a >
+                        <img class="card-img-top" src={item.Images.length > 0 ? item.Images[0] && item.Images[0].image_url : 'https://lh3.googleusercontent.com/proxy/5oavD6Tp4mo29BygiYf5tpOvJ6piT1Yjk33IDr1jQPdLL53D6VkmZIyPHBDuGbGk7l4vlFbSg3JdSlNEmPX2y8CN8Up7UV1qEEOBQgxm7IrAKMXm1CiEtAJaQxpFNsg71FKR8B5DcZObw58cTveSIVP0'} alt="account" />
+                        <ul class="rating-detail d-flex">
+                           <li>
+                              <span class="icon-trophy"></span>
+                              <p>{item.champions_owned} champs</p>
+                           </li>
+                           <li>
+                              <span class="icon-dollar"></span>
+                              <p>{item.skin_owned} skins</p>
+                           </li>
+                           <li>
+                              <span class="icon-star"></span>
+                              <p>Level {item.level}</p>
+                           </li>
                         </ul>
-                        <h6 class="price">{item.price + ".00"} {item.currency}</h6>
-                     </div>
-                  </a>
-               </Fade>
-               <div class="overlayer">
-                  <div class="inner-cnt">
-                     <div class="wrap-link">
-                        <a class="btn btn-secondary"  >Details</a>
-                     </div>
-                     <div class="wrap-date">
-                        <div class="label">Creation Date:</div>
-                        <div class="date">Jun 15, 2020</div>
+                        <div class="card-body ">
+                           <p class="card-text">{item.description}</p>
+                           <ul class="rank-block d-flex">
+                              <li>Rank of Account <span class="text-rank d-block">{item.Rank.rank}</span></li>
+                              <li>Server: <span class="text-rank d-block">{item.Server.server_code}</span></li>
+                           </ul>
+                           <h6 class="price">{item.price + ".00"} {item.currency}</h6>
+                        </div>
+                     </a>
+                  </Fade>
+                  <div class="overlayer">
+                     <div class="inner-cnt">
+                        <div class="wrap-link">
+                           <a class="btn btn-secondary"  >Details</a>
+                        </div>
+                        <div class="wrap-date">
+                           <div class="label">Creation Date:</div>
+                           <div class="date">Jun 15, 2020</div>
+                        </div>
                      </div>
                   </div>
+
                </div>
-
             </div>
-         </div>
-
+         )
+      }
       )
    }
    render() {
       const settings = {
          slidesToShow: 1,
-         slidesToScroll: 1 
-       };
+         slidesToScroll: 1
+      };
       return (
          <section class="account-section" id="account" >
             <div class="container">
@@ -148,10 +152,10 @@ class SectionTopRated extends React.Component {
                      </Slider>):(<Slider> {this.renderAccount()}</Slider>)
                      } */}
                   {isMobileOnly ? (
-                     <div   className="col-md-4 " >
-                     <Slider   {...settings} >
-                     {this.renderAccount()}
-                     </Slider>
+                     <div className="col-md-4 " >
+                        <Slider   {...settings} >
+                           {this.renderAccount()}
+                        </Slider>
                      </div>
                   ) : this.renderAccount()}
                </div>

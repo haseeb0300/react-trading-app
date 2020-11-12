@@ -8,7 +8,7 @@ import sell from '../../assets/images/sell.svg'
 
 import WOW from 'wowjs';
 
-import { getQueue, getServer, getRank,getAccount ,getLolAccount, getUnrankedAccount,getCustomizeAccount } from '../../store/actions/accountAction'
+import { getQueue, getServer, getRank, getAccount, getLolAccount, getUnrankedAccount, getCustomizeAccount } from '../../store/actions/accountAction'
 
 import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
@@ -40,12 +40,15 @@ class LolAccount extends Component {
     }
 
     componentWillUnmount() {
+
         this.state = {
             unmounting: true, // can't use setState because it is async
         };
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+
+        
         new WOW.WOW({
             live: false
         }).init();
@@ -58,52 +61,52 @@ class LolAccount extends Component {
         new WOW.WOW({
             live: false
         }).init();
-        if(this.props.page === 'lolAccount'){
-        this.props.getLolAccount().then((res) => {
-            console.log(res)
-            if (res.status == true) {
-                this.setState({
-                    accountList: res.content,
-                })
-            }
-            else {
-                alert(res)
-            }
-        }).catch((err) => {
-            console.log(err)
+        if (this.props.page === 'lolAccount') {
+            this.props.getLolAccount().then((res) => {
+                console.log(res)
+                if (res.status == true) {
+                    this.setState({
+                        accountList: res.content,
+                    })
+                }
+                else {
+                    alert(res)
+                }
+            }).catch((err) => {
+                console.log(err)
 
-        })
-    }else if(this.props.page === 'unrankedAccount'){
-        this.props.getUnrankedAccount().then((res) => {
-            console.log(res)
-            if (res.status == true) {
-                this.setState({
-                    accountList: res.content,
-                })
-            }
-            else {
-                alert(res)
-            }
-        }).catch((err) => {
-            console.log(err)
+            })
+        } else if (this.props.page === 'unrankedAccount') {
+            this.props.getUnrankedAccount().then((res) => {
+                console.log(res)
+                if (res.status == true) {
+                    this.setState({
+                        accountList: res.content,
+                    })
+                }
+                else {
+                    alert(res)
+                }
+            }).catch((err) => {
+                console.log(err)
 
-        })
-    }else if(this.props.page === 'customizeAccount'){
-        this.props.getCustomizeAccount().then((res) => {
-            console.log(res)
-            if (res.status == true) {
-                this.setState({
-                    accountList: res.content,
-                })
-            }
-            else {
-                alert(res)
-            }
-        }).catch((err) => {
-            console.log(err)
+            })
+        } else if (this.props.page === 'customizeAccount') {
+            this.props.getCustomizeAccount().then((res) => {
+                console.log(res)
+                if (res.status == true) {
+                    this.setState({
+                        accountList: res.content,
+                    })
+                }
+                else {
+                    alert(res)
+                }
+            }).catch((err) => {
+                console.log(err)
 
-        })
-    }
+            })
+        }
 
         this.props.getQueue().then((res) => {
             console.log(res)
@@ -228,7 +231,7 @@ class LolAccount extends Component {
     }
     render() {
 
-        // const { t, i18n } = this.props
+
 
         const { isLoading } = this.state;
 
@@ -238,7 +241,7 @@ class LolAccount extends Component {
             )
         }
         return (
-            <div class="wrapper">
+            <div key= {this.props.page} class="wrapper">
 
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-image" >
@@ -264,7 +267,7 @@ class LolAccount extends Component {
                                     </Flip>
 
                                 ) : (
-                                            <Flip top delay={300}>
+                                    <Flip top delay={900}>
                                                 <div>
 
                                                     <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">
@@ -387,7 +390,7 @@ const mapDispatchToProps = ({
     getQueue,
     getServer,
     getRank,
-    getLolAccount, 
+    getLolAccount,
     getUnrankedAccount,
     getCustomizeAccount
 })

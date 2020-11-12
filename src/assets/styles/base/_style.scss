@@ -1885,6 +1885,13 @@ background: #000000;
   height: 50px !important;
   border-radius: 0 !important;
   font-family: Arial;
+  color: #9494a4;
+  padding: 13px 16px;
+ 
+  cursor: pointer;
+  border-radius: 0;
+  user-select: none;
+  font-size: 14px;
 }
 
 .custom-select select {

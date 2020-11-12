@@ -98,11 +98,9 @@ class Login extends Component {
             )
         }
     }
-
     render() {
         const { isLoading } = this.state;
         const { errors } = this.state
-
         if (isLoading) {
             return (
                 <div className="loader-large"></div>
@@ -137,13 +135,11 @@ class Login extends Component {
                                                 <label>Enter your Email Address</label>
                                                 <input type="email" class="form-control" placeholder="Joel@example.com" name="email" onChange={this.onChange} required="" />
                                                 {errors.email && <div className=" invaliderror">{errors.email}</div>}
-
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" class="form-control" placeholder="Joel@example.com" name="password" onChange={this.onChange} required="" />
+                                                <input type="password" class="form-control" placeholder="*******" name="password" onChange={this.onChange} required="" />
                                                 {errors.password && <div className=" invaliderror">{errors.password}</div>}
-
                                             </div>
                                             <button type="submit" onClick={this.onSubmit} class="btn btn-primary btn-block">Login</button>
                                             <div class="row align-items-center mt-3">
@@ -157,7 +153,6 @@ class Login extends Component {
                                                             onError={this.handleError}
                                                         >
                                                             <i class="fa fa-facebook-square"></i>
-
                                                             <span>Login with Facebook</span>
                                                         </LoginButton>
                                                     </FacebookProvider>
@@ -182,7 +177,6 @@ class Login extends Component {
                                         </form>
                                     </div>
                                 </div>                    {this.renderServerError()}
-
 
                             </div>
                             <div class="row justify-content-center">
