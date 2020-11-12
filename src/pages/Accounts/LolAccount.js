@@ -7,9 +7,8 @@ import sell from '../../assets/images/sell.svg'
 
 
 import WOW from 'wowjs';
-import { getAccount } from '../../store/actions/accountAction'
 
-import { getQueue, getServer, getRank } from '../../store/actions/accountAction'
+import { getQueue, getServer, getRank,getAccount ,getLolAccount, getUnrankedAccount,getCustomizeAccount } from '../../store/actions/accountAction'
 
 import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
@@ -56,7 +55,8 @@ class LolAccount extends Component {
         new WOW.WOW({
             live: false
         }).init();
-        this.props.getAccount().then((res) => {
+        if(this.props.page === 'lolAccount'){
+        this.props.getLolAccount().then((res) => {
             console.log(res)
             if (res.status == true) {
                 this.setState({
@@ -70,6 +70,38 @@ class LolAccount extends Component {
             console.log(err)
 
         })
+    }else if(this.props.page === 'unrankedAccount'){
+        this.props.getUnrankedAccount().then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    accountList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
+
+        })
+    }else if(this.props.page === 'customizeAccount'){
+        this.props.getCustomizeAccount().then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    accountList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
+
+        })
+    }
+
         this.props.getQueue().then((res) => {
             console.log(res)
             if (res.status == true) {
@@ -270,6 +302,9 @@ const mapDispatchToProps = ({
     getQueue,
     getServer,
     getRank,
+    getLolAccount, 
+    getUnrankedAccount,
+    getCustomizeAccount
 })
 export default connect(mapStatetoProps, mapDispatchToProps)(LolAccount);
 
