@@ -31,6 +31,9 @@ class LolAccount extends Component {
             rankList: [],
             serverList: [],
             queueList: [],
+            current_rank_id:'',
+            server_id:'',
+            queue_id:'',
 
 
         };
@@ -143,6 +146,69 @@ class LolAccount extends Component {
         }).catch((err) => {
             console.log(err)
         })
+    }
+    onChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+    _handleKeyDown = (list, e) => {
+        console.log("here", [e.target.value])
+        if (e.target.value == 0) {
+            return
+        }
+        if (list[e.target.value]) {
+            console.log(list[e.target.value])
+            this.setState({ [e.target.name]: e.target.value })
+        }
+    }
+
+    onTabChange = (type) =>{
+        console.log(type)
+        if(type === 'lolAccount'){
+            this.props.getLolAccount().then((res) => {
+                console.log(res)
+                if (res.status == true) {
+                    this.setState({
+                        accountList: res.content,
+                    })
+                }
+                else {
+                    alert(res)
+                }
+            }).catch((err) => {
+                console.log(err)
+    
+            })
+        }else if(type === 'unrankedAccount'){
+            this.props.getUnrankedAccount().then((res) => {
+                console.log(res)
+                if (res.status == true) {
+                    this.setState({
+                        accountList: res.content,
+                    })
+                }
+                else {
+                    alert(res)
+                }
+            }).catch((err) => {
+                console.log(err)
+    
+            })
+        }else if(type === 'customizeAccount'){
+            this.props.getCustomizeAccount().then((res) => {
+                console.log(res)
+                if (res.status == true) {
+                    this.setState({
+                        accountList: res.content,
+                    })
+                }
+                else {
+                    alert(res)
+                }
+            }).catch((err) => {
+                console.log(err)
+    
+            })
+        }
     }
 
     renderOption = (list) => {
@@ -283,6 +349,9 @@ class LolAccount extends Component {
                             server_id={this.state.server_id}
                             rank_id={this.state.rank_id}
                             queue_id={this.state.queue_id}
+                            onTabChange={(e)=>this.onTabChange(e)}
+                            _handleKeyDown={this._handleKeyDown}
+                            onChange={this.onChange}
                         >
 
                         </SectionAcountFilter>

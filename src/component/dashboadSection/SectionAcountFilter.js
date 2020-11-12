@@ -21,13 +21,13 @@ function SectionAcountFilter(props) {
                 <div class="row" >
                     <div class="col-md-12" >
                         <ul class="nav nav-pills nav-fill" >
-                            <li class="nav-item" >
+                            <li class="nav-item" onClick={()=> props.onTabChange('lolAccount')}>
                                 <Link to="/lolaccount" >
                                     <a class={props.page == 'lolAccount' ? "nav-link active" : "nav-link"}
-                                    > LOL ACCOUNTS </a> </Link> </li> <li class="nav-item" >
+                                    > LOL ACCOUNTS </a> </Link> </li> <li class="nav-item"  onClick={()=> props.onTabChange('unrankedAccount')}>
                                 <Link to="/unrankedaccount" >
                                     <a class={props.page == 'unrankedAccount' ? "nav-link active" : "nav-link"}
-                                    > UNRANKED ACCOUNTS </a> </Link> </li> <li class="nav-item" >
+                                    > UNRANKED ACCOUNTS </a> </Link> </li> <li class="nav-item" onClick={()=>props.onTabChange('customizeAccount')}>
                                 <Link to="/customizedaccount" >
                                     <a class={props.page == 'customizeAccount' ? "nav-link active" : "nav-link"}
                                     > CUSTOMIZED ACCOUNTS </a> </Link> </li> </ul>
@@ -36,7 +36,7 @@ function SectionAcountFilter(props) {
                                 <form >
                                     <div class="form-row" >
                                         <div class="form-group col-sm-6 col-lg-2" >
-                                            <label > SERVER </label> <select class="form-control" >
+                                            <label > SERVER </label> <select class="form-control"  name="server_id" onClick={(e) => props._handleKeyDown(props.serverList, e)} onChange={props.onChange} onKeyUp={(e) => props._handleKeyDown(props.serverList, e)}>
                                                 <option value={-1} disable selected={props.server_id} >All</option>
 
                                                 {props.renderServerOption}
@@ -44,7 +44,7 @@ function SectionAcountFilter(props) {
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > TIERS </label>
-                                            <select class="form-control" >
+                                            <select class="form-control" name="current_rank_id" onClick={(e) => props._handleKeyDown(props.rankList, e)} onChange={props.onChange} onKeyUp={(e) => props._handleKeyDown(props.rankList, e)}>
                                                 <option value={-1} disable selected={props.rank_id} >All</option>
 
                                                 {props.renderRankOption}
@@ -92,7 +92,7 @@ function SectionAcountFilter(props) {
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > TYPE OF QUEUE </label>
-                                            <select class="form-control" >
+                                            <select class="form-control" name="queue_id" onClick={(e) => props._handleKeyDown(props.queueList, e)} onChange={props.onChange} onKeyUp={(e) => props._handleKeyDown(props.queueList, e)}>
                                                 <option value={-1} disable selected={props.queue_id} >None</option>
 
                                                 {props.renderQueueOption}
