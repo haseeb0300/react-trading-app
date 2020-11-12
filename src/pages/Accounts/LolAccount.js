@@ -9,6 +9,7 @@ import sell from '../../assets/images/sell.svg'
 import WOW from 'wowjs';
 import { getAccount } from '../../store/actions/accountAction'
 
+import { getQueue, getServer, getRank } from '../../store/actions/accountAction'
 
 import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
@@ -28,20 +29,14 @@ class LolAccount extends Component {
             unmounting: false,
             page: 'lolAccount',
             accountList: [],
+            rankList: [],
+            serverList: [],
+            queueList: [],
 
 
         };
     }
 
-
-
-    //     componentWillMount() – Executed just before rendering takes place both on the client as well as server-side.
-    // componentDidMount() – Executed on the client side only after the first render.
-    // componentWillReceiveProps() – Invoked as soon as the props are received from the parent class and before another render is called.
-    // shouldComponentUpdate() – Returns true or false value based on certain conditions. If you want your component to update, return true else return false. By default, it returns false.
-    // componentWillUpdate() – Called just before rendering takes place in the DOM.
-    // componentDidUpdate() – Called immediately after rendering takes place.
-    // componentWillUnmount() – Called after the component is unmounted from the DOM. It is used to clear up the memory spaces.
     componentWillUnmount() {
         this.state = {
             unmounting: true, // can't use setState because it is async
@@ -75,9 +70,64 @@ class LolAccount extends Component {
             console.log(err)
 
         })
+        this.props.getQueue().then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    queueList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
+
+        })
+        this.props.getServer().then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    serverList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
+
+        })
+        this.props.getRank().then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    rankList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
-
+    renderOption = (list) => {
+        return list.map((item, i) =>
+            <option value={item.queue_id}>{item.queue_name}</option>
+        )
+    }
+    renderServerOption = (list) => {
+        return list.map((item, i) =>
+            <option value={item.server_id}>{item.server_name}</option>
+        )
+    }
+    renderRankOption = (list) => {
+        return list.map((item, i) =>
+            <option value={item.rank_id}>{item.rank}</option>
+        )
+    }
     render() {
 
         // const { t, i18n } = this.props
@@ -97,18 +147,31 @@ class LolAccount extends Component {
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
+                                {this.props.page === 'lolAccount'?(
                                 <Flip bottom delay={200}>
 
                                     <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">LEAGUE OF LEGENDS
                            <br></br>ACCOUNTS
                         </h1>
                                 </Flip>
+                                ):this.props.page === 'unrankedAccount'?(
+                                   
+                                    <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.8s">Unranked<br></br>ACCOUNTS</h1>
+                                   
+                               
+                                ):(
+                                    
+                                    <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">
+                                    Customized <br></br>ACCOUNTS
+                                 </h1>
+                                )}
                                 <Fade bottom delay={300}>
 
                                     <p class="wow fadeInUp" data-wow-delay="1s"><strong>LOL Trading is a professional marketplace for buyers & sellers
                            <br className="d-none d-md-block"></br>of League of Legends accounts.</strong>
                                     </p>
                                 </Fade>
+
                             </div>
                         </div>
                     </div>
@@ -162,8 +225,16 @@ class LolAccount extends Component {
 
                         <SectionAcountFilter
                             price_range={this.state.price_range}
-                            page={this.state.page}
-
+                            page={this.props.page}
+                            queueList={this.state.queueList}
+                            serverList={this.state.serverList}
+                            rankList={this.state.rankList}
+                            renderQueueOption={this.renderOption(this.state.queueList)}
+                            renderRankOption={this.renderRankOption(this.state.rankList)}
+                            renderServerOption={this.renderServerOption(this.state.serverList)}
+                            server_id={this.state.server_id}
+                            rank_id={this.state.rank_id}
+                            queue_id={this.state.queue_id}
                         >
 
                         </SectionAcountFilter>
@@ -172,8 +243,8 @@ class LolAccount extends Component {
                     {/* <!-- Top Rated Accounts --> */}
 
                     <SectionTopRated
-                     page= {this.state.page}
-                    accountList={this.state.accountList}
+                        page={this.state.page}
+                        accountList={this.state.accountList}
                     ></SectionTopRated>
                 </main>
 
@@ -195,7 +266,10 @@ const mapStatetoProps = ({ auth }) => ({
     user: auth.user
 })
 const mapDispatchToProps = ({
-    getAccount
+    getAccount,
+    getQueue,
+    getServer,
+    getRank,
 })
 export default connect(mapStatetoProps, mapDispatchToProps)(LolAccount);
 

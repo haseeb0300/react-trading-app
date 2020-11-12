@@ -77,11 +77,17 @@ class AppNavigation extends Component {
                     <Route exact path="/"
                         component={Dashboard} />
                     <Route exact path="/customizedaccount"
-                        component={CustomizedAccount} />
+                         ><LolAccount
+                         page={'customizeAccount'}
+                         ></LolAccount></Route>
                     <Route exact path="/lolaccount"
-                        component={LolAccount} />
+                         ><LolAccount
+                         page={'lolAccount'}
+                         ></LolAccount></Route>
                     <Route exact path="/unrankedaccount"
-                        component={UnRankedAccount} />
+                         ><LolAccount
+                         page={'unrankedAccount'}
+                         ></LolAccount></Route>
                     <Route exact path="/login"
                         component={Login} />
                     <Route exact path="/signup"

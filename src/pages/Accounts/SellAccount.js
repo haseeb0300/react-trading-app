@@ -64,6 +64,7 @@ class SellAccount extends Component {
             queueList: [],
             serverList: [],
             rankList: [],
+            imageList:[],
             password_comfort:"",
             server_id_comfort:"",
             user_email_comfort:"",
@@ -135,7 +136,19 @@ class SellAccount extends Component {
             console.log(err)
         })
     }
-
+    onUploadImage = (file) =>{
+        let images = this.state.imageList
+        console.log(file)
+      
+        
+        images.push( 
+     file
+            );
+        
+           this.setState({
+            imageList: images
+         },()=> console.log(this.state.imageList))
+    }
     handleBulkAccountChange = (idx, evt) => {
         console.log(idx)
         console.log(evt.target.value)
@@ -241,6 +254,7 @@ class SellAccount extends Component {
             "current_rank_id": this.state.current_rank_id,
             "queue_id": this.state.queue_id,
             "server_id": this.state.server_id,
+            "images":this.state.imageList
         }
         var data_comfort = {
             "account_title": this.state.account_title,
@@ -253,6 +267,7 @@ class SellAccount extends Component {
             "currency": this.state.currency_comfort,
             "password": this.state.password_comfort,
             "server_id": this.state.server_id_comfort,
+            "images":this.state.imageList,
         }
         var data_bulk = {
             "amount_of_rp": this.state.amount_of_rp,
@@ -282,7 +297,23 @@ class SellAccount extends Component {
         
         this.props.postRegularSellAccount(data).then((res) => {
             console.log(res)
-           
+            if (res.status) {
+                
+                this.props.history.push('/lolaccount')
+
+            new Noty({
+                text: "Succsessfully Inserted Account",
+                type: "success",
+                // timeout: 1000
+            }).show();
+            return
+        }
+        new Noty({
+            text: "Something went wrong",
+   
+            type: "error",
+            // timeout: 1000
+        }).show();
        
         }).catch((err) => {
             this.setState({ isLoading: false })
@@ -319,7 +350,7 @@ class SellAccount extends Component {
             return
         }
         new Noty({
-            text: "Succsessfully went wrong",
+            text: "Something went wrong",
    
             type: "error",
             // timeout: 1000
@@ -360,7 +391,7 @@ class SellAccount extends Component {
             return
         }
         new Noty({
-            text: "Succsessfully went wrong",
+            text: "Something went wrong",
        
             type: "error",
             // timeout: 1000
@@ -388,6 +419,7 @@ class SellAccount extends Component {
     }else if(this.state.sell_type == 'comfortSell' && this.state.type.bulk){
         this.props.postBulkComfortSellAccount(data_bulk).then((res) => {
             console.log(res)
+
             if (res.status) {
 
             new Noty({
@@ -398,9 +430,13 @@ class SellAccount extends Component {
                 // timeout: 1000
             }).show();
             return
+        
+        
+       
         }
+
         new Noty({
-            text: "Succsessfully went wrong",
+            text: "Something went wrong",
  
             type: "error",
             // timeout: 1000
@@ -710,7 +746,9 @@ class SellAccount extends Component {
                                                         </button>
                                                         <Widget ref={widgetApi} publicKey="ae004e3a59fcced0dc17" />
                                                     </div> */}
-                                                    <Uploadbtn></Uploadbtn>
+                                                    <Uploadbtn
+                                                    onUploadImage={(e)=> this.onUploadImage(e)}
+                                                    ></Uploadbtn>
                                                     <div class="col-md-12 ">
                                                         <label>Account description</label>
                                                         <textarea class="form-control" name="description" onChange={this.onChange} required="" />

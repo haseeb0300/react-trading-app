@@ -41,7 +41,7 @@ class SectionTopRated extends React.Component {
                <div class="card wow fadeInUp" data-wow-delay="0.4s">
                   <Fade bottom delay={50}>
                      <a >
-                        <img class="card-img-top" src={account1} alt="account" />
+                     <img class="card-img-top" src={item.Images.length > 0? item.Images[0] && item.Images[0].image_url:'https://lh3.googleusercontent.com/proxy/5oavD6Tp4mo29BygiYf5tpOvJ6piT1Yjk33IDr1jQPdLL53D6VkmZIyPHBDuGbGk7l4vlFbSg3JdSlNEmPX2y8CN8Up7UV1qEEOBQgxm7IrAKMXm1CiEtAJaQxpFNsg71FKR8B5DcZObw58cTveSIVP0'} alt="account" />
                         <ul class="rating-detail d-flex">
                            <li>
                               <span class="icon-trophy"></span>
@@ -89,7 +89,7 @@ class SectionTopRated extends React.Component {
             <div class="card wow fadeInUp" data-wow-delay="0.4s">
                <Fade bottom delay={50}>
                   <a >
-                     <img class="card-img-top" src={this.state.image_list[i]} alt="account" />
+                     <img class="card-img-top" src={item.Images.length > 0? item.Images[0] && item.Images[0].image_url:'https://lh3.googleusercontent.com/proxy/5oavD6Tp4mo29BygiYf5tpOvJ6piT1Yjk33IDr1jQPdLL53D6VkmZIyPHBDuGbGk7l4vlFbSg3JdSlNEmPX2y8CN8Up7UV1qEEOBQgxm7IrAKMXm1CiEtAJaQxpFNsg71FKR8B5DcZObw58cTveSIVP0'} alt="account" />
                      <ul class="rating-detail d-flex">
                         <li>
                            <span class="icon-trophy"></span>

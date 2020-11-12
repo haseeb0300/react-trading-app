@@ -14,31 +14,32 @@ function SectionAcountFilter(props) {
                         <ul class="nav nav-pills nav-fill" >
                             <li class="nav-item" >
                                 <Link to="/lolaccount" >
-                                    <a class={props.page == 'lolAccount'?"nav-link active":"nav-link"}
-                                      > LOL ACCOUNTS </a> </Link> </li> <li class="nav-item" >
+                                    <a class={props.page == 'lolAccount' ? "nav-link active" : "nav-link"}
+                                    > LOL ACCOUNTS </a> </Link> </li> <li class="nav-item" >
                                 <Link to="/unrankedaccount" >
-                                    <a class={props.page == 'unrankedAccount'?"nav-link active":"nav-link"}
-                                        > UNRANKED ACCOUNTS </a> </Link> </li> <li class="nav-item" >
+                                    <a class={props.page == 'unrankedAccount' ? "nav-link active" : "nav-link"}
+                                    > UNRANKED ACCOUNTS </a> </Link> </li> <li class="nav-item" >
                                 <Link to="/customizedaccount" >
-                                    <a class={props.page == 'customizeAccount'?"nav-link active":"nav-link"}
-                                         > CUSTOMIZED ACCOUNTS </a> </Link> </li> </ul>
+                                    <a class={props.page == 'customizeAccount' ? "nav-link active" : "nav-link"}
+                                    > CUSTOMIZED ACCOUNTS </a> </Link> </li> </ul>
                         <div class="card" >
                             <div class="card-body" >
                                 <form >
                                     <div class="form-row" >
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > SERVER </label> <select class="form-control" >
-                                                <option > All </option>
-                                                <option > 1 </option>
-                                                <option > 2 </option>
+                                                <option value={-1} disable selected={props.server_id} >All</option>
+
+                                                {props.renderServerOption}
                                             </select>
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > TIERS </label>
                                             <select class="form-control" >
-                                                <option > All </option>
-                                                <option > 1 </option> <option >
-                                                    2 </option> </select>
+                                                <option value={-1} disable selected={props.rank_id} >All</option>
+
+                                                {props.renderRankOption}
+                                            </select>
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > SPECIAL INFORMATIONS </label>
@@ -52,24 +53,24 @@ function SectionAcountFilter(props) {
                                             <label > EXPERT PICK </label>
                                             <select class="form-control" >
                                                 <option > All </option>
-                                                <option > 1 </option>
-                                                <option > 2 </option>
+                                                <option > YES </option>
+                                                <option > NO </option>
                                             </select>
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > HANDMADE / BOTTED </label>
                                             <select class="form-control" >
                                                 <option > None </option>
-                                                <option > 1 </option>
-                                                <option > 2 </option>
+                                                <option > HANDMADE </option>
+                                                <option > BOTTED </option>
                                             </select>
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > DISCOUNTED </label>
                                             <select class="form-control" >
                                                 <option > All </option>
-                                                <option > 1 </option>
-                                                <option > 2 </option>
+                                                <option > YES </option>
+                                                <option > NO </option>
                                             </select>
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >
@@ -83,9 +84,9 @@ function SectionAcountFilter(props) {
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > TYPE OF QUEUE </label>
                                             <select class="form-control" >
-                                                <option > None </option>
-                                                <option > 1 </option>
-                                                <option > 2 </option>
+                                                <option value={-1} disable selected={props.queue_id} >None</option>
+
+                                                {props.renderQueueOption}
                                             </select>
                                         </div>
                                         <div class="col-md-4" >
