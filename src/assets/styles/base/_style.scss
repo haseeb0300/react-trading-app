@@ -256,7 +256,7 @@ header span {
     outline: none;
     box-shadow: none;
     border-radius: 0px !important;
-    top: 0%;
+    top: 5%;
   }
   .rc-slider {
     position: relative;
@@ -284,6 +284,10 @@ header span {
 .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
   border-color: #57c5f7;
   box-shadow: 0 0 0px !important;
+}
+.rc-slider-label{
+  margin-top: -18px;
+
 }
 .rc-slider-handle:active {
   border-color: #57c5f7;

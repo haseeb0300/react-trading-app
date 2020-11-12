@@ -7,8 +7,13 @@ import 'rc-slider/assets/index.css';
 
 function SectionAcountFilter(props) {
     //const { t, i18n } = this.props
-     const [sliderVal, setSliderVal] = useState( [800,3000])
-     
+ 
+     const [sliderVal ,setSliderVal] =useState([0, 2000])
+
+
+     const onSliderValChange = (e)=>{
+        setSliderVal(e)
+     }
     return (
 
         <section class="search-filter wow fadeInUp" data-wow-delay="0.6s" >
@@ -105,10 +110,10 @@ function SectionAcountFilter(props) {
                                                 </div> */}
                                                 <div className="mt-4">
 
-                                                    <Range min={0} max={10000} defaultValue={[800, 3000]} tipFormatter={value => `${value}€`} />
+                                                    <Range min={0} onChange={(e) => onSliderValChange(e)} max={2000} defaultValue={sliderVal}      />
                                                 </div>
 
-                                                <input type="text" id="priceRange" readonly />
+                                            <label className ="rc-slider-label{">{sliderVal[0] + '-' +sliderVal[1]  }</label>
 
                                             </div>
 

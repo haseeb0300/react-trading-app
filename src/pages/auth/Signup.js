@@ -211,7 +211,7 @@ class Signup extends Component {
                                             <div class="form-group mb-md-4">
                                                 <label>COUNTRY</label>
                                                 <select class="custom-select" name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}>
-                                                <option value={-1} disable selected={!this.state.country} >--Select Country--</option>
+                                                <option value={-1} disable selected={!this.state.country} >Choose your VPN location</option>
                                                     {this.renderOption()}
                                                 </select>
                                                 {errors.country && <div className=" invaliderror">{errors.country}</div>}
