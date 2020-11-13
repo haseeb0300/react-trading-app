@@ -211,7 +211,7 @@ class Login extends Component {
                                                     {/* <button type="button" class="btn btn-primary btn-block btn-fb"><i class="fa fa-facebook-square"></i> <span>Login with Facebook</span></button> */}
                                                     <FacebookProvider appId="3258485927608008">
                                                         <LoginButton
-                                                            className="btn btn-primary btn-fb m-auto"
+                                                            className="btn btn-primary btn-fb "
                                                             scope="email"
                                                             onCompleted={this.handleResponse}
                                                             onError={this.handleError}
@@ -231,7 +231,7 @@ class Login extends Component {
                                                 <div class="col-md-4 text-center text-md-left">
                                                     <div class="form-group custom-check">
                                                         <input type="checkbox" id="Remember" />
-                                                        <label for="Remember">Remember </label>
+                                                        <label for="Remember">Remember Me</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8 text-center">

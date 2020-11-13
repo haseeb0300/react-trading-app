@@ -90,7 +90,7 @@ class Header extends Component {
                             </ul>
                             <ul class="navbar-nav d-none d-md-flex">
                                 <Link to="/userdashboard">
-                                    <li class="nav-item  ">
+                                <li class={cx({ "nav-item ": true, "active": window.location.pathname === "/userdashboard" })} >
                                         <a class="nav-link text-uppercase "  ><span class="icon-user mr-1"></span>Dashboard</a>
                                     </li>
                                 </Link>

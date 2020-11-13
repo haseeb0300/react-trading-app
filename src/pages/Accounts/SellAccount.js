@@ -42,24 +42,24 @@ class SellAccount extends Component {
             errors: {},
             serverError: {},
             isLoading: false,
-            amount_of_rp: "40",
-            account_title: "a",
-            level: "20",
-            price: "450",
-            user_name: "usama",
-            user_email: "u@gmail.com",
-            last_season_rank_ID: "5",
-            amount_of_blue_essence: "45",
-            level_up: "None",
-            champions_owned: "53",
-            description: "scacas",
-            skin_owned: "30",
-            verified_email: "No",
-            currency: "EUR",
-            password: "123456",
-            current_rank_id: "2",
-            queue_id: "1",
-            server_id: "1",
+            amount_of_rp: "",
+            account_title: "",
+            level: "",
+            price: "",
+            user_name: "",
+            user_email: "",
+            last_season_rank_ID: "",
+            amount_of_blue_essence: "",
+            level_up: "",
+            champions_owned: "",
+            description: "",
+            skin_owned: "",
+            verified_email: "",
+            currency: "",
+            password: "",
+            current_rank_id: "",
+            queue_id: "",
+            server_id: "",
             queueList: [],
             serverList: [],
             rankList: [],
@@ -297,12 +297,13 @@ class SellAccount extends Component {
         console.log("dataa", data)
         if (this.state.sell_type == 'regularSell' && !this.state.type.bulk) {
 
-            this.props.history.push('/lolaccount')
+            
 
 
             this.props.postRegularSellAccount(data).then((res) => {
                 console.log(res)
                 if (res.status) {
+                    this.props.history.push('/lolaccount')
 
                     //this.props.history.push('/lolaccount')
 
@@ -347,6 +348,7 @@ class SellAccount extends Component {
             this.props.postComfortSellAccount(data_comfort).then((res) => {
                 if (res.status) {
                     // this.props.history.push('/lolaccount')
+                    this.props.history.push('/lolaccount')
 
                     new Noty({
                         text: "Succsessfully Inserted Account",
@@ -387,7 +389,7 @@ class SellAccount extends Component {
                 console.log(res)
                 if (res.status) {
                     //this.props.history.push('/lolaccount')
-
+                    this.props.history.push('/lolaccount')
 
                     new Noty({
                         text: "Succsessfully Inserted Account",
@@ -428,7 +430,7 @@ class SellAccount extends Component {
                 console.log(res)
 
                 if (res.status) {
-
+                    this.props.history.push('/lolaccount')
                     new Noty({
                         text: "Succsessfully Inserted Account",
                         layout: "topRight",

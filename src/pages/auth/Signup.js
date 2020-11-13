@@ -226,7 +226,7 @@ class Signup extends Component {
                                         <form>
                                             <div class="form-group mb-md-4">
                                                 <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="" name="user_name" onChange={this.onChange} required="" />
+                                                <input type="text" class="form-control" placeholder="Enter User Name" name="user_name" onChange={this.onChange} required="" />
                                                 {errors.user_name && <div className=" invaliderror">{errors.user_name}</div>}
                                             </div>
                                             <div class="form-group mb-md-4">
@@ -236,12 +236,12 @@ class Signup extends Component {
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>PASSWORD</label>
-                                                <input type="password" class="form-control" placeholder="" name="password" onChange={this.onChange} required="" />
+                                                <input type="password" class="form-control" placeholder="Enter Password" name="password" onChange={this.onChange} required="" />
                                                 {errors.password && <div className=" invaliderror">{errors.password}</div>}
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>Re-enter your PASSWORD</label>
-                                                <input type="password" class="form-control" placeholder="" name="confirm_password" onChange={this.onChange} required="" />
+                                                <input type="password" class="form-control" placeholder="Re-Enter Your Password" name="confirm_password" onChange={this.onChange} required="" />
                                                 {errors.password2 && <div className=" invaliderror">{errors.password2}</div>}
                                             </div>
                                             <div class="form-group mb-md-4">
@@ -257,7 +257,7 @@ class Signup extends Component {
                                                 <input type="text" class="form-control" placeholder="1234456789" name="phone_no" onChange={this.onChange} required="" />
                                                 {errors.phone_no && <div className=" invaliderror">{errors.phone_no}</div>}
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4" onClick={this.onSubmit}>Signup</button>
+                                            <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4" onClick={(e)=>this.onSubmit(e)}>Signup</button>
                                             {/* <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button> */}
                                             <FacebookProvider appId="3258485927608008">
                                                 <LoginButton
