@@ -12,7 +12,6 @@ import account10 from '../../assets/images/account/10.png'
 import account11 from '../../assets/images/account/11.png'
 import account12 from '../../assets/images/account/11.png'
 import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
@@ -134,6 +133,8 @@ class SectionTopRated extends React.Component {
          )
       }
       )
+  
+  
    }
    render() {
       const settings = {
@@ -147,10 +148,7 @@ class SectionTopRated extends React.Component {
 
                <div class="row justify-content-center ">
 
-                  {/* {isMobileOnly?(<Slider>
-                        {this.renderAccount()}
-                     </Slider>):(<Slider> {this.renderAccount()}</Slider>)
-                     } */}
+              
                   {isMobileOnly ? (
                      <div className="col-md-4 " >
                         <Slider   {...settings} >
@@ -269,49 +267,7 @@ class SectionTopRated extends React.Component {
                                        <p>Level 72</p>
                                     </li>
                                  </ul>
-                                 <div class="card-body">
-                                    <p class="card-text">Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt </p>
-                                    <ul class="rank-block d-flex">
-                                       <li>Rank of Account <span class="text-secondary d-block">BRONZE II</span></li>
-                                       <li>Server: <span class="text-secondary d-block">EUW</span></li>
-                                    </ul>
-                                    <h6 class="price">240.00 EUR</h6>
-                                 </div>
-                              </a>
-                           </div>
-                        </div>
-                        <div>
-                           <div class="card wow fadeInUp" data-wow-delay="0.2s">
-                              <a  >
-                                 <img class="card-img-top" src={account2} alt="account" />
-                                 <ul class="rating-detail d-flex">
-                                    <li>
-                                       <span class="icon-trophy"></span>
-                                       <p>87 champs</p>
-                                    </li>
-                                    <li>
-                                       <span class="icon-dollar"></span>
-                                       <p>18 skins</p>
-                                    </li>
-                                    <li>
-                                       <span class="icon-star"></span>
-                                       <p>Level 72</p>
-                                    </li>
-                                 </ul>
-                                 <div class="card-body">
-                                    <p class="card-text">Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt </p>
-                                    <ul class="rank-block d-flex">
-                                       <li>Rank of Account <span class="text-secondary d-block">BRONZE II</span></li>
-                                       <li>Server: <span class="text-secondary d-block">EUW</span></li>
-                                    </ul>
-                                    <h6 class="price">240.00 EUR</h6>
-                                 </div>
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                                 <div class="c
                 */}
                <div class="row">
                   <div class="col-md-12 text-center">

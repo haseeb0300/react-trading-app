@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import cart from '../../assets/images/cart.svg'
 import sell from '../../assets/images/sell.svg'
+import Slide from 'react-reveal/Slide';
 
 
 
@@ -295,7 +296,7 @@ class LolAccount extends Component {
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <Fade left delay={200}>
+                                    <Slide left delay={200}>
                                         <div>
 
                                             <a  >
@@ -313,9 +314,9 @@ class LolAccount extends Component {
                                                 </div>
                                             </a>
                                         </div>
-                                    </Fade>                                </div>
+                                    </Slide>                                </div>
                                 <div class="col-md-6">
-                                    <Fade right delay={200}>
+                                    <Slide right delay={200}>
                                         <div>
                                             <a  >
                                                 <div class="card sell-block wow fadeInRight" data-wow-delay="0.4s">
@@ -332,7 +333,7 @@ class LolAccount extends Component {
                                                 </div>
                                             </a>
                                         </div>
-                                    </Fade>
+                                    </Slide>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-import React, { Component,useRef  } from 'react';
+import React, { Component, useRef } from 'react';
 
 
 import master_img from '../../assets/images/master.png'
@@ -16,13 +16,13 @@ import "../../../node_modules/noty/lib/noty.css";
 import "../../../node_modules/noty/lib/themes/mint.css";
 import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
-import { getQueue, getServer, getRank, postRegularSellAccount,postComfortSellAccount,postBulkRegularSellAccount,postBulkComfortSellAccount } from '../../store/actions/accountAction'
+import { getQueue, getServer, getRank, postRegularSellAccount, postComfortSellAccount, postBulkRegularSellAccount, postBulkComfortSellAccount } from '../../store/actions/accountAction'
 import { Checkbox, CheckboxGroup } from '@trendmicro/react-checkbox';
 import { Widget } from "@uploadcare/react-widget";
 import Uploadbtn from "../../component/dashboadSection/uploadbtn"
 import PaymentComponent from "../../component/dashboadSection/PaymentComponent"
 import UserHeader from "../../component/dashboadSection/UserHeader"
-
+import Slide from 'react-reveal/Slide';
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-checkbox/dist/react-checkbox.css';
@@ -64,28 +64,28 @@ class SellAccount extends Component {
             queueList: [],
             serverList: [],
             rankList: [],
-            imageList:[],
-            password_comfort:"",
-            server_id_comfort:"",
-            user_email_comfort:"",
-            price_comfort:"",
-            currency_comfort:"",
-            last_season_rank_ID_comfort:"",
+            imageList: [],
+            password_comfort: "",
+            server_id_comfort: "",
+            user_email_comfort: "",
+            price_comfort: "",
+            currency_comfort: "",
+            last_season_rank_ID_comfort: "",
             "tab_index": true,
-            "sell_type":"regularSell",
+            "sell_type": "regularSell",
             table_list: [2, 3, 4, 5, 6, 7, 8, 9, 10],
-            account_email:"",
+            account_email: "",
             user_accounts: [
-            { "unique_key": '2', "user_name": "", "password": ""},
-            { "unique_key": '3', "user_name": "", "password": ""},
-            { "unique_key": '4', "user_name": "", "password": ""},
-            { "unique_key": '5', "user_name": "", "password": ""},
-            { "unique_key": '6', "user_name": "", "password": ""},
-            { "unique_key": '7', "user_name": "", "password": ""},
-            { "unique_key": '8', "user_name": "", "password": ""},
-            { "unique_key": '9', "user_name": "", "password": ""},
-            { "unique_key": '10', "user_name": "", "password": ""},
-        ],
+                { "unique_key": '2', "user_name": "", "password": "" },
+                { "unique_key": '3', "user_name": "", "password": "" },
+                { "unique_key": '4', "user_name": "", "password": "" },
+                { "unique_key": '5', "user_name": "", "password": "" },
+                { "unique_key": '6', "user_name": "", "password": "" },
+                { "unique_key": '7', "user_name": "", "password": "" },
+                { "unique_key": '8', "user_name": "", "password": "" },
+                { "unique_key": '9', "user_name": "", "password": "" },
+                { "unique_key": '10', "user_name": "", "password": "" },
+            ],
         };
         this.inputRef = [];
     }
@@ -136,46 +136,39 @@ class SellAccount extends Component {
             console.log(err)
         })
     }
-    onUploadImage = (file) =>{
+    onUploadImage = (file) => {
         let images = this.state.imageList
         console.log(file)
-      
-        
-        images.push( 
-     file
-            );
-        
-           this.setState({
+
+
+        images.push(
+            file
+        );
+
+        this.setState({
             imageList: images
-         },()=> console.log(this.state.imageList))
+        }, () => console.log(this.state.imageList))
     }
     handleBulkAccountChange = (idx, evt) => {
         console.log(idx)
         console.log(evt.target.value)
-    
+
         const newUserAccounts = this.state.user_accounts.map((item, sidx) => {
-          if (idx !== sidx) return item;
-          return { ...item, [evt.target.name]: evt.target.value };
+            if (idx !== sidx) return item;
+            return { ...item, [evt.target.name]: evt.target.value };
         });
         console.log(this.state.user_accounts)
         this.setState({ user_accounts: newUserAccounts });
-      };
+    };
     renderTableRows = () => {
-
-
         return this.state.user_accounts.map((item, i) =>
             <tr>
                 <td className="table-row">{item.unique_key}</td>
                 <td className="table-row"><input type="text" value={item.user_name} name="user_name" onChange={(evt) => this.handleBulkAccountChange(i, evt)} /></td>
-                <td className="table-row"><input type="password" value={item.password} name="password" onChange={(evt) => this.handleBulkAccountChange(i, evt)}   /></td>
+                <td className="table-row"><input type="password" value={item.password} name="password" onChange={(evt) => this.handleBulkAccountChange(i, evt)} /></td>
             </tr>
-
         )
-
-
-
     }
-
     onCheckBoxChange = (event) => {
         console.log("HERE")
         this.setState(prevState => ({
@@ -216,18 +209,18 @@ class SellAccount extends Component {
     }
 
     comfortSellTab = () => {
-        if(this.state.sell_type == 'regularSell'){
+        if (this.state.sell_type == 'regularSell') {
             this.setState({ sell_type: 'comfortSell' })
             return
         }
-        return  
+        return
     }
     regularSellTab = () => {
-        if(this.state.sell_type == 'comfortSell'){
+        if (this.state.sell_type == 'comfortSell') {
             this.setState({ sell_type: 'regularSell' })
             return
         }
-        return  
+        return
     }
     handleError = (error) => {
         this.setState({ error });
@@ -254,7 +247,7 @@ class SellAccount extends Component {
             "current_rank_id": this.state.current_rank_id,
             "queue_id": this.state.queue_id,
             "server_id": this.state.server_id,
-            "images":this.state.imageList
+            "images": this.state.imageList
         }
         var data_comfort = {
             "account_title": this.state.account_title,
@@ -267,7 +260,7 @@ class SellAccount extends Component {
             "currency": this.state.currency_comfort,
             "password": this.state.password_comfort,
             "server_id": this.state.server_id_comfort,
-            "images":this.state.imageList,
+            "images": this.state.imageList,
         }
         var data_bulk = {
             "amount_of_rp": this.state.amount_of_rp,
@@ -292,176 +285,171 @@ class SellAccount extends Component {
             "account": this.state.user_accounts,
         }
         console.log("dataa", data)
-        if(this.state.sell_type == 'regularSell' && !this.state.type.bulk){
+        if (this.state.sell_type == 'regularSell' && !this.state.type.bulk) {
 
-        
-        this.props.postRegularSellAccount(data).then((res) => {
-            console.log(res)
-            if (res.status) {
-                
-                this.props.history.push('/lolaccount')
 
-            new Noty({
-                text: "Succsessfully Inserted Account",
-                type: "success",
-                // timeout: 1000
-            }).show();
-            return
+            this.props.postRegularSellAccount(data).then((res) => {
+                console.log(res)
+                if (res.status) {
+
+                    this.props.history.push('/lolaccount')
+
+                    new Noty({
+                        text: "Succsessfully Inserted Account",
+                        type: "success",
+                        // timeout: 1000
+                    }).show();
+                    return
+                }
+                new Noty({
+                    text: "Something went wrong",
+
+                    type: "error",
+                    // timeout: 1000
+                }).show();
+
+            }).catch((err) => {
+                this.setState({ isLoading: false })
+                console.log(err)
+                var validationError = {}
+                var serverError = []
+                if (err.hasOwnProperty('validation')) {
+                    err.validation.map(obj => {
+                        if (obj.hasOwnProperty('param')) {
+                            validationError[obj["param"]] = obj["msg"]
+                        } else {
+                            serverError = [...serverError, obj]
+                        }
+                    });
+                    this.setState({ errors: validationError });
+                    this.setState({ serverError: serverError });
+                } else {
+                    this.setState({ serverError: [{ "msg": "server not responding" }] })
+                }
+            })
+
+
+        } else if (this.state.sell_type == 'comfortSell' && !this.state.type.bulk) {
+            this.props.postComfortSellAccount(data_comfort).then((res) => {
+                if (res.status) {
+                    this.props.history.push('/lolaccount')
+
+                    new Noty({
+                        text: "Succsessfully Inserted Account",
+
+                        type: "success",
+                        // timeout: 1000
+                    }).show();
+                    return
+                }
+                new Noty({
+                    text: "Something went wrong",
+
+                    type: "error",
+                    // timeout: 1000
+                }).show();
+            }).catch((err) => {
+                this.setState({ isLoading: false })
+                console.log(err)
+                var validationError = {}
+                var serverError = []
+                if (err.hasOwnProperty('validation')) {
+                    err.validation.map(obj => {
+                        if (obj.hasOwnProperty('param')) {
+                            validationError[obj["param"]] = obj["msg"]
+                        } else {
+                            serverError = [...serverError, obj]
+                        }
+                    });
+                    this.setState({ errors: validationError });
+                    this.setState({ serverError: serverError });
+                } else {
+                    this.setState({ serverError: [{ "msg": "server not responding" }] })
+                }
+            })
+
+        } else if (this.state.sell_type == 'regularSell' && this.state.type.bulk) {
+            this.props.postBulkRegularSellAccount(data_bulk).then((res) => {
+                console.log(res)
+                if (res.status) {
+                    this.props.history.push('/lolaccount')
+
+
+                    new Noty({
+                        text: "Succsessfully Inserted Account",
+
+                        type: "success",
+                        timeout: 1000
+                    }).show();
+                    return
+                }
+                new Noty({
+                    text: "Something went wrong",
+
+                    type: "error",
+                    // timeout: 1000
+                }).show();
+            }).catch((err) => {
+                this.setState({ isLoading: false })
+                console.log(err)
+                var validationError = {}
+                var serverError = []
+                if (err.hasOwnProperty('validation')) {
+                    err.validation.map(obj => {
+                        if (obj.hasOwnProperty('param')) {
+                            validationError[obj["param"]] = obj["msg"]
+                        } else {
+                            serverError = [...serverError, obj]
+                        }
+                    });
+                    this.setState({ errors: validationError });
+                    this.setState({ serverError: serverError });
+                } else {
+                    this.setState({ serverError: [{ "msg": "server not responding" }] })
+                }
+            })
+
+        } else if (this.state.sell_type == 'comfortSell' && this.state.type.bulk) {
+            this.props.postBulkComfortSellAccount(data_bulk).then((res) => {
+                console.log(res)
+
+                if (res.status) {
+
+                    new Noty({
+                        text: "Succsessfully Inserted Account",
+                        layout: "topRight",
+                        theme: "bootstrap-v4",
+                        type: "success",
+                        // timeout: 1000
+                    }).show();
+                    return
+                }
+                new Noty({
+                    text: "Something went wrong",
+
+                    type: "error",
+                    // timeout: 1000
+                }).show();
+            }).catch((err) => {
+                this.setState({ isLoading: false })
+                console.log(err)
+                var validationError = {}
+                var serverError = []
+                if (err.hasOwnProperty('validation')) {
+                    err.validation.map(obj => {
+                        if (obj.hasOwnProperty('param')) {
+                            validationError[obj["param"]] = obj["msg"]
+                        } else {
+                            serverError = [...serverError, obj]
+                        }
+                    });
+                    this.setState({ errors: validationError });
+                    this.setState({ serverError: serverError });
+                } else {
+                    this.setState({ serverError: [{ "msg": "server not responding" }] })
+                }
+            })
         }
-        new Noty({
-            text: "Something went wrong",
-   
-            type: "error",
-            // timeout: 1000
-        }).show();
-       
-        }).catch((err) => {
-            this.setState({ isLoading: false })
-            console.log(err)
-            var validationError = {}
-            var serverError = []
-            if (err.hasOwnProperty('validation')) {
-                err.validation.map(obj => {
-                    if (obj.hasOwnProperty('param')) {
-                        validationError[obj["param"]] = obj["msg"]
-                    } else {
-                        serverError = [...serverError, obj]
-                    }
-                });
-                this.setState({ errors: validationError });
-                this.setState({ serverError: serverError });
-            } else {
-                this.setState({ serverError: [{ "msg": "server not responding" }] })
-            }
-        })
-   
-        
-    }else if(this.state.sell_type == 'comfortSell' && !this.state.type.bulk){
-        this.props.postComfortSellAccount(data_comfort).then((res) => {
-            if (res.status) {
-                this.props.history.push('/lolaccount')
-
-            new Noty({
-                text: "Succsessfully Inserted Account",
-        
-                type: "success",
-                // timeout: 1000
-            }).show();
-            return
-        }
-        new Noty({
-            text: "Something went wrong",
-   
-            type: "error",
-            // timeout: 1000
-        }).show();
-        }).catch((err) => {
-            this.setState({ isLoading: false })
-            console.log(err)
-            var validationError = {}
-            var serverError = []
-            if (err.hasOwnProperty('validation')) {
-                err.validation.map(obj => {
-                    if (obj.hasOwnProperty('param')) {
-                        validationError[obj["param"]] = obj["msg"]
-                    } else {
-                        serverError = [...serverError, obj]
-                    }
-                });
-                this.setState({ errors: validationError });
-                this.setState({ serverError: serverError });
-            } else {
-                this.setState({ serverError: [{ "msg": "server not responding" }] })
-            }
-        })
-   
-    }else if(this.state.sell_type == 'regularSell' && this.state.type.bulk){
-        this.props.postBulkRegularSellAccount(data_bulk).then((res) => {
-            console.log(res)
-            if (res.status) {
-                this.props.history.push('/lolaccount')
-
-
-            new Noty({
-                text: "Succsessfully Inserted Account",
-
-                type: "success",
-                timeout: 1000
-            }).show();
-            return
-        }
-        new Noty({
-            text: "Something went wrong",
-       
-            type: "error",
-            // timeout: 1000
-        }).show();
-        }).catch((err) => {
-            this.setState({ isLoading: false })
-            console.log(err)
-            var validationError = {}
-            var serverError = []
-            if (err.hasOwnProperty('validation')) {
-                err.validation.map(obj => {
-                    if (obj.hasOwnProperty('param')) {
-                        validationError[obj["param"]] = obj["msg"]
-                    } else {
-                        serverError = [...serverError, obj]
-                    }
-                });
-                this.setState({ errors: validationError });
-                this.setState({ serverError: serverError });
-            } else {
-                this.setState({ serverError: [{ "msg": "server not responding" }] })
-            }
-        })
-   
-    }else if(this.state.sell_type == 'comfortSell' && this.state.type.bulk){
-        this.props.postBulkComfortSellAccount(data_bulk).then((res) => {
-            console.log(res)
-
-            if (res.status) {
-
-            new Noty({
-                text: "Succsessfully Inserted Account",
-                layout: "topRight",
-                theme: "bootstrap-v4",
-                type: "success",
-                // timeout: 1000
-            }).show();
-            return
-        
-        
-       
-        }
-
-        new Noty({
-            text: "Something went wrong",
- 
-            type: "error",
-            // timeout: 1000
-        }).show();
-        }).catch((err) => {
-            this.setState({ isLoading: false })
-            console.log(err)
-            var validationError = {}
-            var serverError = []
-            if (err.hasOwnProperty('validation')) {
-                err.validation.map(obj => {
-                    if (obj.hasOwnProperty('param')) {
-                        validationError[obj["param"]] = obj["msg"]
-                    } else {
-                        serverError = [...serverError, obj]
-                    }
-                });
-                this.setState({ errors: validationError });
-                this.setState({ serverError: serverError });
-            } else {
-                this.setState({ serverError: [{ "msg": "server not responding" }] })
-            }
-        })
-   
-    }
     }
     renderServerError() {
         if (this.state.serverError != null && this.state.serverError.length > 0) {
@@ -470,7 +458,6 @@ class SellAccount extends Component {
                     <div className="col-md-12  alert alert-danger" role="alert" >
                         <strong className="pr-2">Oh snap!  {"  "}</strong>
                         {this.state.serverError[0].msg}
-
                     </div>
                 </div>
             )
@@ -481,35 +468,35 @@ class SellAccount extends Component {
         const { t, i18n } = this.props
         const { isLoading } = this.state;
         const { errors } = this.state
-
         if (isLoading) {
             return (
                 <div className="loader-large"></div>
             )
         }
-      
         return (
             <div class="wrapper">
-
                 {/* <!-- Banner section --> */}
                 <section class="banner-section" >
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
-                                {/* <Flip bottom delay={200}>
-                                    <h1 class="wow flipInX mt-3" data-wow-delay="0.6s">Sell Your Account</h1>
-                                </Flip> */}
-                               
-
+                                <Flip bottom delay={200}>
+                                    <div>
+                                        <h1 class="wow flipInX mt-3" data-wow-delay="0.6s">Sell Your Account</h1>
+                                    </div>
+                                </Flip>
+                                <Fade bottom delay={900}>
+                                    <p class="wow fadeInUp" data-wow-delay="1s"><strong>LOL Trading is a professional marketplace for buyers & sellers
+                                    <br className="d-none d-md-block"></br>of League of Legends accounts.</strong>
+                                    </p>
+                                </Fade>
                             </div>
                         </div>
                     </div>
                 </section>
                 <main>
-                {/* <UserHeader>
-                        
+                    {/* <UserHeader>
                         </UserHeader>  */}
-                  
                     <section class="user-section wow fadeInUp" data-wow-delay="1s">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -518,7 +505,7 @@ class SellAccount extends Component {
 
                                         <div class="select-selling-method ">
                                             <button className={this.state.sell_type == 'regularSell' ? "switch-account-btn switch-account-btn-active" : "switch-account-btn"} onClick={this.regularSellTab}>REGULAR SELL</button>
-                                            <button className={this.state.sell_type == 'comfortSell' ? "switch-account-btn switch-account-btn-active":"switch-account-btn" } onClick={this.comfortSellTab}>COMFORT SELL</button>
+                                            <button className={this.state.sell_type == 'comfortSell' ? "switch-account-btn switch-account-btn-active" : "switch-account-btn"} onClick={this.comfortSellTab}>COMFORT SELL</button>
                                         </div>
                                         <label className="title">ACCOUNT INFO FORM</label>
                                         <hr></hr>
@@ -530,13 +517,13 @@ class SellAccount extends Component {
                                                     <div class="row">
                                                         <div class="col-md-4">
 
-                                                        <label>Amount of Rp  </label>                                                                
+                                                            <label>Amount of Rp  </label>
 
                                                             <input class="form-control" name="amount_of_rp" onChange={this.onChange} required="" />
                                                             {errors.amount_of_rp && <div className=" invaliderror">{errors.amount_of_rp}</div>}
                                                             <label>Server</label>
                                                             <select class="custom-select" name="server_id" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
-                                                            <option value={-1} disable selected={!this.state.server_id} >--Select Server--</option>
+                                                                <option value={-1} disable selected={!this.state.server_id} >--Select Server--</option>
 
                                                                 {this.renderServerOption(this.state.serverList)}
 
@@ -573,7 +560,7 @@ class SellAccount extends Component {
 
                                                             <label>Type of queue</label>
                                                             <select class="custom-select" name="queue_id" onClick={(e) => this._handleKeyDown(this.state.queueList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.queueList, e)} >
-                                                            <option value={-1} disable selected={!this.state.queue_id} >--Select Queue--</option>
+                                                                <option value={-1} disable selected={!this.state.queue_id} >--Select Queue--</option>
 
                                                                 {this.renderOption(this.state.queueList)}
                                                             </select>
@@ -581,7 +568,7 @@ class SellAccount extends Component {
 
                                                             <label>Currency</label>
                                                             <select class="custom-select" name="currency" onChange={this.onChange} required="">
-                                                            <option value={-1} disable selected={!this.state.currency} >--Select Currency--</option>
+                                                                <option value={-1} disable selected={!this.state.currency} >--Select Currency--</option>
                                                                 <option value={"USD"}>USD</option>
                                                                 <option value={"EUR"}>EUR</option>
                                                             </select>
@@ -599,7 +586,7 @@ class SellAccount extends Component {
                                                         <div class="col-md-4 ">
                                                             <label>Rank of Account</label>
                                                             <select class="custom-select" name="current_rank_id" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
-                                                            <option value={-1} disable selected={!this.state.current_rank_id} >--Select Rank--</option>
+                                                                <option value={-1} disable selected={!this.state.current_rank_id} >--Select Rank--</option>
 
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
@@ -611,7 +598,7 @@ class SellAccount extends Component {
 
                                                             <label>Last Season Rank</label>
                                                             <select class="custom-select" name="last_season_rank_ID" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
-                                                            <option value={-1} disable selected={!this.state.last_season_rank_ID} >--Select Rank--</option>
+                                                                <option value={-1} disable selected={!this.state.last_season_rank_ID} >--Select Rank--</option>
 
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
@@ -635,7 +622,7 @@ class SellAccount extends Component {
 
                                                             <label>Currency</label>
                                                             <select class="custom-select" name="currency_comfort" onChange={this.onChange} required="">
-                                                            <option value={-1} disable selected={!this.state.currency_comfort} >--Select Currency--</option>
+                                                                <option value={-1} disable selected={!this.state.currency_comfort} >--Select Currency--</option>
 
                                                                 <option value={"USD"}>USD</option>
                                                                 <option value={"EUR"}>EUR</option>
@@ -653,8 +640,8 @@ class SellAccount extends Component {
                                                             {errors.email_password && <div className=" invaliderror">{errors.email_password}</div>}
 
                                                             <label>Last Season Rank</label>
-                                                            <select class="custom-select"  name="last_season_rank_ID_comfort" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
-                                                            <option value={-1} disable selected={!this.state.last_season_rank_ID_comfort} >--Select Rank--</option>
+                                                            <select class="custom-select" name="last_season_rank_ID_comfort" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
+                                                                <option value={-1} disable selected={!this.state.last_season_rank_ID_comfort} >--Select Rank--</option>
 
                                                                 {this.renderRankOption(this.state.rankList)}
                                                             </select>
@@ -664,7 +651,7 @@ class SellAccount extends Component {
                                                         <div class="col-md-4 ">
                                                             <label>Server</label>
                                                             <select class="custom-select" name="server_id_comfort" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
-                                                            <option value={-1} disable selected={!this.state.server_id_comfort} >--Select Server--</option>
+                                                                <option value={-1} disable selected={!this.state.server_id_comfort} >--Select Server--</option>
 
                                                                 {this.renderServerOption(this.state.serverList)}
 
@@ -717,7 +704,7 @@ class SellAccount extends Component {
                                                     <div class="col-md-4">
                                                         <label>Level-up</label>
                                                         <select class="custom-select" name="level_up" onChange={this.onChange} required="" >
-                                                        <option value={-1} disable selected={!this.state.level_up} >--Select Level Up--</option>
+                                                            <option value={-1} disable selected={!this.state.level_up} >--Select Level Up--</option>
 
                                                             <option value={"None"}>None</option>
                                                             <option value={"Handmade"}>Handmade</option>
@@ -730,7 +717,7 @@ class SellAccount extends Component {
                                                     <div class="col-md-4 ">
                                                         <label>Verified email:</label>
                                                         <select class="custom-select" name="verified_email" onChange={this.onChange} required="">
-                                                        <option value={-1} disable selected={!this.state.verified_email} >--Select --</option>
+                                                            <option value={-1} disable selected={!this.state.verified_email} >--Select --</option>
 
                                                             <option value={"No"}>No</option>
                                                             <option value={"Yes"}>Yes</option>
@@ -747,7 +734,7 @@ class SellAccount extends Component {
                                                         <Widget ref={widgetApi} publicKey="ae004e3a59fcced0dc17" />
                                                     </div> */}
                                                     <Uploadbtn
-                                                    onUploadImage={(e)=> this.onUploadImage(e)}
+                                                        onUploadImage={(e) => this.onUploadImage(e)}
                                                     ></Uploadbtn>
                                                     <div class="col-md-12 ">
                                                         <label>Account description</label>

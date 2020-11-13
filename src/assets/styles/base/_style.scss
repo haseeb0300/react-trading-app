@@ -286,8 +286,8 @@ header span {
   box-shadow: 0 0 0px !important;
 }
 .rc-slider-label{
-  margin-top: -18px;
-
+  margin-top: -18px !important;
+font-family: inherit ;
 }
 .rc-slider-handle:active {
   border-color: #57c5f7;
@@ -303,6 +303,9 @@ header span {
 }
 .section-background-signup-image {
   background-image: url(../../images/signup.png) !important ;
+}
+.section-background-password-image {
+  background-image: url(../../images/password.png) !important ;
 }
 
 .wow {
@@ -1086,6 +1089,7 @@ background: #000000;
 
 .footer-bottom .social-icon li a:hover {
   background: #fdd464;
+  cursor: pointer;
 }
 /* Seller Account */
 
@@ -2439,7 +2443,11 @@ background: #000000;
   .banner-section h1 {
     font-size: 32px;
     line-height: 40px;
+    margin-left: 0px;
   }
+  .banner-section p {
+    margin-left: 0px;
+}
   .banner-section h1 span {
     font-size: 58px;
   }

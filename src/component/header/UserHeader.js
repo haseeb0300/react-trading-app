@@ -68,7 +68,7 @@ class Header extends Component {
                                             <a class="dropdown-item"  >How to buy LoL account?</a>
                                         </Link>
                                         <Link to="/">
-                                            <a class="dropdown-item"  >How to sell LoL account?</a>
+                                            <a class="dropdown-item last-dropdown-item"  >How to sell LoL account?</a>
                                         </Link>
                                     </div>
                                 </li>

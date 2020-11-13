@@ -30,8 +30,10 @@ function SectionBanner(props) {
                         </div>
                         </Flip>
                         <Flip bottom delay={900}> 
+                        <div> 
                         <p class="wow fadeInDown mt-3 mt-md-0" data-wow-delay="1.2s"> 
                         <a href="#account"><span class="icon-angle-down"></span></a></p>
+                        </div>
                          </Flip>
                     </div>
                 </div>

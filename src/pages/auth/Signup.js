@@ -16,6 +16,9 @@ import { registerUser } from '../../store/actions/authAction'
 import Noty from 'noty';
 import "../../../node_modules/noty/lib/noty.css";
 import "../../../node_modules/noty/lib/themes/mint.css";
+import Slide from 'react-reveal/Slide';
+import Flip from 'react-reveal/Flip';
+import Fade from 'react-reveal/Fade';
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -84,7 +87,7 @@ class Signup extends Component {
             } else {
                 new Noty({
                     text: "Something went wrong",
-                 
+
                     type: "error",
                     timeout: 2000
                 }).show();
@@ -108,9 +111,6 @@ class Signup extends Component {
                 this.setState({ serverError: [{ "msg": "server not responding" }] })
             }
         })
-   
-   
-   
     }
     renderServerError() {
         if (this.state.serverError != null && this.state.serverError.length > 0) {
@@ -125,7 +125,6 @@ class Signup extends Component {
             )
         }
     }
-
     componentDidMount() {
         // this.props.i18n.changeLanguage("de");
         new WOW.WOW({
@@ -153,7 +152,6 @@ class Signup extends Component {
         const { t, i18n } = this.props
         const { isLoading } = this.state;
         const { errors } = this.state
-
         if (isLoading) {
             return (
                 <div className="loader-large"></div>
@@ -166,10 +164,18 @@ class Signup extends Component {
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
-                                <h1 class="wow flipInX mt-3" data-wow-delay="0.6s">REGISTER</h1>
-                                <p class="wow fadeInUp" data-wow-delay="1s">Create new account on our platform. It will allow you to use all prepared features by LoL Trading.
+                                <Flip top delay={700}>
+                                    <div>
+                                        <h1 class="wow flipInX mt-3" data-wow-delay="0.6s">REGISTER</h1>
+                                    </div>
+                                </Flip>
+                                <Slide bottom delay={1200}>
+                                    <div>
+                                        <p class="wow fadeInUp" data-wow-delay="1s">Create new account on our platform. It will allow you to use all prepared features by LoL Trading.
                            <br></br><strong>If you lost access to your account go to forgot password section & recover your account</strong>
-                                </p>
+                                        </p>
+                                    </div>
+                                </Slide>
                             </div>
                         </div>
                     </div>
@@ -188,40 +194,34 @@ class Signup extends Component {
                                                 <label>Username</label>
                                                 <input type="text" class="form-control" placeholder="" name="user_name" onChange={this.onChange} required="" />
                                                 {errors.user_name && <div className=" invaliderror">{errors.user_name}</div>}
-
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>Your email</label>
                                                 <input type="email" class="form-control" placeholder="Joel@example.com" name="email" onChange={this.onChange} required="" />
                                                 {errors.email && <div className=" invaliderror">{errors.email}</div>}
-
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>PASSWORD</label>
                                                 <input type="password" class="form-control" placeholder="" name="password" onChange={this.onChange} required="" />
                                                 {errors.password && <div className=" invaliderror">{errors.password}</div>}
-
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>Re-enter your PASSWORD</label>
                                                 <input type="password" class="form-control" placeholder="" name="confirm_password" onChange={this.onChange} required="" />
                                                 {errors.password2 && <div className=" invaliderror">{errors.password2}</div>}
-
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>COUNTRY</label>
-                                                <select class="custom-select" name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}>
-                                                <option value={-1} disable selected={!this.state.country} >Choose your VPN location</option>
+                                                <select class="form-control" name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}>
+                                                    <option value={-1} disable selected={!this.state.country} >Choose your VPN location</option>
                                                     {this.renderOption()}
                                                 </select>
                                                 {errors.country && <div className=" invaliderror">{errors.country}</div>}
-
                                             </div>
                                             <div class="form-group">
                                                 <label>PHONE number</label>
                                                 <input type="text" class="form-control" placeholder="1234456789" name="phone_no" onChange={this.onChange} required="" />
                                                 {errors.phone_no && <div className=" invaliderror">{errors.phone_no}</div>}
-
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4" onClick={this.onSubmit}>Signup</button>
                                             {/* <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button> */}
@@ -240,40 +240,52 @@ class Signup extends Component {
                                         </form>
                                     </div>
                                 </div>
-                                               {this.renderServerError()}
-
+                                {this.renderServerError()}
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-md-7 px-md-4">
-                                    <h4 class="text-center wow fadeInDown" data-wow-delay="0.6s">PAYMENT PROVIDERS:</h4>
+                                    <Slide bottom delay={50}>
+                                        <div>
+                                            <h4 class="text-center wow fadeInDown" data-wow-delay="0.6s">PAYMENT PROVIDERS:</h4>
+                                        </div>
+                                    </Slide>
                                     <ul>
+                                    <Fade right delay ={100}> 
                                         <li class="wow fadeInRight" data-wow-delay="0.6s">
                                             <img src={paypal_img} alt="paypal" />
                                         </li>
+                                        </Fade>
+                                        <Fade right delay ={150}> 
                                         <li class="wow fadeInRight" data-wow-delay="0.8s">
                                             <img src={master_img} alt="master" />
                                         </li>
+                                        </Fade>
+                                        <Fade right delay ={200}> 
                                         <li class="wow fadeInRight" data-wow-delay="1s">
                                             <img src={visa_img} alt="visa" />
                                         </li>
+                                        </Fade>
+                                        <Fade right delay ={250}> 
                                         <li class="wow fadeInRight" data-wow-delay="1.3s">
                                             <img src={skrill_img} alt="skrill" />
                                         </li>
+                                        </Fade>
+                                        <Fade right delay ={300}> 
                                         <li class="wow fadeInRight" data-wow-delay="1.6s">
                                             <img src={stripe_img} alt="stripe" />
                                         </li>
+                                        </Fade>
                                     </ul>
                                 </div>
                             </div>
+                        
                         </div>
                     </section>
                 </main>
             </div>
         )
     }
-
 }
-
 Signup.propTypes = {
 
 };

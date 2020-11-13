@@ -113,7 +113,7 @@ function SectionAcountFilter(props) {
                                                     <Range min={0} onChange={(e) => onSliderValChange(e)} max={2000} defaultValue={sliderVal}      />
                                                 </div>
 
-                                            <label className ="rc-slider-label{">{sliderVal[0] + '-' +sliderVal[1]  }</label>
+                                            <label className ="rc-slider-label">{sliderVal[0] + ' - ' +sliderVal[1]  }</label>
 
                                             </div>
 

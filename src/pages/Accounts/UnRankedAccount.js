@@ -74,7 +74,7 @@ class UnRankedAccount extends Component {
                                 <Fade bottom delay={300}>
 
                                 <p class="wow fadeInUp" data-wow-delay="1s">
-                                    <strong>LOL Trading is a professional marketplace for buyers & sellers<br class="d-none d-md-block"></br>of League of Legends accounts.</strong>
+                                    <strong>LOL Trading is a professional marketplace for buyers & sellers <br class="d-none d-md-block "></br>of League of Legends accounts.</strong>
                                 </p>
                                 </Fade>
                             </div>
