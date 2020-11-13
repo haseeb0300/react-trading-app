@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import cart from '../../assets/images/cart.svg'
 import sell from '../../assets/images/sell.svg'
 import Slide from 'react-reveal/Slide';
-
-
-
 import WOW from 'wowjs';
 
 import { getQueue, getServer, getRank, getAccount,getFilterAccount, getLolAccount, getUnrankedAccount, getCustomizeAccount } from '../../store/actions/accountAction'
@@ -15,10 +11,6 @@ import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
 import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
-
-
-
-
 class LolAccount extends Component {
     constructor(props) {
         super(props);

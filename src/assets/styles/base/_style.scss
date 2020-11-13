@@ -238,6 +238,13 @@ header span {
 .navbar-light .navbar-nav .nav-link:hover {
   color: #fff;
 }
+/* Noty */
+.noty_theme__mint.noty_bar .noty_body {
+  padding: 10px;
+  font-size: 14px;
+  background: #DAEDD2;
+  color: darkseagreen;
+}
 /* Slider */
 .rc-slider-handle {
     position: absolute;
@@ -1681,6 +1688,15 @@ background: #000000;
   padding: 30px 0 0;
   margin: 0 auto;
 }
+.btn-action:hover{
+      background: #F6CF63;
+      color: black;
+
+}
+.sell-bt :focus{
+  outline: none;
+  opacity: 0.9;
+}
 .sell-account-form .form-control {
   border-radius: 0;
   height: 50px;
@@ -1766,7 +1782,6 @@ background: #000000;
 .user-section {
   padding-bottom: 30px;
   top: -165px;
-  z-index: 999999999;
   position: relative;
 }
 

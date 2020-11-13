@@ -309,7 +309,6 @@ class SellAccount extends Component {
                     new Noty({
                         text: "Succsessfully Inserted Account",
                         type: "success",
-                        // timeout: 1000
                     }).show();
                     return
                 }
@@ -317,7 +316,6 @@ class SellAccount extends Component {
                     text: "Something went wrong",
 
                     type: "error",
-                    // timeout: 1000
                 }).show();
 
             }).catch((err) => {
@@ -350,7 +348,7 @@ class SellAccount extends Component {
                         text: "Succsessfully Inserted Account",
 
                         type: "success",
-                        // timeout: 1000
+                        timeout: 2000
                     }).show();
                     return
                 }
@@ -358,7 +356,7 @@ class SellAccount extends Component {
                     text: "Something went wrong",
 
                     type: "error",
-                    // timeout: 1000
+                    timeout: 2000
                 }).show();
             }).catch((err) => {
                 this.setState({ isLoading: false })
@@ -391,7 +389,7 @@ class SellAccount extends Component {
                         text: "Succsessfully Inserted Account",
 
                         type: "success",
-                        timeout: 1000
+                        timeout: 2000
                     }).show();
                     return
                 }
@@ -399,7 +397,7 @@ class SellAccount extends Component {
                     text: "Something went wrong",
 
                     type: "error",
-                    // timeout: 1000
+                    timeout: 2000
                 }).show();
             }).catch((err) => {
                 this.setState({ isLoading: false })
@@ -432,7 +430,7 @@ class SellAccount extends Component {
                         layout: "topRight",
                         theme: "bootstrap-v4",
                         type: "success",
-                        // timeout: 1000
+                        timeout: 2000
                     }).show();
                     return
                 }
@@ -440,7 +438,7 @@ class SellAccount extends Component {
                     text: "Something went wrong",
 
                     type: "error",
-                    // timeout: 1000
+                    timeout: 2000
                 }).show();
             }).catch((err) => {
                 this.setState({ isLoading: false })
