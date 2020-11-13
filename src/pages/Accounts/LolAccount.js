@@ -9,7 +9,7 @@ import Slide from 'react-reveal/Slide';
 
 import WOW from 'wowjs';
 
-import { getQueue, getServer, getRank, getAccount, getLolAccount, getUnrankedAccount, getCustomizeAccount } from '../../store/actions/accountAction'
+import { getQueue, getServer, getRank, getAccount,getFilterAccount, getLolAccount, getUnrankedAccount, getCustomizeAccount } from '../../store/actions/accountAction'
 
 import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
@@ -35,6 +35,9 @@ class LolAccount extends Component {
             current_rank_id:'',
             server_id:'',
             queue_id:'',
+            level_up:'',
+            min_value:0,
+            max_value:2000,
 
 
         };
@@ -151,20 +154,56 @@ class LolAccount extends Component {
             console.log(err)
         })
     }
+
+    onChangeSlider = (e,min,max) => {
+        console.log( min+ ' '+ max )
+      this.setState({ min_value: min   ,max_value:max} ,()=>{this.onFilterAccount()})
+    }
     onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
+        if(e.target.value == -1){
+            this.setState({[e.target.name]: ""},()=>{this.onFilterAccount()})
+            return
+        }
+        this.setState({ [e.target.name]: e.target.value },()=>{this.onFilterAccount()})
     }
     _handleKeyDown = (list, e) => {
         console.log("here", [e.target.value])
+        if(e.target.value == -1){
+            this.setState({[e.target.name]: ""},()=>{this.onFilterAccount()})
+            return
+        }
         if (e.target.value == 0) {
             return
         }
         if (list[e.target.value]) {
             console.log(list[e.target.value])
-            this.setState({ [e.target.name]: e.target.value })
+            this.setState({ [e.target.name]: e.target.value },()=>{this.onFilterAccount()})
         }
     }
 
+    onFilterAccount = () =>{
+        let data = {
+            "server_id": this.state.server_id,
+            "queue_id": this.state.queue_id,
+            "current_rank_id": this.state.current_rank_id,
+            "level_up": this.state.level_up,
+            "min_price":this.state.min_value,
+            "max_price": this.state.max_value,
+        }
+        this.props.getFilterAccount(data).then((res) => {
+            console.log(res)
+            if (res.status == true) {
+                this.setState({
+                    accountList: res.content,
+                })
+            }
+            else {
+                alert(res)
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
     onTabChange = (type) =>{
         console.log(type)
         if(type === 'lolAccount'){
@@ -350,12 +389,13 @@ class LolAccount extends Component {
                             renderQueueOption={this.renderOption(this.state.queueList)}
                             renderRankOption={this.renderRankOption(this.state.rankList)}
                             renderServerOption={this.renderServerOption(this.state.serverList)}
-                            server_id={this.state.server_id}
+                            server_id={this.state.server}
                             rank_id={this.state.rank_id}
-                            queue_id={this.state.queue_id}
+                            queue_id={this.state.queue}
                             onTabChange={(e)=>this.onTabChange(e)}
                             _handleKeyDown={this._handleKeyDown}
                             onChange={this.onChange}
+                            onChangeSlider={this.onChangeSlider}
                         >
 
                         </SectionAcountFilter>
@@ -388,6 +428,7 @@ const mapStatetoProps = ({ auth }) => ({
 })
 const mapDispatchToProps = ({
     getAccount,
+    getFilterAccount,
     getQueue,
     getServer,
     getRank,

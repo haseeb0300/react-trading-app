@@ -54,6 +54,18 @@ export const getAccount = () => dispatch => {
       })
 }
 
+export const getFilterAccount = (data) => dispatch => {
+  return axios
+      .get('api/account?queue_id='+data.queue_id+'&current_rank_id='+data.current_rank_id+'&server_id='+data.server_id+'&level_up='+data.level_up+'&min_price='+data.min_price+'&max_price='+data.max_price)
+      .then((res) => {
+          console.log(res)
+          return Promise.resolve(res.data)
+      }).catch((err) => {
+          console.log(err)
+          return Promise.reject(err)
+      })
+}
+
 export const getLolAccount = () => dispatch => {
   return axios
       .get('api/account/lol')

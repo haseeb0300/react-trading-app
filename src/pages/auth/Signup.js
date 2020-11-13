@@ -12,7 +12,7 @@ import WOW from 'wowjs';
 import countryList from '../../assets/country.json'
 import { FacebookProvider, LoginButton } from 'react-facebook';
 import { connect } from 'react-redux';
-import { registerUser } from '../../store/actions/authAction'
+import { registerUser,registerUserFb } from '../../store/actions/authAction'
 import Noty from 'noty';
 import "../../../node_modules/noty/lib/noty.css";
 import "../../../node_modules/noty/lib/themes/mint.css";
@@ -28,7 +28,7 @@ class Signup extends Component {
             user_name: "",
             country: "",
             phone_no: "",
-            token: "",
+            fb_token: "",
             confirm_password: "",
             countryList: countryList,
             serverError: {},
@@ -39,20 +39,54 @@ class Signup extends Component {
     handleResponse = (data) => {
         console.log(data);
         this.setState({
-            token: data.tokenDetail.accessToken,
+            fb_token: data.tokenDetail.userID,
             email: data.profile.email,
             user_name: data.profile.name,
         })
-        this.props.registerUser({
-            "token": this.state.token,
+        this.props.registerUserFb({
+            "token": this.state.fb_token,
             "email": this.state.email,
-            "password": '123456',
             "user_name": this.state.user_name,
-            "country": 'Pakistan',
-            "phone_no": '03022631109',
-            "password2": '123456',
         }).then((res) => {
+            this.setState({ isLoading: false })
             console.log(res)
+            if (res.status) {
+                this.props.history.push('/userdashboard')
+                new Noty({
+                    text: "Succsessfully Register",
+                    // layout: "topRight",
+                    // theme: "bootstrap-v4",
+                    type: "success",
+                    timeout: 2000
+                }).show()
+                    .then(() => { }
+                    )
+            } else {
+                new Noty({
+                    text: "Something went wrong",
+
+                    type: "error",
+                    timeout: 2000
+                }).show();
+            }
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
         })
     }
     handleError = (error) => {
@@ -225,7 +259,7 @@ class Signup extends Component {
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-block mb-3 mb-md-4 mt-4" onClick={this.onSubmit}>Signup</button>
                                             {/* <button type="button" class="btn btn-primary btn-fb m-auto"><i class="fa fa-facebook-square"></i> Signup with Facebook</button> */}
-                                            <FacebookProvider appId="377592783588831">
+                                            <FacebookProvider appId="3258485927608008">
                                                 <LoginButton
                                                     className="btn btn-primary btn-fb m-auto"
                                                     scope="email"
@@ -294,7 +328,8 @@ const mapStatetoProps = ({ auth }) => ({
     user: auth.user
 })
 const mapDispatchToProps = ({
-    registerUser
+    registerUser,
+    registerUserFb
 })
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Signup);

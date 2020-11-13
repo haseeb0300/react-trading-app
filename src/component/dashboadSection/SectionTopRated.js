@@ -36,7 +36,7 @@ class SectionTopRated extends React.Component {
       if (isMobileOnly) {
          return this.props.accountList.map((item, i) => {
             console.log('posiotion ', i)
-            return (<div key={item.account_id} className="col-md-6 col-lg-4 col-xl-3 p-0 ">
+            return (<div key={item.account_id} className={this.props.page === 'dashboard'?"col-md-6 col-lg-4 col-xl-3 p-0 ":"col-md-6 col-lg-4 col-xl-3 "}>
                <div class="card wow fadeInUp" data-wow-delay="0.4s">
                   <Fade bottom delay={50}>
                      <a >
@@ -109,7 +109,7 @@ class SectionTopRated extends React.Component {
                         <div class="card-body ">
                            <p class="card-text">{item.description}</p>
                            <ul class="rank-block d-flex">
-                              <li>Rank of Account <span class="text-rank d-block">{item.Rank.rank}</span></li>
+                              <li>Rank of Account <span class="text-rank d-block">{item.Rank && item.Rank.rank}</span></li>
                               <li>Server: <span class="text-rank d-block">{item.Server.server_code}</span></li>
                            </ul>
                            <h6 class="price">{item.price + ".00"} {item.currency}</h6>
@@ -149,7 +149,7 @@ class SectionTopRated extends React.Component {
                <div class="row justify-content-center ">
 
               
-                  {isMobileOnly ? (
+                  {this.props.page === 'dashboard' &&  isMobileOnly ? (
                      <div className="col-md-4 " >
                         <Slider   {...settings} >
                            {this.renderAccount()}

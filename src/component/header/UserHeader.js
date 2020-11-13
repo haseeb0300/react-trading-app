@@ -14,15 +14,21 @@ class Header extends Component {
 
         this.state = {
 
-            isLoading: false
+            isLoading: false,
+            visible: false,
 
         };
 
 
     }
 
+    toggleNavbar = (e) =>{
+        this.setState({ visible: !this.state.visible })
+    }
+
     render() {
         const { logoutUser } = this.props
+        const show = this.state.visible ? "show":""
 
         return (
             <header>
@@ -39,10 +45,10 @@ class Header extends Component {
                         <Link to="/login">
                             <a class="nav-link d-lg-none px-0"  ><span class="icon-login mr-1"></span></a>
                         </Link>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" onClick={(e)=> this.toggleNavbar(e)} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="fa fa-bars"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class={"collapse navbar-collapse "+show } >
                             <ul class="navbar-nav navbar-center m-auto">
                                 <Link to="/">
 

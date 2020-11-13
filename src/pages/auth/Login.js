@@ -10,7 +10,7 @@ import Noty from 'noty';
 import "../../../node_modules/noty/lib/noty.css";
 import "../../../node_modules/noty/lib/themes/mint.css";
 import { FacebookProvider, LoginButton } from 'react-facebook';
-import { loginUser } from '../../store/actions/authAction'
+import { loginUser,loginUserFb } from '../../store/actions/authAction'
 import { connect } from 'react-redux';
 
 import Slide from 'react-reveal/Slide';
@@ -23,10 +23,10 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
-
             errors: {},
             serverError: {},
             isLoading: false,
+            fb_token:"",
         };
     }
     componentDidMount() {
@@ -38,7 +38,56 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
     handleResponse = (data) => {
+
         console.log(data);
+        this.setState({
+            fb_token: data.tokenDetail.userID,
+        })
+        this.props.loginUserFb({
+            "token": this.state.fb_token,
+        }).then((res) => {
+            this.setState({ isLoading: false })
+            console.log(res)
+            if (res.status) {
+                this.props.history.push('/userdashboard')
+                new Noty({
+                    text: "Succsessfully Login",
+
+                    type: "success",
+
+                    timeout: 2000
+                }).show()
+                    .then(() => { }
+                    )
+            } else {
+                new Noty({
+                    text: "Something went wrong",
+
+                    type: "error",
+                    timeout: 2000
+                }).show();
+            }
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
+        })
+            
+        
     }
     handleError = (error) => {
         this.setState({ error });
@@ -160,7 +209,7 @@ class Login extends Component {
                                             <div class="row align-items-center mt-3">
                                                 <div class="col-md-7">
                                                     {/* <button type="button" class="btn btn-primary btn-block btn-fb"><i class="fa fa-facebook-square"></i> <span>Login with Facebook</span></button> */}
-                                                    <FacebookProvider appId="377592783588831">
+                                                    <FacebookProvider appId="3258485927608008">
                                                         <LoginButton
                                                             className="btn btn-primary btn-fb m-auto"
                                                             scope="email"
@@ -252,7 +301,8 @@ const mapStatetoProps = ({ auth }) => ({
     user: auth.user
 })
 const mapDispatchToProps = ({
-    loginUser
+    loginUser,
+    loginUserFb
 })
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Login);

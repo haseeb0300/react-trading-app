@@ -2502,6 +2502,53 @@ background: #000000;
     margin-bottom: 5px;
   }
 
+  .sell-account-form {
+    padding: 40px 20px 40px;
+    margin-bottom: 35px;
+    border: 1px solid #e6e3e3;
+  }
+
+  .sell-account-form h2 {
+    font-size: 34px;
+    margin-bottom: 30px;
+  }
+
+  .sell-account-form h4 {
+    font-size: 22px;
+  }
+
+  .sell-account-form ul {
+    display: grid;
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  }
+
+  .sell-account-form ul img {
+    max-width: 80px;
+  }
+
+  .sell-account-form ul li {
+    justify-self: center;
+  }
+
+  .sell-account-form label {
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+  .sell-account-form .switch-account-btn {
+    width: 50%;
+   
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 120%;
+    padding: 0 15px;
+    margin: 0;
+    height: 45.5px;
+}
+
   .custom-check input:checked + label:after {
     top: 4px;
   }

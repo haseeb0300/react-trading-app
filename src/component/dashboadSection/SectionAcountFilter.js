@@ -13,6 +13,9 @@ function SectionAcountFilter(props) {
 
      const onSliderValChange = (e)=>{
         setSliderVal(e)
+     console.log(e)
+        props.onChangeSlider(e,e[0],e[1])
+
      }
     return (
 
@@ -68,10 +71,10 @@ function SectionAcountFilter(props) {
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >
                                             <label > HANDMADE / BOTTED </label>
-                                            <select class="form-control" >
-                                                <option > None </option>
-                                                <option > HANDMADE </option>
-                                                <option > BOTTED </option>
+                                            <select class="form-control" name="level_up" onChange={props.onChange}>
+                                                <option value={-1}> None </option>
+                                                <option value='HANDMADE'> HANDMADE </option>
+                                                <option value='BOTTED'> BOTTED </option>
                                             </select>
                                         </div>
                                         <div class="form-group col-sm-6 col-lg-2" >

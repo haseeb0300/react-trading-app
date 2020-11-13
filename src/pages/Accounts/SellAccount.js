@@ -40,27 +40,26 @@ class SellAccount extends Component {
 
             },
             errors: {},
-
             serverError: {},
             isLoading: false,
-            amount_of_rp: "",
-            account_title: "",
-            level: "",
-            price: "",
-            user_name: "",
-            user_email: "",
-            last_season_rank_ID: "",
-            amount_of_blue_essence: "",
-            level_up: "",
-            champions_owned: "",
-            description: "",
-            skin_owned: "",
-            verified_email: "",
-            currency: "",
-            password: "",
-            current_rank_id: "",
-            queue_id: "",
-            server_id: "",
+            amount_of_rp: "40",
+            account_title: "a",
+            level: "20",
+            price: "450",
+            user_name: "usama",
+            user_email: "u@gmail.com",
+            last_season_rank_ID: "5",
+            amount_of_blue_essence: "45",
+            level_up: "None",
+            champions_owned: "53",
+            description: "scacas",
+            skin_owned: "30",
+            verified_email: "No",
+            currency: "EUR",
+            password: "123456",
+            current_rank_id: "2",
+            queue_id: "1",
+            server_id: "1",
             queueList: [],
             serverList: [],
             rankList: [],
@@ -227,6 +226,14 @@ class SellAccount extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault()
+        var accountList = []
+        this.state.user_accounts.map(obj => {
+            if (obj.user_name && obj.password) {
+                accountList.push(obj)
+            }
+        });
+        console.log(accountList)
+
         var data = {
             "amount_of_rp": this.state.amount_of_rp,
             "account_title": this.state.account_title,
@@ -262,6 +269,8 @@ class SellAccount extends Component {
             "server_id": this.state.server_id_comfort,
             "images": this.state.imageList,
         }
+
+
         var data_bulk = {
             "amount_of_rp": this.state.amount_of_rp,
             "account_title": this.state.account_title,
@@ -282,17 +291,20 @@ class SellAccount extends Component {
             "current_rank_id": this.state.current_rank_id,
             "queue_id": this.state.queue_id,
             "server_id": this.state.server_id,
-            "account": this.state.user_accounts,
+            "account": accountList,
+            "images": this.state.imageList,
         }
         console.log("dataa", data)
         if (this.state.sell_type == 'regularSell' && !this.state.type.bulk) {
 
-
+            //this.props.history.push('/userdashboard')
+               
+               
             this.props.postRegularSellAccount(data).then((res) => {
                 console.log(res)
                 if (res.status) {
 
-                    this.props.history.push('/lolaccount')
+                    //this.props.history.push('/lolaccount')
 
                     new Noty({
                         text: "Succsessfully Inserted Account",
@@ -332,7 +344,7 @@ class SellAccount extends Component {
         } else if (this.state.sell_type == 'comfortSell' && !this.state.type.bulk) {
             this.props.postComfortSellAccount(data_comfort).then((res) => {
                 if (res.status) {
-                    this.props.history.push('/lolaccount')
+                    // this.props.history.push('/lolaccount')
 
                     new Noty({
                         text: "Succsessfully Inserted Account",
@@ -372,7 +384,7 @@ class SellAccount extends Component {
             this.props.postBulkRegularSellAccount(data_bulk).then((res) => {
                 console.log(res)
                 if (res.status) {
-                    this.props.history.push('/lolaccount')
+                    //this.props.history.push('/lolaccount')
 
 
                     new Noty({
