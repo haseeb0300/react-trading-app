@@ -4,8 +4,8 @@ import logo from "../../assets/images/logo.png"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../store/actions/authAction'
-
-
+import { withRouter } from 'react-router-dom';
+var cx = require('classnames');
 class Header extends Component {
 
     constructor(props) {
@@ -22,14 +22,14 @@ class Header extends Component {
 
     }
 
-    toggleNavbar = (e) =>{
+    toggleNavbar = (e) => {
         this.setState({ visible: !this.state.visible })
     }
 
     render() {
         const { logoutUser } = this.props
-        const show = this.state.visible ? "show":""
-
+        const show = this.state.visible ? "show" : ""
+        console.log(window.location.pathname)
         return (
             <header>
                 <div class="container">
@@ -45,18 +45,21 @@ class Header extends Component {
                         <Link to="/login">
                             <a class="nav-link d-lg-none px-0"  ><span class="icon-login mr-1"></span></a>
                         </Link>
-                        <button class="navbar-toggler" type="button" onClick={(e)=> this.toggleNavbar(e)} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" onClick={(e) => this.toggleNavbar(e)} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="fa fa-bars"></span>
                         </button>
-                        <div class={"collapse navbar-collapse "+show } >
+                        <div class={"collapse navbar-collapse " + show} >
                             <ul class="navbar-nav navbar-center m-auto">
                                 <Link to="/">
 
-                                    <li class="nav-item active ">
+                                    <li class={cx({ "nav-item ": true, "active": window.location.pathname === "/" })} >
                                         <span class="nav-link" >Home</span>
                                     </li>
                                 </Link>
-                                <li class="nav-item dropdown">
+                                <li class={cx({
+                                    "nav-item dropdown ": true,
+                                    "active": ["/lolaccount", "/unrankedaccount", "/customizedaccount"].includes(window.location.pathname)
+                                })}>
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Lol Accounts
                       </a>
@@ -125,5 +128,5 @@ const mapDispatchToProps = ({
     logoutUser,
 
 })
-export default connect(mapStatetoProps, mapDispatchToProps)(Header);
+export default connect(mapStatetoProps, mapDispatchToProps)(withRouter(Header));
 

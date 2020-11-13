@@ -245,6 +245,9 @@ header span {
   background: #DAEDD2;
   color: darkseagreen;
 }
+
+
+
 /* Slider */
 .rc-slider-handle {
     position: absolute;
@@ -1301,6 +1304,13 @@ background: #000000;
   margin-bottom: 50px;
   background: #fff;
 }
+.sell-account-form .form-control {
+  border-radius: 0;
+  height: 50px;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #9494a4;
+}
 .sell-account-form label {
   display: block;
   box-sizing: border-box;
@@ -1339,6 +1349,10 @@ background: #000000;
   padding: 5px 35px 6px 6px;
   margin: 0;
   border-bottom: 1px solid #5e21e5;
+}
+
+.sell-account-form .form-control:focus {
+  border: none;
 }
 .sell-account-form ul.list {
   display: block;
