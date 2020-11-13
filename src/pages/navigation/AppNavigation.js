@@ -95,7 +95,7 @@ class AppNavigation extends Component {
                     <Route exact path="/passwordrecovery"
                         component={PasswordRecovery} />
                     <Route exact path="/userdashboard" component={UserDashboard} />
-                    <Route exact path="/sellaccount" component={SellAccount} />
+                    {/* <Route exact path="/sellaccount" component={SellAccount} /> */}
 
                 </Switch>
             

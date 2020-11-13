@@ -34,7 +34,9 @@ class UserDashboard extends PureComponent {
                         </div>
                     </div>
                 </section> */}
-                <SellAccount>
+                <SellAccount
+                history={this.props.history}
+                >
                     
                 </SellAccount>
 

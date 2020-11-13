@@ -297,7 +297,7 @@ class SellAccount extends Component {
         console.log("dataa", data)
         if (this.state.sell_type == 'regularSell' && !this.state.type.bulk) {
 
-            //this.props.history.push('/userdashboard')
+            this.props.history.push('/lolaccount')
                
                
             this.props.postRegularSellAccount(data).then((res) => {
