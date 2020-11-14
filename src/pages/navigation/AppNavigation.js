@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Dashboard from '../Dashboard/Dashboard'
 import CustomizedAccount from '../Accounts/CustomizedAccount'
 import LolAccount from '../Accounts/LolAccount'
+import AccountsDetail from '../Accounts/AccountDetail'
+
 import UnRankedAccount from '../Accounts/UnRankedAccount'
 import Login from '../auth/Login'
 import Signup from '../auth/Signup'
@@ -83,7 +85,7 @@ class AppNavigation extends Component {
                     <Route exact path="/lolaccount"
                          ><LolAccount
                          page={'lolAccount'}
-                         ></LolAccount></Route>
+                         ></LolAccount></Route> 
                     <Route exact path="/unrankedaccount"
                          ><LolAccount
                          page={'unrankedAccount'}
@@ -92,6 +94,8 @@ class AppNavigation extends Component {
                         component={Login} />
                     <Route exact path="/signup"
                         component={Signup} />
+                          <Route exact path="/accountsdetail"
+                        component={AccountsDetail} />
                     <Route exact path="/passwordrecovery"
                         component={PasswordRecovery} />
                     <Route exact path="/userdashboard" component={UserDashboard} />
