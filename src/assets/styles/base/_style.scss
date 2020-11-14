@@ -251,6 +251,11 @@ select {
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: '';
+ 
+}
+
+select:focus {
+  border-color: #2a6dc9 !important;
 }
 .select-form-before{
   position: absolute;
@@ -262,16 +267,16 @@ select {
   border: 6px solid transparent;
   border-color: #2D80AA transparent transparent transparent;
 }
-.select-form-before{
-  position: absolute;
-  content: "";
-  top: 22px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #2D80AA transparent transparent transparent;
-}
+// .select-form-before{
+//   position: absolute;
+//   content: "";
+//   top: 22px;
+//   right: 10px;
+//   width: 0;
+//   height: 0;
+//   border: 6px solid transparent;
+//   border-color: #2D80AA transparent transparent transparent;
+// }
 .select-form-after{
   position: absolute;
   content: "";

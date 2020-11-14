@@ -33,6 +33,7 @@ class Signup extends Component {
             confirm_password: "",
             countryList: countryList,
             serverError: {},
+            select:false,
             isLoading: false,
             errors: {},
         };
@@ -169,6 +170,7 @@ class Signup extends Component {
     }
     _handleKeyDownCountry = (e) => {
         console.log("here", [e.target.value])
+        this.setState({select:!this.state.select})
         if (e.target.value == 0) {
             return
         }
@@ -247,23 +249,14 @@ class Signup extends Component {
                                             </div>
                                             <div class="form-group mb-md-4">
                                                 <label>COUNTRY</label>
-<<<<<<< HEAD
-                                                <select class="form-control" name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}>
-                                                    <option value={-1} disable selected={!this.state.country} >Choose your VPN location</option>
-                                                    {this.renderOption()}
-                                                </select>
-                                                {errors.country && <div className=" invaliderror">{errors.country}</div>}
-                                               
-=======
                                                 <div className="col-md-12 p-0">
-                                                    <i class="select-form-before" />
+                                                    <i class={!this.state.select? "select-form-before":"select-form-after"} />
                                                     <select class="form-control " name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}   >
                                                         <option value={-1} disable selected={!this.state.country} >Choose your VPN location</option>
                                                         {this.renderOption()}
                                                     </select>
                                                     {errors.country && <div className=" invaliderror">{errors.country}</div>}
                                                 </div>
->>>>>>> 3117ede9f39f37ac3727e0c511a047b3e9ac791f
                                             </div>
                                             <div class="form-group">
                                                 <label>PHONE number</label>
