@@ -36,7 +36,7 @@ class SectionTopRated extends React.Component {
       if (isMobileOnly) {
          return this.props.accountList.map((item, i) => {
             console.log('posiotion ', i)
-            return (<div key={item.account_id} className={this.props.page === 'dashboard'?"col-md-6 col-lg-4 col-xl-3 p-0 ":"col-md-6 col-lg-4 col-xl-3 "}>
+            return (<div key={item.account_id} className={this.props.page === 'dashboard' ? "col-md-6 col-lg-4 col-xl-3 p-0 " : "col-md-6 col-lg-4 col-xl-3 "}>
                <div class="card wow fadeInUp" data-wow-delay="0.4s">
                   <Fade bottom delay={50}>
                      <a >
@@ -72,7 +72,7 @@ class SectionTopRated extends React.Component {
                         </div>
                         <div class="wrap-date">
                            <div class="label">Creation Date:</div>
-                           <div class="date">Jun 15, 2020</div>
+                           <div class="date">{item.createdAt}</div>
                         </div>
                      </div>
                   </div>
@@ -85,7 +85,7 @@ class SectionTopRated extends React.Component {
 
       }
       return this.props.accountList.map((item, i) => {
-         const delay =  (50 * ((i + 1) % 4) )|| 200;
+         const delay = (50 * ((i + 1) % 4)) || 200;
          return (
             <div key={item.account_id} class="col-md-6 col-lg-4 col-xl-3">
                <div class="card wow fadeInUp" data-wow-delay="0.4s">
@@ -123,7 +123,7 @@ class SectionTopRated extends React.Component {
                         </div>
                         <div class="wrap-date">
                            <div class="label">Creation Date:</div>
-                           <div class="date">Jun 15, 2020</div>
+                           <div class="date">{item.createdAt}</div>
                         </div>
                      </div>
                   </div>
@@ -133,8 +133,8 @@ class SectionTopRated extends React.Component {
          )
       }
       )
-  
-  
+
+
    }
    render() {
       const settings = {
@@ -148,8 +148,8 @@ class SectionTopRated extends React.Component {
 
                <div class="row justify-content-center ">
 
-              
-                  {this.props.page === 'dashboard' &&  isMobileOnly ? (
+
+                  {this.props.page === 'dashboard' && isMobileOnly ? (
                      <div className="col-md-4 " >
                         <Slider   {...settings} >
                            {this.renderAccount()}
