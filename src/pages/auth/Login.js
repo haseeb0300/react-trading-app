@@ -240,7 +240,8 @@ class Login extends Component {
                                             </div>
                                         </form>
                                     </div>
-                                </div>                    {this.renderServerError()}
+                                </div>                   
+                                 {this.renderServerError()}
 
                             </div>
                             <div class="row justify-content-center">
