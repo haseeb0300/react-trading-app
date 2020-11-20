@@ -21,28 +21,22 @@ class AccountDetail extends Component {
         this.state = {
             serverError: {},
             isLoading: false,
-            page: "dashboard",
+          
             accountList: [],
+            accountData:{},
         };
     }
     componentDidMount() {
-        new WOW.WOW({
-            live: false
-        }).init();
-        this.props.getAccount().then((res) => {
-            console.log(res)
-            if (res.status == true) {
-                this.setState({
-                    accountList: res.content,
-                })
-            }
-            else {
-                alert(res)
-            }
-        }).catch((err) => {
-            console.log(err)
+        if (this.props != null && this.props.location.state != null && this.props.location.state.item) {
+
+      
+            console.log(this.props.location.state.item)
+        this.setState({
+            accountData: this.props.location.state.item
 
         })
+    }
+      
     }
     render() {
         // const { t, i18n } = this.props

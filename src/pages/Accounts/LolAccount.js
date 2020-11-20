@@ -5,7 +5,7 @@ import sell from '../../assets/images/sell.svg'
 import Slide from 'react-reveal/Slide';
 import WOW from 'wowjs';
 
-import { getQueue, getServer, getRank, getAccount,getFilterAccount, getLolAccount, getUnrankedAccount, getCustomizeAccount } from '../../store/actions/accountAction'
+import { getQueue, getServer, getRank, getAccount, getFilterAccount, getLolAccount, getUnrankedAccount, getCustomizeAccount } from '../../store/actions/accountAction'
 
 import SectionTopRated from "../../component/dashboadSection/SectionTopRated"
 import SectionAcountFilter from '../../component/dashboadSection/SectionAcountFilter';
@@ -24,12 +24,12 @@ class LolAccount extends Component {
             rankList: [],
             serverList: [],
             queueList: [],
-            current_rank_id:'',
-            server_id:'',
-            queue_id:'',
-            level_up:'',
-            min_value:0,
-            max_value:2000,
+            current_rank_id: '',
+            server_id: '',
+            queue_id: '',
+            level_up: '',
+            min_value: 0,
+            max_value: 2000,
 
 
         };
@@ -44,7 +44,7 @@ class LolAccount extends Component {
 
     componentDidUpdate(prevProps) {
 
-        
+
         new WOW.WOW({
             live: false
         }).init();
@@ -57,7 +57,8 @@ class LolAccount extends Component {
         new WOW.WOW({
             live: false
         }).init();
-        if (this.props.page === 'lolAccount') {
+        if (window.location.pathname === '/lolaccount') {
+            this.setState({page: 'lolAccount'})
             this.props.getLolAccount().then((res) => {
                 console.log(res)
                 if (res.status == true) {
@@ -72,7 +73,8 @@ class LolAccount extends Component {
                 console.log(err)
 
             })
-        } else if (this.props.page === 'unrankedAccount') {
+        } else if (this.state.page === 'unrankedAccount') {
+            this.setState({page: 'unrankedAccount'})
             this.props.getUnrankedAccount().then((res) => {
                 console.log(res)
                 if (res.status == true) {
@@ -87,7 +89,9 @@ class LolAccount extends Component {
                 console.log(err)
 
             })
-        } else if (this.props.page === 'customizeAccount') {
+        } else if (this.state.page === 'customizeAccount') {
+            this.setState({page: 'customizeAccount'})
+
             this.props.getCustomizeAccount().then((res) => {
                 console.log(res)
                 if (res.status == true) {
@@ -147,21 +151,30 @@ class LolAccount extends Component {
         })
     }
 
-    onChangeSlider = (e,min,max) => {
-        console.log( min+ ' '+ max )
-      this.setState({ min_value: min   ,max_value:max} ,()=>{this.onFilterAccount()})
+    onClickAccount = (item) => {
+
+        console.log(item)
+      
+        this.props.history.push("/accountdetail", { item: item })
+
+    }
+
+
+    onChangeSlider = (e, min, max) => {
+        console.log(min + ' ' + max)
+        this.setState({ min_value: min, max_value: max }, () => { this.onFilterAccount() })
     }
     onChange = (e) => {
-        if(e.target.value == -1){
-            this.setState({[e.target.name]: ""},()=>{this.onFilterAccount()})
+        if (e.target.value == -1) {
+            this.setState({ [e.target.name]: "" }, () => { this.onFilterAccount() })
             return
         }
-        this.setState({ [e.target.name]: e.target.value },()=>{this.onFilterAccount()})
+        this.setState({ [e.target.name]: e.target.value }, () => { this.onFilterAccount() })
     }
     _handleKeyDown = (list, e) => {
         console.log("here", [e.target.value])
-        if(e.target.value == -1){
-            this.setState({[e.target.name]: ""},()=>{this.onFilterAccount()})
+        if (e.target.value == -1) {
+            this.setState({ [e.target.name]: "" }, () => { this.onFilterAccount() })
             return
         }
         if (e.target.value == 0) {
@@ -169,17 +182,17 @@ class LolAccount extends Component {
         }
         if (list[e.target.value]) {
             console.log(list[e.target.value])
-            this.setState({ [e.target.name]: e.target.value },()=>{this.onFilterAccount()})
+            this.setState({ [e.target.name]: e.target.value }, () => { this.onFilterAccount() })
         }
     }
 
-    onFilterAccount = () =>{
+    onFilterAccount = () => {
         let data = {
             "server_id": this.state.server_id,
             "queue_id": this.state.queue_id,
             "current_rank_id": this.state.current_rank_id,
             "level_up": this.state.level_up,
-            "min_price":this.state.min_value,
+            "min_price": this.state.min_value,
             "max_price": this.state.max_value,
         }
         this.props.getFilterAccount(data).then((res) => {
@@ -196,9 +209,9 @@ class LolAccount extends Component {
             console.log(err)
         })
     }
-    onTabChange = (type) =>{
+    onTabChange = (type) => {
         console.log(type)
-        if(type === 'lolAccount'){
+        if (type === 'lolAccount') {
             this.props.getLolAccount().then((res) => {
                 console.log(res)
                 if (res.status == true) {
@@ -211,9 +224,9 @@ class LolAccount extends Component {
                 }
             }).catch((err) => {
                 console.log(err)
-    
+
             })
-        }else if(type === 'unrankedAccount'){
+        } else if (type === 'unrankedAccount') {
             this.props.getUnrankedAccount().then((res) => {
                 console.log(res)
                 if (res.status == true) {
@@ -226,9 +239,9 @@ class LolAccount extends Component {
                 }
             }).catch((err) => {
                 console.log(err)
-    
+
             })
-        }else if(type === 'customizeAccount'){
+        } else if (type === 'customizeAccount') {
             this.props.getCustomizeAccount().then((res) => {
                 console.log(res)
                 if (res.status == true) {
@@ -241,7 +254,7 @@ class LolAccount extends Component {
                 }
             }).catch((err) => {
                 console.log(err)
-    
+
             })
         }
     }
@@ -273,14 +286,14 @@ class LolAccount extends Component {
             )
         }
         return (
-            <div key= {this.props.page} class="wrapper">
+            <div key={this.props.page} class="wrapper">
 
                 {/* <!-- Banner section --> */}
                 <section class="banner-section section-background-image" >
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-12 text-center">
-                                {this.props.page === 'lolAccount' ? (
+                                {this.state.page === 'lolAccount' ? (
                                     <Flip top delay={900}>
                                         <div>
                                             <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">LEAGUE OF LEGENDS
@@ -288,7 +301,7 @@ class LolAccount extends Component {
                         </h1>
                                         </div>
                                     </Flip>
-                                ) : this.props.page === 'unrankedAccount' ? (
+                                ) : this.state.page === 'unrankedAccount' ? (
 
                                     <Flip top delay={900}>
                                         <div>
@@ -299,7 +312,7 @@ class LolAccount extends Component {
                                     </Flip>
 
                                 ) : (
-                                    <Flip top delay={900}>
+                                            <Flip top delay={900}>
                                                 <div>
 
                                                     <h1 class="wow flipInX mt-5 mt-md-3" data-wow-delay="0.6s">
@@ -374,7 +387,7 @@ class LolAccount extends Component {
 
                         <SectionAcountFilter
                             price_range={this.state.price_range}
-                            page={this.props.page}
+                            page={this.state.page}
                             queueList={this.state.queueList}
                             serverList={this.state.serverList}
                             rankList={this.state.rankList}
@@ -384,7 +397,7 @@ class LolAccount extends Component {
                             server_id={this.state.server}
                             rank_id={this.state.rank_id}
                             queue_id={this.state.queue}
-                            onTabChange={(e)=>this.onTabChange(e)}
+                            onTabChange={(e) => this.onTabChange(e)}
                             _handleKeyDown={this._handleKeyDown}
                             onChange={this.onChange}
                             onChangeSlider={this.onChangeSlider}
@@ -398,6 +411,7 @@ class LolAccount extends Component {
                     <SectionTopRated
                         page={this.state.page}
                         accountList={this.state.accountList}
+                        onClickAccount = {this.onClickAccount}
                     ></SectionTopRated>
                 </main>
 

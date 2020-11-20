@@ -23,6 +23,7 @@ import Uploadbtn from "../../component/dashboadSection/uploadbtn"
 import PaymentComponent from "../../component/dashboadSection/PaymentComponent"
 import UserHeader from "../../component/dashboadSection/UserHeader"
 import Slide from 'react-reveal/Slide';
+import DashboardHeader from '../../component/dashboadSection/DashboardHeader';
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-checkbox/dist/react-checkbox.css';
@@ -493,24 +494,8 @@ class SellAccount extends Component {
         return (
             <div class="wrapper">
                 {/* <!-- Banner section --> */}
-                <section class="banner-section" >
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-md-12 text-center">
-                                <Flip bottom delay={200}>
-                                    <div>
-                                        <h1 class="wow flipInX mt-3" data-wow-delay="0.6s">Sell Your Account</h1>
-                                    </div>
-                                </Flip>
-                                <Fade bottom delay={900}>
-                                    <p class="wow fadeInUp" data-wow-delay="1s"><strong>LOL Trading is a professional marketplace for buyers & sellers
-                                    <br className="d-none d-md-block"></br>of League of Legends accounts.</strong>
-                                    </p>
-                                </Fade>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+               
+
                 <main>
                     {/* <UserHeader>
                         </UserHeader>  */}

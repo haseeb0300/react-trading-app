@@ -34,6 +34,8 @@ class SectionTopRated extends React.Component {
       var list = [...this.state.image_list, account9, account10, account11, account12]
       this.setState({ image_list: list });
    }
+
+  
    renderAccount = () => {
       if (isMobileOnly) {
          return this.props.accountList.map((item, i) => {
@@ -72,7 +74,7 @@ class SectionTopRated extends React.Component {
                      <Link to="/accountdetail" >
 
                         <div class="wrap-link">
-                           <a class="btn btn-secondary"  >Details</a>
+                           <a class="btn btn-secondary" onClick={() => this.props.onClickAccount(item)} >Details</a>
                         </div>
                         </Link>
                         <div class="wrap-date">
@@ -124,7 +126,7 @@ class SectionTopRated extends React.Component {
                   <div class="overlayer">
                      <div class="inner-cnt">
                         <div class="wrap-link">
-                           <a class="btn btn-secondary"  >Details</a>
+                           <a class="btn btn-secondary" onClick={() => this.props.onClickAccount(item)} >Details</a>
                         </div>
                         <div class="wrap-date">
                            <div class="label">Creation Date:</div>

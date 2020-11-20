@@ -78,6 +78,7 @@ class Dashboard extends Component {
          </section>
          {/* <!-- Main --> */}
          <main>
+{/* 
             <section class="dashboard-section">
                <div class="container">
                   <div class="row">
@@ -219,6 +220,7 @@ class Dashboard extends Component {
                   </div>
                </div>
             </section>
+             */}
             {/* <!-- Coaching -->   */}
             <section class="payment-section wow fadeInUp pt-5" data-wow-delay="0.6s">
                <div class="container">

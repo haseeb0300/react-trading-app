@@ -20,6 +20,7 @@ import {
     Route,
 
 } from "react-router-dom";
+
 import axios from 'axios';
 
 import UserHeader from '../../component/header/UserHeader';
@@ -81,17 +82,30 @@ class AppNavigation extends Component {
                     <Route exact path="/"
                         component={Dashboard} />
                     <Route exact path="/customizedaccount"
-                    ><LolAccount
+                     component={LolAccount}
+                    >
+                        {/* <LolAccount
+                  
                         page={'customizeAccount'}
-                    ></LolAccount></Route>
+                    ></LolAccount> */}
+
+                    </Route>
                     <Route exact path="/lolaccount"
-                    ><LolAccount
-                        page={'lolAccount'}
-                    ></LolAccount></Route>
+                    // ><LolAccount
+                      
+                    //     page={'lolAccount'}
+                    // ></LolAccount>
+                    component={LolAccount}
+                    >
+                    </Route>
                     <Route exact path="/unrankedaccount"
-                    ><LolAccount
+                     component={LolAccount}
+                    >
+                        {/* <LolAccount
+                  
                         page={'unrankedAccount'}
-                    ></LolAccount></Route>
+                    ></LolAccount> */}
+                    </Route>
                     <Route exact path="/login"
                         component={Login} />
                     <Route exact path="/signup"
