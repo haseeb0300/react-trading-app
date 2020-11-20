@@ -301,6 +301,60 @@ $("#loadMore").on('click', function (e) {
     document.addEventListener("click", closeAllSelect);
  </script>
         <!-- signup -->
+        <!--detail account-->
+        <script>
+          $(document).ready(function(){
+           $('.carousel').slick({
+            speed: 1000,
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots:false,
+            arrows: false,
+            responsive: [{
+             breakpoint: 1024,
+             settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+               // centerMode: true,
+          
+            }
+          
+          }, {
+          breakpoint: 800,
+          settings: {
+           slidesToShow: 2,
+           slidesToScroll: 2,
+           infinite: true,
+          
+          }
+          },  {
+          breakpoint: 480,
+          settings: {
+           slidesToShow: 1,
+           slidesToScroll: 1,
+           infinite: true,
+           autoplay: true,
+           autoplaySpeed: 2000,
+          }
+          }]
+          });
+          });
+       </script>
+       <script>
+          $('.btn-active').click(function() {
+            $('.more-text').slideToggle();
+            if ($('.btn-active').text() == "Show More") {
+              $(this).text("Show Less")
+           } else {
+              $(this).text("Show More")
+           }
+          });
+          
+          
+       </script>
+               <!--detail account End-->
 
 </body>
 

@@ -179,6 +179,7 @@ class SellAccount extends Component {
     }
     _handleKeyDown = (list, e) => {
         console.log("here", [e.target.value])
+        
         if (e.target.value == 0) {
             return
         }
@@ -539,7 +540,7 @@ class SellAccount extends Component {
                                                             {errors.amount_of_rp && <div className=" invaliderror">{errors.amount_of_rp}</div>}
                                                             <label>Server</label>
                                                             <div className="col-md-12 p-0">
-                                                                <i class="select-form-before" />
+                                                            <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                                 <select class="form-control" name="server_id" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
                                                                     <option value={-1} disable selected={!this.state.server_id} >  Select Server</option>
 
@@ -595,7 +596,7 @@ class SellAccount extends Component {
 
                                                             <label>Type of queue</label>
                                                             <div className="col-md-12 p-0">
-                                                                <i class="select-form-before" />
+                                                            <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                                 <select class="form-control" name="queue_id" onClick={(e) => this._handleKeyDown(this.state.queueList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.queueList, e)} >
                                                                     <option value={-1} disable selected={!this.state.queue_id} >  Select Queue--</option>
 
@@ -605,7 +606,7 @@ class SellAccount extends Component {
                                                             </div>
                                                             <label>Currency</label>
                                                             <div className="col-md-12 p-0">
-                                                                <i class="select-form-before" />
+                                                            <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                                 <select class="form-control" name="currency" onChange={this.onChange} required="">
                                                                     <option value={-1} disable selected={!this.state.currency} >  Select Currency </option>
                                                                     <option value={"USD"}>USD</option>
@@ -625,7 +626,7 @@ class SellAccount extends Component {
                                                         <div class="col-md-4 ">
                                                             <label>Rank of Account</label>
                                                             <div className="col-md-12 p-0">
-                                                                <i class="select-form-before" />
+                                                            <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                                 <select class="form-control" name="current_rank_id" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
                                                                     <option value={-1} disable selected={!this.state.current_rank_id} > Select Rank</option>
 
@@ -640,7 +641,7 @@ class SellAccount extends Component {
                                                             
                                                             <label>Last Season Rank</label>
                                                             <div className="col-md-12 p-0">
-                                                                <i class="select-form-before" />
+                                                            <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                                 <select class="form-control" name="last_season_rank_ID" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
                                                                     <option value={-1} disable selected={!this.state.last_season_rank_ID} >--Select Rank--</option>
 
@@ -666,7 +667,7 @@ class SellAccount extends Component {
 
                                                             <label>Currency</label>
                                                             <div className="col-md-12 p-0">
-                                                                <i class="select-form-before" />
+                                                            <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                                 <select class="form-control" name="currency_comfort" onChange={this.onChange} required="">
                                                                     <option value={-1} disable selected={!this.state.currency_comfort} > Select Currency </option>
 
@@ -687,7 +688,7 @@ class SellAccount extends Component {
 
                                                             <label>Last Season Rank</label>
                                                             <div className="col-md-12 p-0">
-                                                                <i class="select-form-before" />
+                                                            <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                                 <select class="form-control" name="last_season_rank_ID_comfort" onClick={(e) => this._handleKeyDown(this.state.rankList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.rankList, e)} >
                                                                     <option value={-1} disable selected={!this.state.last_season_rank_ID_comfort} >Select Rank</option>
 
@@ -699,7 +700,7 @@ class SellAccount extends Component {
                                                         <div class="col-md-4 ">
                                                             <label>Server</label>
                                                             <div className="col-md-12 p-0">
-                                                                <i class="select-form-before" />
+                                                            <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                                 <select class="form-control" name="server_id_comfort" onClick={(e) => this._handleKeyDown(this.state.serverList, e)} onChange={this.onChange} onKeyUp={(e) => this._handleKeyDown(this.state.serverList, e)} >
                                                                     <option value={-1} disable selected={!this.state.server_id_comfort} >--Select Server--</option>
 
@@ -754,7 +755,7 @@ class SellAccount extends Component {
                                                     <div class="col-md-4">
                                                         <label>Level-up</label>
                                                         <div className="col-md-12 p-0"> 
-                                                <i class="select-form-before" />
+                                                        <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                         <select class="form-control" name="level_up" onChange={this.onChange} required="" >
                                                             <option value={-1} disable selected={!this.state.level_up} >--Select Level Up--</option>
 
@@ -769,7 +770,7 @@ class SellAccount extends Component {
                                                     <div class="col-md-4 ">
                                                         <label>Verified email:</label>
                                                         <div className="col-md-12 p-0"> 
-                                                <i class="select-form-before" />
+                                                        <i class={!this.state.select? "select-form-before":"select-form-after"}  />
                                                         <select class="form-control" name="verified_email" onChange={this.onChange} required="">
                                                             <option value={-1} disable selected={!this.state.verified_email} >--Select --</option>
 

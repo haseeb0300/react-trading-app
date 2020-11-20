@@ -250,11 +250,15 @@ class Signup extends Component {
                                             <div class="form-group mb-md-4">
                                                 <label>COUNTRY</label>
                                                 <div className="col-md-12 p-0">
-                                                    <i class={!this.state.select? "select-form-before":"select-form-after"} />
+                                                <i class={!this.state.select? "select-form-before":"select-form-after"}  />
+
                                                     <select class="form-control " name="country" onClick={this._handleKeyDownCountry} onChange={this.onChange} onKeyUp={this._handleKeyDownCountry}   >
+
                                                         <option value={-1} disable selected={!this.state.country} >Choose your VPN location</option>
                                                         {this.renderOption()}
+                                                        
                                                     </select>
+
                                                     {errors.country && <div className=" invaliderror">{errors.country}</div>}
                                                 </div>
                                             </div>

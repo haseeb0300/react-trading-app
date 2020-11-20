@@ -10,6 +10,8 @@ import Login from '../auth/Login'
 import Signup from '../auth/Signup'
 import PasswordRecovery from '../auth/PasswordRecovery'
 import SellAccount from '../Accounts/SellAccount'
+import DashboardHeader from '../Dashboard/DashboardHeader'
+import AccountDetail from '../Accounts/AccountDetail'
 
 
 import {
@@ -19,7 +21,7 @@ import {
 
 } from "react-router-dom";
 import axios from 'axios';
- 
+
 import UserHeader from '../../component/header/UserHeader';
 import Header from '../../component/header/Header';
 import Footer from '../../component/footer/Footer';
@@ -29,7 +31,7 @@ import store from '../../store/store'
 
 import setAuthToken from '../../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
- 
+
 
 import { logoutUser, setCurrentUser } from '../../store/actions/authAction';
 import UserDashboard from '../UserDashboard/UserDashboard';
@@ -69,7 +71,7 @@ class AppNavigation extends Component {
 
 
             <Router >
-                
+
                 { user.user_name && <UserHeader />}
                 {      !user.user_name &&
                     <Header>
@@ -79,30 +81,33 @@ class AppNavigation extends Component {
                     <Route exact path="/"
                         component={Dashboard} />
                     <Route exact path="/customizedaccount"
-                         ><LolAccount
-                         page={'customizeAccount'}
-                         ></LolAccount></Route>
+                    ><LolAccount
+                        page={'customizeAccount'}
+                    ></LolAccount></Route>
                     <Route exact path="/lolaccount"
-                         ><LolAccount
-                         page={'lolAccount'}
-                         ></LolAccount></Route> 
+                    ><LolAccount
+                        page={'lolAccount'}
+                    ></LolAccount></Route>
                     <Route exact path="/unrankedaccount"
-                         ><LolAccount
-                         page={'unrankedAccount'}
-                         ></LolAccount></Route>
+                    ><LolAccount
+                        page={'unrankedAccount'}
+                    ></LolAccount></Route>
                     <Route exact path="/login"
                         component={Login} />
                     <Route exact path="/signup"
                         component={Signup} />
-                          <Route exact path="/accountsdetail"
+                    <Route exact path="/accountsdetail"
                         component={AccountsDetail} />
                     <Route exact path="/passwordrecovery"
                         component={PasswordRecovery} />
+                    <Route exact path="/dashboardheader"
+                        component={DashboardHeader} />
                     <Route exact path="/userdashboard" component={UserDashboard} />
+                    <Route exact path="/accountdetail" component={AccountDetail} />
                     {/* <Route exact path="/sellaccount" component={SellAccount} /> */}
-
+                    
                 </Switch>
-            
+
                 <Footer></Footer>
             </Router >
 

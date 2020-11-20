@@ -14,6 +14,8 @@ import account12 from '../../assets/images/account/11.png'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link, withRouter } from 'react-router-dom';
+
 import {
    isMobileOnly
 } from "react-device-detect";
@@ -67,9 +69,12 @@ class SectionTopRated extends React.Component {
                   </Fade>
                   <div class="overlayer">
                      <div class="inner-cnt">
+                     <Link to="/accountdetail" >
+
                         <div class="wrap-link">
                            <a class="btn btn-secondary"  >Details</a>
                         </div>
+                        </Link>
                         <div class="wrap-date">
                            <div class="label">Creation Date:</div>
                            <div class="date">{item.createdAt}</div>
