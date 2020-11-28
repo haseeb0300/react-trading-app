@@ -19,7 +19,7 @@ class LolAccount extends Component {
             isLoading: false,
             price_range: 'price-range',
             unmounting: false,
-            page: 'lolAccount',
+            page: '',
             accountList: [],
             rankList: [],
             serverList: [],
@@ -73,7 +73,7 @@ class LolAccount extends Component {
                 console.log(err)
 
             })
-        } else if (this.state.page === 'unrankedAccount') {
+        } else if (window.location.pathname === '/unrankedaccount') {
             this.setState({page: 'unrankedAccount'})
             this.props.getUnrankedAccount().then((res) => {
                 console.log(res)
@@ -89,7 +89,7 @@ class LolAccount extends Component {
                 console.log(err)
 
             })
-        } else if (this.state.page === 'customizeAccount') {
+        } else if (window.location.pathname === '/customizedaccount') {
             this.setState({page: 'customizeAccount'})
 
             this.props.getCustomizeAccount().then((res) => {

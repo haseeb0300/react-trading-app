@@ -81,13 +81,13 @@ class AppNavigation extends Component {
                 <Switch >
                     <Route exact path="/"
                         component={Dashboard} />
-                    <Route exact path="/customizedaccount"
-                     component={LolAccount}
-                    >
-                        {/* <LolAccount
+                    <Route exact path="/customizedaccount">
+                      {/* component={LolAccount}
+                     >*/}
+                         <LolAccount 
                   
                         page={'customizeAccount'}
-                    ></LolAccount> */}
+                    ></LolAccount> 
 
                     </Route>
                     <Route exact path="/lolaccount"

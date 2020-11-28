@@ -26,13 +26,13 @@ function SectionAcountFilter(props) {
                         <ul class="nav nav-pills nav-fill" >
                             <li class="nav-item" onClick={()=> props.onTabChange('lolAccount')}>
                                 <Link to="/lolaccount" >
-                                    <a class={props.page == 'lolAccount' ? "nav-link active" : "nav-link"}
+                                    <a class={window.location.pathname === '/lolaccount' ? "nav-link active" : "nav-link"}
                                     > LOL ACCOUNTS </a> </Link> </li> <li class="nav-item"  onClick={()=> props.onTabChange('unrankedAccount')}>
                                 <Link to="/unrankedaccount" >
-                                    <a class={props.page == 'unrankedAccount' ? "nav-link active" : "nav-link"}
+                                    <a class={window.location.pathname === '/unrankedaccount' ? "nav-link active" : "nav-link"}
                                     > UNRANKED ACCOUNTS </a> </Link> </li> <li class="nav-item" onClick={()=>props.onTabChange('customizeAccount')}>
                                 <Link to="/customizedaccount" >
-                                    <a class={props.page == 'customizeAccount' ? "nav-link active" : "nav-link"}
+                                    <a class={window.location.pathname === '/customizedaccount' ? "nav-link active" : "nav-link"}
                                     > CUSTOMIZED ACCOUNTS </a> </Link> </li> </ul>
                         <div class="card" >
                             <div class="card-body" >
