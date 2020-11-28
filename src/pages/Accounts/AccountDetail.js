@@ -21,22 +21,36 @@ class AccountDetail extends Component {
         this.state = {
             serverError: {},
             isLoading: false,
-          
+
             accountList: [],
-            accountData:{},
+            accountData: {},
         };
     }
     componentDidMount() {
         if (this.props != null && this.props.location.state != null && this.props.location.state.item) {
 
-      
-            console.log(this.props.location.state.item)
-        this.setState({
-            accountData: this.props.location.state.item
 
-        })
+            console.log(this.props.location.state.item)
+            this.setState({
+                accountData: this.props.location.state.item
+
+            })
+        }
+
     }
-      
+
+
+    renderImages = (imageList) => {
+        //console.log(orderList)
+        if (!imageList) {
+            return <div>  <h1>No item to show </h1></div>
+        }
+        return imageList.map((item, i) =>
+            <div class="gallery-img text-center">
+                <img src={Gallery} alt="gallery" />
+                <h6>#1</h6>
+            </div>
+        )
     }
     render() {
         // const { t, i18n } = this.props
@@ -50,7 +64,7 @@ class AccountDetail extends Component {
         return (
             <div class="wrapper">
 
-                <section class="banner-section dashboard-banner" 
+                <section class="banner-section dashboard-banner"
                 // style="background-image: url('assets/images/signup.png');"
                 >
                     <div class="container">
@@ -85,7 +99,7 @@ class AccountDetail extends Component {
                                             <div class="list-statistics">
                                                 <div class="stat">
                                                     <div class="stat-icon">
-                                                        <img alt="champions" src={ChampionsItem}/>
+                                                        <img alt="champions" src={ChampionsItem} />
                                                     </div>
                                                     <div class="stat-name">
                                                         <span class="name">Champions</span>
@@ -185,10 +199,18 @@ class AccountDetail extends Component {
                                 </div>
                                 <div class="col-md-8 col-lg-9 pl-md-5">
                                     <h5>GALLERY:</h5>
-                                    <div class="gallery-img text-center">
-                                        <img src={Gallery} alt="gallery" />
-                                        <h6>#1</h6>
-                                    </div>
+                                    {this.state.accountData && this.state.accountData.Images && this.state.accountData.Images.map((item, i) =>
+                                        <div class="gallery-img text-center">
+                                            <img src={item.image_url} alt="gallery" />
+                                    <h6>#{i+1}</h6>
+                                        </div>
+                                    )}
+                                    {this.state.accountData && this.state.accountData.Images &&  this.state.accountData.Images.length == 0 && 
+                                        <div class="gallery-img text-center">
+                                            <img src={Gallery} alt="gallery" />
+                                    <h6>#1</h6>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                             <div class="row tab-account mt-4 mt-md-5">
