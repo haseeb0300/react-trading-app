@@ -14,7 +14,8 @@ import paypal from '../../assets/images/paypal.png'
 import master from '../../assets/images/master.png'
 import visa from '../../assets/images/visa.png'
 
-
+import { Carousel } from 'react-responsive-carousel'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 class AccountDetail extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +27,7 @@ class AccountDetail extends Component {
             accountData: {},
         };
     }
-    componentDidMount() {
+    componentWillMount() {
         if (this.props != null && this.props.location.state != null && this.props.location.state.item) {
 
 
@@ -91,7 +92,7 @@ class AccountDetail extends Component {
                                                 <span class="number">0</span>
                                             </div>
                                             <div class="counter-right">
-                                                <span class="number">32000</span>
+                                                <span class="number">{this.state.accountData.amount_of_rp}</span>
                                             </div>
                                             <div class="text-center pt-4">
                                                 <img src={webp4} alt="4" />
@@ -105,7 +106,7 @@ class AccountDetail extends Component {
                                                         <span class="name">Champions</span>
                                                     </div>
                                                     <div class="stat-value">
-                                                        <span class="value">20</span>
+                                                        <span class="value">{this.state.accountData.champions_owned}</span>
                                                     </div>
                                                 </div>
                                                 <div class="stat">
@@ -116,7 +117,7 @@ class AccountDetail extends Component {
                                                         <span class="name">Skins</span>
                                                     </div>
                                                     <div class="stat-value">
-                                                        <span class="value">0</span>
+                                                        <span class="value">{this.state.accountData.skin_owned}</span>
                                                     </div>
                                                 </div>
                                                 <div class="stat">
@@ -127,7 +128,7 @@ class AccountDetail extends Component {
                                                         <span class="name">Level</span>
                                                     </div>
                                                     <div class="stat-value">
-                                                        <span class="value">30</span>
+                                                        <span class="value">{this.state.accountData.level}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,50 +139,50 @@ class AccountDetail extends Component {
                                     <h4 class="account-main-title">EUW Account / 20 Champions / 0 Skins</h4>
                                     <div class="price-block mt-3">
                                         <small>Price</small>
-                                        <h3 class="text-secondary">43.00 EUR</h3>
+                                        <h3 class="text-secondary">{this.state.accountData.price} {this.state.accountData.currency}</h3>
                                     </div>
                                     <div class="account-details mt-3">
                                         <ul class="list">
                                             <li class="item">
                                                 <span class="label">Level:</span>
-                                                <span class="value">30</span>
+                                                <span class="value">{this.state.accountData.level}</span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">Champions:</span>
-                                                <span class="value">20</span>
+                                                <span class="value">{this.state.accountData.champions_owned}</span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">Blue Essence:</span>
-                                                <span class="value">32000</span>
+                                                <span class="value">{this.state.accountData.amount_of_blue_essence} </span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">Rank of account:</span>
-                                                <span class="value">Iron I</span>
+                                                <span class="value">{this.state.accountData.Rank.rank}</span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">Skins:</span>
-                                                <span class="value">0</span>
+                                                <span class="value">{this.state.accountData.skin_owned}</span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">Server:</span>
-                                                <span class="value">EUW</span>
+                                                <span class="value">{this.state.accountData.Server.server_code}</span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">RP:</span>
-                                                <span class="value">0</span>
+                                                <span class="value">{this.state.accountData.amount_of_rp}</span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">Queue:</span>
-                                                <span class="value">solo_duo</span>
+                                                <span class="value">{this.state.accountData.Queue.queue_name}</span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">Level-up:</span>
                                                 <span class="value">
-                                                    Botted </span>
+                                                {this.state.accountData.level_up} </span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">E-mail Verified:</span>
-                                                <span class="value">No</span>
+                                                <span class="value"> {this.state.accountData.verified_email}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -689,6 +690,7 @@ class AccountDetail extends Component {
                                 </div>
                             </div>
                         </div>
+                   
                     </section>
                 </main>
 
