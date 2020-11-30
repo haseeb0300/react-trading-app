@@ -108,6 +108,16 @@
 .icon-buyer:before {
   content: "\e903";
 }
+.icon-payment-method:before {
+  content: "\e908";
+}
+.icon-cart:before {
+  content: "\e904";
+}
+.icon-info:before {
+  content: "\e906";
+}
+
 body {
   color: #505050;
   min-width: 320px;
@@ -2460,11 +2470,14 @@ background: #000000;
   color: #9494a4;
   margin-top: 10px;
   font-size: 16px;
+  text-align: center;
 }
 
 .description-account .gallery-img {
-  max-width: 160px;
+  max-width: 190px;
+  margin: 10px;
 }
+
 
 .description-account .gallery-img img {
   width: 100%;

@@ -136,7 +136,7 @@ class AccountDetail extends Component {
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-9 pl-md-5">
-                                    <h4 class="account-main-title">EUW Account / 20 Champions / 0 Skins</h4>
+                                    <h4 class="account-main-title">{this.state.accountData.Server.server_code} Account / {this.state.accountData.champions_owned} Champions / {this.state.accountData.skin_owned} Skins</h4>
                                     <div class="price-block mt-3">
                                         <small>Price</small>
                                         <h3 class="text-secondary">{this.state.accountData.price} {this.state.accountData.currency}</h3>
@@ -178,7 +178,7 @@ class AccountDetail extends Component {
                                             <li class="item">
                                                 <span class="label">Level-up:</span>
                                                 <span class="value">
-                                                {this.state.accountData.level_up} </span>
+                                                    {this.state.accountData.level_up} </span>
                                             </li>
                                             <li class="item">
                                                 <span class="label">E-mail Verified:</span>
@@ -196,22 +196,32 @@ class AccountDetail extends Component {
                             <div class="row description-account mt-4">
                                 <div class="col-md-4 col-lg-3">
                                     <h5>DESCRIPTION:</h5>
-                                    <p>[Verified Seller] ✔️Aykxa✔️📣SPECIAL PRICE📣✔️IRON I ACCOUNT EUW✔️ IRON 2 ACC PERFECT FOR SMURF OR TROLL✔️HAVE SKINS ON LOOT✔️❤️GOOD FOR SMURF❤️VERY CHEAP❤️INSTANT-DELIVERY 24/7❤️29-35k BLUE ESSENCE AVAILABLE❤️Seller helped❤️</p>
+                                    <p>{this.state.accountData.description}</p>
                                 </div>
                                 <div class="col-md-8 col-lg-9 pl-md-5">
+
                                     <h5>GALLERY:</h5>
-                                    {this.state.accountData && this.state.accountData.Images && this.state.accountData.Images.map((item, i) =>
-                                        <div class="gallery-img text-center">
-                                            <img src={item.image_url} alt="gallery" />
-                                    <h6>#{i+1}</h6>
+                                    <div class="row">
+
+                                        {this.state.accountData && this.state.accountData.Images && this.state.accountData.Images.map((item, i) =>
+                                            <div>
+                                                <div class="gallery-img text-center">
+                                                    <img src={item.image_url} alt="gallery" />
+                                                </div>
+                                                <h6>#{i + 1}</h6>
+
+                                            </div>
+                                        )}
+                                        <div class="row">
+
+                                            {this.state.accountData && this.state.accountData.Images && this.state.accountData.Images.length == 0 &&
+                                                <div class="gallery-img text-center">
+                                                    <img src={Gallery} alt="gallery" />
+                                                    <h6>#1</h6>
+                                                </div>
+                                            }
                                         </div>
-                                    )}
-                                    {this.state.accountData && this.state.accountData.Images &&  this.state.accountData.Images.length == 0 && 
-                                        <div class="gallery-img text-center">
-                                            <img src={Gallery} alt="gallery" />
-                                    <h6>#1</h6>
-                                        </div>
-                                    }
+                                    </div>
                                 </div>
                             </div>
                             <div class="row tab-account mt-4 mt-md-5">
@@ -690,7 +700,7 @@ class AccountDetail extends Component {
                                 </div>
                             </div>
                         </div>
-                   
+
                     </section>
                 </main>
 
