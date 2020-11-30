@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Noty from 'noty';
 
 import WOW from 'wowjs';
 import { getAccount } from '../../store/actions/accountAction'
@@ -8,14 +9,18 @@ import ChampionsItem from '../../assets/images/item_champions.webp'
 import ItemSkins from '../../assets/images/item_skins.webp'
 import ItemLevel from '../../assets/images/item_level.webp'
 import Gallery from '../../assets/images/gallery.png'
-import skrill from '../../assets/images/skrill.png'
-import stripe from '../../assets/images/stripe.png'
-import paypal from '../../assets/images/paypal.png'
-import master from '../../assets/images/master.png'
-import visa from '../../assets/images/visa.png'
+import skrill_img from '../../assets/images/skrill.png'
+import stripe_img from '../../assets/images/stripe.png'
+import paypal_img  from '../../assets/images/paypal.png'
+import master_img  from '../../assets/images/master.png'
+import visa_img from '../../assets/images/visa.png'
+import {postOrder } from '../../store/actions/accountAction'
 
 import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import Slide from 'react-reveal/Slide';
+import Flip from 'react-reveal/Flip';
+import Fade from 'react-reveal/Fade';
 class AccountDetail extends Component {
     constructor(props) {
         super(props);
@@ -40,6 +45,50 @@ class AccountDetail extends Component {
 
     }
 
+    onBuyAccount = (e) => {
+        e.preventDefault()
+        this.props.postOrder({
+            "account_id": this.state.accountData.account_id,
+        }).then((res) => {
+            this.setState({ isLoading: false })
+            console.log(res)
+            if (res.status) {
+                
+                new Noty({
+                    text: "Succsessfully Buy Account",
+                    type: "success",
+
+                    timeout: 2000
+                }).show()
+                    .then(() => { }
+                    )
+            } else {
+                new Noty({
+                    text: "Something went wrong",
+                    type: "error",
+                    timeout: 2000
+                }).show();
+            }
+        }).catch((err) => {
+            this.setState({ isLoading: false })
+            console.log(err)
+            var validationError = {}
+            var serverError = []
+            if (err.hasOwnProperty('validation')) {
+                err.validation.map(obj => {
+                    if (obj.hasOwnProperty('param')) {
+                        validationError[obj["param"]] = obj["msg"]
+                    } else {
+                        serverError = [...serverError, obj]
+                    }
+                });
+                this.setState({ errors: validationError });
+                this.setState({ serverError: serverError });
+            } else {
+                this.setState({ serverError: [{ "msg": "server not responding" }] })
+            }
+        })
+    }
 
     renderImages = (imageList) => {
         //console.log(orderList)
@@ -186,7 +235,7 @@ class AccountDetail extends Component {
                                             </li>
                                         </ul>
                                     </div>
-                                    <button type="button" id="loadMore" class="btn btn-primary text-uppercase mt-3 mt-sm-2 px-5 mb-3">Buy Now</button>
+                                    <button type="button" id="loadMore" onClick={this.onBuyAccount} class="btn btn-primary text-uppercase mt-3 mt-sm-2 px-5 mb-3">Buy Now</button>
                                     <div class="form-group custom-check">
                                         <input type="checkbox" id="Remember" />
                                         <label for="Remember">Get Lifetime warranty! (20% extra charge)</label>
@@ -243,15 +292,15 @@ class AccountDetail extends Component {
                                                 <tbody>
                                                     <tr>
                                                         <td>Seller name:</td>
-                                                        <td>Aykxa</td>
+                                        <td>{ this.state.accountData.User && this.state.accountData.User.user_name }</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Number of sales:</td>
-                                                        <td>611</td>
+                                                        <td>0</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Number of reviews:</td>
-                                                        <td>4</td>
+                                                        <td>0</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -662,8 +711,9 @@ class AccountDetail extends Component {
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
+                                        <div class="row">
 
-                                            <div class="carousel mb-0">
+                                            {/* <div class="carousel mb-0">
                                                 <div>
                                                     <img src={skrill} alt="skrill" />
                                                 </div>
@@ -694,9 +744,30 @@ class AccountDetail extends Component {
                                                 <div>
                                                     <img src={visa} alt="visa" />
                                                 </div>
+                                            </div> */}
+                                        
+                                            <div class="wow fadeInRight col-md-2" data-wow-delay="0.6s">
+                                                <img src={paypal_img} alt="paypal" />
+                                            </div>
+                                            <div class="wow fadeInRight  col-md-2" data-wow-delay="0.8s">
+                                                <img src={master_img} alt="master" />
+                                            </div>
+                                            <div class="wow fadeInRight  col-md-2" data-wow-delay="1s">
+                                                <img src={visa_img} alt="visa" />
+                                            </div>
+                                     
+                                            <div class="wow fadeInRight  col-md-2" data-wow-delay="1.3s">
+                                                <img src={skrill_img} alt="skrill" />
+                                            </div>
+                                            <div class="wow fadeInRight  col-md-2" data-wow-delay="1.6s">
+                                                <img src={stripe_img} alt="stripe" />
+                                            </div>
+                                            <div class="wow fadeInRight  col-md-2" data-wow-delay="1.6s">
+                                            <img src={paypal_img} alt="paypal" />
                                             </div>
                                         </div>
-                                    </div>
+                                        </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -713,7 +784,7 @@ const mapStatetoProps = ({ auth }) => ({
     user: auth.user
 })
 const mapDispatchToProps = ({
-    getAccount
+    postOrder
 })
 AccountDetail.propTypes = {
 };
